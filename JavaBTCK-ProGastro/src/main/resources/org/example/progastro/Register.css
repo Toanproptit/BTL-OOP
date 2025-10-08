@@ -1,0 +1,58 @@
+.text-field, .password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #4caf50;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 300px;
+    -fx-background-insets: 0;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+}
+
+#backToLoginButton:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+#registerButton:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+#choosePhoto:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+.button {
+    -fx-background-color: #4caf50;
+    -fx-text-fill: blue;
+    -fx-font-size: 14px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);
+    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
+    -fx-background-radius: 16px;
+}
+
+.grid-pane {
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+.row-constrains {
+    -fx-vgap: 10px;
+}
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #333333;
+    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
+        -fx-background-radius: 10px;
+}
