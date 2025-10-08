@@ -1,0 +1,58 @@
+
+
+/* Định dạng cho Label */
+.label {
+    -fx-text-fill: #333333;           /* Màu chữ xám */
+    -fx-font-size: 14px;              /* Kích thước chữ */
+    -fx-font-weight: bold;            /* Chữ đậm */
+}
+
+/* Định dạng cho TextField */
+.text-field {
+    -fx-background-color: #ffffff;    /* Nền trắng */
+    -fx-border-radius: 8px;           /* Bo tròn các góc */
+    -fx-padding: 10px;                /* Thêm khoảng đệm trong */
+    -fx-font-size: 14px;              /* Kích thước chữ */
+    -fx-border-color: #ff5722;        /* Màu viền cam */
+    -fx-border-width: 2px;            /* Độ dày viền */
+}
+
+/* Định dạng cho Button */
+.button {
+    -fx-background-color: #4caf50;    /* Nền xanh lá */
+    -fx-text-fill: white;             /* Chữ trắng */
+    -fx-font-size: 13px;              /* Kích thước chữ */
+    -fx-border-radius: 14px;           /* Bo tròn các góc */
+    -fx-padding: 10px 20px;           /* Khoảng đệm cho nút */
+    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);  /* Hiệu ứng bóng */
+    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
+    -fx-background-radius: 16px;
+}
+
+#logoutButton{
+    -fx-background-color: #FFA726;
+}
+
+.button:hover {
+    -fx-background-color: #45a049;
+    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);
+}
+#foodButton:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+#orderButton:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+#logoutButton:hover{
+    -fx-background-color:#FFB74D;
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+#choosePhoto:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+
