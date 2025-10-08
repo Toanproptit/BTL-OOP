@@ -1,0 +1,96 @@
+/* Đặt nền cho toàn bộ AnchorPane */
+.anchor-pane {
+    -fx-background-color: #f0f0f0; /* Màu nền nhẹ */
+    -fx-padding: 20px;
+}
+
+/* Đặt kiểu chữ cho tiêu đề */
+
+
+/* Đặt kiểu chữ cho Label */
+.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+    -fx-text-fill: #333333;
+    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
+        -fx-background-radius: 10px;
+}
+
+/* Định nghĩa cho TextField */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #4caf50;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 40px;
+}
+
+/* Định nghĩa cho PasswordField */
+.password-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #4caf50;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-pref-width: 300px;
+    -fx-pref-height: 40px;
+}
+
+/* Định nghĩa cho Button */
+.button {
+    -fx-background-color: #4caf50;    /* Nền xanh lá */
+        -fx-text-fill: white;             /* Chữ trắng */
+        -fx-font-size: 20px;              /* Kích thước chữ */
+        -fx-border-radius: 8px;           /* Bo tròn các góc */
+        -fx-padding: 10px 20px;           /* Khoảng đệm cho nút */
+        -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);  /* Hiệu ứng bóng */
+    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
+    -fx-background-radius: 16px;
+}
+
+/* Thêm hiệu ứng hover cho Button */
+.button:hover {
+    -fx-background-color: #45a049;  /* Đổi màu khi hover */
+}
+
+#login:hover {
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+/* Thêm hiệu ứng hover cho button đăng kí */
+#registerButton:hover {
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+/* Đặt kích thước chữ cho Button có fx:id="choosePhoto" */
+#choosePhoto {
+    -fx-font-size: 15px; /* Thay đổi kích thước chữ */
+}
+#choosePhoto: hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
+
+
+
+/* Đặt kiểu cho GridPane */
+.grid-pane {
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+    -fx-alignment: center;
+}
+
+/* Tạo hiệu ứng cho trường nhập liệu khi focus */
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #76d7c4;  /* Màu xanh lam nhẹ khi focus */
+}
+
+/* Tạo hiệu ứng cho Label khi hover */
+.label:hover {
+    -fx-text-fill: #4caf50;
+    -fx-cursor: hand;
+}

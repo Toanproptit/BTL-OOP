@@ -1,0 +1,29 @@
+[
+  {
+    "index": 1,
+    "name": "Bàn 1",
+    "status": "Trống",
+    "orderItems": [],
+    "id": 0,
+    "totalPrice": 0.0
+  },
+  {
+    "index": 2,
+    "name": "Bàn 2",
+    "status": "Đang sử dụng",
+    "orderItems": [
+      {
+        "name": "Mực chiên xù",
+        "price": 30000.0,
+        "quantity": 10
+      },
+      {
+        "name": "Cá chiên xù",
+        "price": 100000.0,
+        "quantity": 1
+      }
+    ],
+    "id": 1,
+    "totalPrice": 400000.0
+  }
+]
