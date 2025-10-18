@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderFoodController">
+
+    <!-- Chọn món mới -->
+    <HBox layoutX="59.0" layoutY="344.0" prefHeight="38.0" prefWidth="466.0" spacing="10">
+        <Label prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #FFFFFF;" text="Chọn món:" />
+        <ComboBox fx:id="comboMenu" prefHeight="26.0" prefWidth="114.0" />
+        <Label prefHeight="36.0" prefWidth="107.0" style="-fx-background-color: #FFFFFF;" text="Số lượng:" />
+        <TextField fx:id="txtQuantity" prefHeight="38.0" prefWidth="83.0" />
+        <Button fx:id="addFood" onAction="#handleAddItem" prefHeight="48.0" prefWidth="124.0" text="Thêm món" />
+    </HBox>
+
+
+    <VBox alignment="CENTER" layoutX="6.0" layoutY="-8.0" prefHeight="156.0" prefWidth="342.0" spacing="10" xmlns:fx="http://javafx.com/fxml">
+        <GridPane hgap="10" prefHeight="86.0" prefWidth="290.0" vgap="10">
+            <Label style="-fx-background-color: #FFFFFF;" text="Tên bàn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="txtTableName" prefHeight="38.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+          <Button fx:id="DatBan" mnemonicParsing="false" onAction="#handleAddTable" text="Đặt bàn" GridPane.columnIndex="2" />
+
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+
+        <HBox spacing="10" />
+
+    </VBox>
+
+    <HBox fx:id="hbox1" layoutX="59.0" layoutY="405.0" prefHeight="34.0" prefWidth="466.0" spacing="50.0">
+        <Button fx:id="btnEdit" onAction="#handleEditItem" prefHeight="34.0" prefWidth="129.0" text="Sửa số lượng" />
+        <Button fx:id="btnDeleteItem" onAction="#handleDeleteItem" prefHeight="34.0" prefWidth="108.0" text="Xóa món" />
+        <Button fx:id="invoice" mnemonicParsing="false" onAction="#exportInvoiceToTXT" prefHeight="34.0" prefWidth="130.0" text="Xuất hóa đơn" />
+    </HBox>
+    <Button fx:id="backButton" layoutX="29.0" layoutY="538.0" mnemonicParsing="false" onAction="#switchToLogin" text="Quay lại" />
+    <TextField fx:id="quantityField" layoutX="59.0" layoutY="454.0" prefHeight="38.0" prefWidth="118.0" promptText="Nhập số lượng" />
+    <Label layoutX="597.0" layoutY="341.0" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #FFFFFF;" text="Tổng Tiền" />
+    <TextField fx:id="total" layoutX="597.0" layoutY="403.0" prefHeight="38.0" prefWidth="90.0" promptText="Tổng tiền" />
+    <TableView fx:id="tableViewOrders" layoutX="59.0" layoutY="106.0" prefHeight="210.0" prefWidth="658.0" style="-fx-background-color: #A8E6CF;">
+        <columns>
+            <TableColumn fx:id="colFoodName" prefWidth="179.2000732421875" style="-fx-background-color: #C8E6C9;" text="Tên món" />
+            <TableColumn fx:id="colQuantity" prefWidth="152.800048828125" style="-fx-background-color: #C8E6C9;" text="Số lượng" />
+            <TableColumn fx:id="colPrice" prefWidth="280.7999267578125" style="-fx-background-color: #C8E6C9;" text="Giá" />
+        </columns>
+    </TableView>
+    <!-- Danh sách món ăn đã đặt -->
+    <Label layoutX="338.0" layoutY="70.0" text="Danh sách món ăn" />
+
+</AnchorPane>
