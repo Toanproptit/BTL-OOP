@@ -153,5 +153,35 @@ public class DashboardController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    private void handleReportButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/progastro/Report.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Báo cáo Doanh thu - ProGastro");
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Lỗi", "Không thể mở giao diện báo cáo doanh thu!");
+        }
+    }
+
+    @FXML
+    private void handleSettingsButton(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/progastro/Settings.fxml"));
+            Parent root = loader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Cài đặt - ProGastro");
+            stage.setScene(new Scene(root, 600, 400));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Lỗi", "Không thể mở giao diện cài đặt!");
+        }
+    }
+
 
 }

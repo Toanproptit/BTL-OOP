@@ -22,6 +22,7 @@
             </columns>
         </TableView>
 
+
         <!-- TextField để nhập thông tin -->
         <TextField fx:id="textField1" layoutX="249.0" layoutY="340.0" prefHeight="26.0" prefWidth="170.0" promptText="Nhập mã bàn" />
         <TextField fx:id="textField2" layoutX="249.0" layoutY="380.0" prefHeight="26.0" prefWidth="170.0" promptText="Nhập tên bàn" />

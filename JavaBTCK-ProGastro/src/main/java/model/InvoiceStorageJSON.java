@@ -10,10 +10,11 @@ import java.util.List;
 
 public class InvoiceStorageJSON {
 
-    private static final String FILE_PATH = "invoices.json";
+    private static final String FILE_PATH = "data/invoices.json";
 
     public static List<Invoice> loadInvoices() {
         File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
 
         if (!file.exists() || file.length() == 0) {
             return new ArrayList<>();

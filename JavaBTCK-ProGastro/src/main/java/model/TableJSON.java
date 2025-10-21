@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TableJSON {
 
-    private static final String FILE_PATH = "table.json";
+    private static final String FILE_PATH = "data/table.json";
     private static List<Table> tableList;
 
     static {
@@ -27,6 +27,7 @@ public class TableJSON {
 
     public static void saveTable() throws IOException {
         File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
         try (FileWriter writer = new FileWriter(file)) {
             new GsonBuilder().setPrettyPrinting().create().toJson(tableList, writer);
         }
@@ -36,6 +37,7 @@ public class TableJSON {
     }
     public static List<Table> loadTable() throws IOException {
         File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
         try (FileReader reader = new FileReader(FILE_PATH)) {
             return new Gson().fromJson(reader, new TypeToken<List<Table>>() {}.getType());
         } catch (IOException e) {

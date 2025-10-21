@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<AnchorPane xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.SettingsController"
+            prefWidth="600" prefHeight="400"
+            style="-fx-background-color: #f0f0f0;">
+    <Label text="Màn hình Cài đặt" layoutX="220" layoutY="180" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+</AnchorPane>

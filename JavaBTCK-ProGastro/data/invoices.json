@@ -1,0 +1,19 @@
+[
+  {
+    "tableName": "123",
+    "orderItems": [
+      {
+        "name": "Gà Chiên dòn",
+        "price": 30000.0,
+        "quantity": 1
+      },
+      {
+        "name": "Mực chiên xù",
+        "price": 100000.0,
+        "quantity": 1
+      }
+    ],
+    "totalPrice": 130000.0,
+    "createdAt": "2025-10-21T11:09:54.203287600"
+  }
+]

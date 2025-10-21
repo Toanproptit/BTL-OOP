@@ -27,9 +27,10 @@
         <!-- Thêm các nút mới -->
         <Button fx:id="foodButton" onAction="#handlefoodButton" style="-fx-text-fill: white;" text="Quản lí thức ăn" />
         <Button fx:id="orderButton" onAction="#handleorderButton" style="-fx-text-fill: white;" text="Quản lí bàn" />
-        <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Báo cáo Doanh thu" />
-        <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Cài đặt" />
-      <Button fx:id="choosePhoto" onMouseClicked="#handleChangeBackgroundImage" prefHeight="40.0" prefWidth="130.0" style="-fx-text-fill: white;" text="Chọn ảnh nền" />
+        <Button fx:id="reportButton" onAction="#handleReportButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Báo cáo Doanh thu" />
+        <Button fx:id="settingsButton" onAction="#handleSettingsButton" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Cài đặt" />
+
+        <Button fx:id="choosePhoto" onMouseClicked="#handleChangeBackgroundImage" prefHeight="40.0" prefWidth="130.0" style="-fx-text-fill: white;" text="Chọn ảnh nền" />
     </VBox>
 
     <!-- Main Content -->

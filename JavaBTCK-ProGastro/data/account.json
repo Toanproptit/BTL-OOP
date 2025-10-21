@@ -4,5 +4,11 @@
     "phoneNumber": "0365583753",
     "account": "admin",
     "password": "123"
+  },
+  {
+    "name": "asd",
+    "phoneNumber": "13",
+    "account": "asd",
+    "password": "123"
   }
 ]

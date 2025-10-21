@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class FoodStorageJSON {
-    private static final String FILE_PATH = "food.json";
+    private static final String FILE_PATH = "data/food.json";
     private static List<Food> foodList;
     static {
         try {
@@ -25,6 +25,7 @@ public class FoodStorageJSON {
 
     public static List<Food> loadFoods() throws IOException {
         File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
         try (FileReader reader = new FileReader(FILE_PATH)) {
 //            foodList = new Gson().fromJson(reader, new TypeToken<List<Food>>() {}.getType());
             return new Gson().fromJson(reader, new TypeToken<List<Food>>() {}.getType());
@@ -35,6 +36,7 @@ public class FoodStorageJSON {
     }
     public static void saveFoods() throws IOException {
         File file = new File(FILE_PATH);
+        file.getParentFile().mkdirs();
         try (FileWriter writer = new FileWriter(file)) {
             new GsonBuilder().setPrettyPrinting().create().toJson(foodList, writer);
         }

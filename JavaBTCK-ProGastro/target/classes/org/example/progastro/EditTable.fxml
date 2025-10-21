@@ -58,7 +58,7 @@
       <Button fx:id="invoice" mnemonicParsing="false" onAction="#exportInvoiceToTXT" prefHeight="34.0" prefWidth="130.0" text="Xuất hóa đơn" />
      </HBox>
    <Button fx:id="backButton" layoutX="708.0" layoutY="526.0" mnemonicParsing="false" onAction="#switchToManageOrder" text="Quay lại" />
-   <TextField fx:id="quantityField" layoutX="287.0" layoutY="440.0" prefHeight="38.0" prefWidth="118.0" promptText="Nhập số lượng" />
+<!--   <TextField fx:id="quantityField" layoutX="287.0" layoutY="440.0" prefHeight="38.0" prefWidth="118.0" promptText="Nhập số lượng" />-->
    <Label layoutX="695.0" layoutY="199.0" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #FFFFFF;" text="Tổng Tiền" />
    <TextField fx:id="total" layoutX="702.0" layoutY="242.0" prefHeight="38.0" prefWidth="90.0" promptText="Tổng tiền" />
      <TableView fx:id="tableViewOrders" layoutX="278.0" layoutY="70.0" prefHeight="210.0" prefWidth="411.0" style="-fx-background-color: #A8E6CF;">
