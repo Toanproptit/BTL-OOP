@@ -44,6 +44,7 @@ public class LoginController {
     private TextField usernameField;
 
     public void initialize() {
+        AccountJSON.getAccountList();
         // Tải ảnh nền cho màn hình này (stageId = "editFoodStage") khi mở ứng dụng
         String imagePath = BackgroundImageManager.loadBackgroundImageForStage("loginStage");
         if (!imagePath.isEmpty()) {
@@ -72,13 +73,17 @@ public class LoginController {
     public void handleLogin(ActionEvent event) throws IOException{
         String username = usernameField.getText();
         String password = passwordField.getText();
-        if(validateLogin(username,password)){
-            switchToDashBoard();
-        }
-        else {
+
+
+        Account acc = AccountJSON.findAccount(username, password);
+        if (acc == null) {
             showAlert("Đăng nhập thất bại", "Sai tài khoản hoặc mật khẩu!");
+            return;
         }
+        model.SessionManager.setCurrentUser(acc);
+        switchToDashBoard();
     }
+
     public boolean validateLogin(String username, String password) {
 
         for(int i=0;i< AccountJSON.getAccountList().size();++i){

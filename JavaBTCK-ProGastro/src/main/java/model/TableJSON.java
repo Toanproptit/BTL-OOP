@@ -38,13 +38,19 @@ public class TableJSON {
     public static List<Table> loadTable() throws IOException {
         File file = new File(FILE_PATH);
         file.getParentFile().mkdirs();
+        if (!file.exists()) return new ArrayList<>();
+
         try (FileReader reader = new FileReader(FILE_PATH)) {
-            return new Gson().fromJson(reader, new TypeToken<List<Table>>() {}.getType());
+            List<Table> list = new Gson().fromJson(reader, new TypeToken<List<Table>>() {}.getType());
+            if (list == null) return new ArrayList<>();
+            return list;
         } catch (IOException e) {
-            tableList = new ArrayList<>();
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return List.of();
     }
+
+
     public static void addTable(Table table){
         tableList.add(table);
         try {

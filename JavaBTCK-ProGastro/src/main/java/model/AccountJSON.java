@@ -15,9 +15,22 @@ import java.util.List;
 public class AccountJSON {
     private static final String FILE_PATH = "data/account.json";
     private static List<Account> accountList;
+
     static {
         try {
             accountList = loadAccounts();
+            boolean changed = false;
+            for (Account a : accountList) {
+                if (a.getRole() == null) { a.setRole(Account.Role.STAFF); changed = true; }
+            }
+            if (accountList.isEmpty()) {
+                accountList.add(new Account("Admin", "12345",
+                        "admin", "123", Account.Role.ADMIN));
+                changed = true;
+            }
+            if (changed) {
+                saveAccounts();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -63,5 +76,14 @@ public class AccountJSON {
 
     public static List<Account> getAccountList() {
         return accountList;
+    }
+
+    public static Account findAccount(String username, String password) {
+        for (Account a : accountList) {
+            if (a.getAccount().equals(username) && a.getPassword().equals(password)) {
+                return a;
+            }
+        }
+        return null;
     }
 }

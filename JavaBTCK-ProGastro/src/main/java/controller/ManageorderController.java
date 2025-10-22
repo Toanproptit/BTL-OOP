@@ -13,10 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.BackgroundImageManager;
-import model.FoodStorageJSON;
-import model.Table;
-import model.TableJSON;
+import model.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +53,7 @@ public class ManageorderController {
     @FXML
     private TextField textField3;
 
+    private model.Account currentUser;
     private ObservableList<Table> observableList = FXCollections.observableArrayList();
 
     @FXML
@@ -70,6 +68,12 @@ public class ManageorderController {
         columnStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         tableview.setItems(observableList);
         tableview.setOnMouseClicked(this::handleTableViewClick);
+
+        currentUser = model.SessionManager.getCurrentUser();
+        if (currentUser == null) return;
+        if (currentUser.getRole() != Account.Role.ADMIN) {
+            buttonAdd.setDisable(true);
+        }
     }
 
     public void handleChangeBackgroundImage(MouseEvent event) {

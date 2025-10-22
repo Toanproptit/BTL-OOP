@@ -17,13 +17,12 @@
 
     <GridPane fx:id="email" alignment="CENTER" hgap="10" layoutX="188.0" layoutY="152.0" vgap="10" xmlns:fx="http://javafx.com/fxml/1">
         <TextField fx:id="fullNameField" prefHeight="44.0" prefWidth="239.0" promptText="Nhập họ và tên" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-
-        <!-- Email -->
         <Text GridPane.rowIndex="4">
          <font>
             <Font size="15.0" />
          </font></Text>
         <TextField fx:id="phoneField" promptText="Nhập số điện thoại" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <TextField fx:id="accountField" promptText="Nhập tài khoản" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         <PasswordField fx:id="passwordField" promptText="Nhập mật khẩu" stylesheets="@Register.css" GridPane.columnIndex="1" GridPane.rowIndex="5" />
         <PasswordField fx:id="confirmPasswordField" promptText="Xác nhận mật khẩu" GridPane.columnIndex="1" GridPane.rowIndex="6" />
 
@@ -61,7 +60,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-        <TextField fx:id="accountField" promptText="Nhập tài khoản" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />
@@ -80,7 +79,7 @@
          <RowConstraints />
       </rowConstraints>
     </GridPane>
-     <Text layoutX="285.0" layoutY="133.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Đăng ký tài khoản" />
+    <Text layoutX="285.0" layoutY="133.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Đăng ký tài khoản" />
    <Button fx:id="choosePhoto" layoutX="6.0" layoutY="552.0" mnemonicParsing="false" onMouseClicked="#handleChangeBackgroundImage" text="Chọn ảnh nền" />
 
 

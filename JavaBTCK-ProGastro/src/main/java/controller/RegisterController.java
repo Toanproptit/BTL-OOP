@@ -18,6 +18,7 @@ import model.BackgroundImageManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class RegisterController {
 
@@ -95,15 +96,42 @@ public class RegisterController {
         String account = accountField.getText();
         String password= passwordField.getText();
         String password2 = confirmPasswordField.getText();
-        if(password.equals(password2)){
-            Account newAccount = new Account(name,phone,account,password);
-            AccountJSON.addAccount(newAccount);
-            showAlert("Thông báo","Đăng kí thành công");
+
+        if (name.isEmpty() || name.length() < 3) {
+            showAlert("Lỗi nhập liệu", "Họ tên phải có ít nhất 3 ký tự!");
+            return;
         }
-        else {
-            showAlert("Thông báo","Mật khẩu không trùng khớp");
+        if (!phone.matches("^0\\d{9}$")) {
+            showAlert("Lỗi nhập liệu", "Số điện thoại phải gồm 10 chữ số và bắt đầu bằng 0!");
+            return;
         }
+        if (account.isEmpty() || account.length() < 4) {
+            showAlert("Lỗi nhập liệu", "Tên tài khoản phải có ít nhất 4 ký tự!");
+            return;
+        }
+        List<Account> accounts = AccountJSON.getAccountList();
+        for (Account acc : accounts) {
+            if (acc.getAccount().equalsIgnoreCase(account)) {
+                showAlert("Lỗi đăng ký", "Tên tài khoản này đã tồn tại, vui lòng chọn tên khác!");
+                return;
+            }
+        }
+        if (password.length() < 6) {
+            showAlert("Lỗi nhập liệu", "Mật khẩu phải có ít nhất 6 ký tự!");
+            return;
+        }
+
+        if (!password.equals(password2)) {
+            showAlert("Lỗi nhập liệu", "Mật khẩu xác nhận không khớp!");
+            return;
+        }
+        Account newAccount = new Account(name, phone, account, password, Account.Role.STAFF);
+        AccountJSON.addAccount(newAccount);
+
+        showAlert("Thành công", "Đăng ký tài khoản thành công!\nBạn có thể đăng nhập ngay bây giờ.");
+        switchToLogin();
     }
+
     @FXML
     public void handleLogin(ActionEvent event)throws IOException{switchToLogin();}
 

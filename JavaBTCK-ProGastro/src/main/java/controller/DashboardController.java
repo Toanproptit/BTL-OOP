@@ -14,6 +14,7 @@ import model.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardController {
@@ -33,6 +34,9 @@ public class DashboardController {
     private Label lable2;
 
     @FXML
+    private Label roleLabel;
+
+    @FXML
     private TableView<?> tableView;
 
     @FXML
@@ -47,20 +51,30 @@ public class DashboardController {
 
     public void initialize() throws IOException {
         updateSummaryStats();
-        // Tải ảnh nền cho màn hình này (stageId = "editFoodStage") khi mở ứng dụng
         String imagePath = BackgroundImageManager.loadBackgroundImageForStage("dashBoard");
         if (!imagePath.isEmpty()) {
             root.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: cover; -fx-background-position: center center;");
         }
+
+        Account acc = model.SessionManager.getCurrentUser();
+        if (acc == null) {
+            return;
+        }
+        roleLabel.setText("Vai trò: " + acc.getRole());
+        if (acc.getRole() != Account.Role.ADMIN) {
+            foodButton.setDisable(true);
+        }
     }
+
 
     private void updateSummaryStats() throws IOException {
         // 1. Tổng doanh thu hôm nay
         List<Invoice> invoices = InvoiceStorageJSON.loadInvoices();
-        String today = java.time.LocalDate.now().toString(); // định dạng yyyy-MM-dd
+        if (invoices == null) invoices = new ArrayList<>();
 
+        String today = java.time.LocalDate.now().toString(); // định dạng yyyy-MM-dd
         double revenueToday = invoices.stream()
-                .filter(inv -> inv.getCreatedAt().startsWith(today))
+                .filter(inv -> inv.getCreatedAt() != null && inv.getCreatedAt().startsWith(today))
                 .mapToDouble(Invoice::getTotalPrice)
                 .sum();
         revenueTodayLabel.setText(String.format("%,.0f VND", revenueToday));
@@ -70,14 +84,18 @@ public class DashboardController {
 
         // 3. Bàn đang sử dụng
         List<Table> tables = TableJSON.loadTable();
+        if (tables == null) tables = new ArrayList<>();
+
         long activeTables = tables.stream()
-                .filter(t -> "Đang sử dụng".equalsIgnoreCase(t.getStatus()))
+                .filter(t -> t.getStatus() != null && "Đang sử dụng".equalsIgnoreCase(t.getStatus()))
                 .count();
         activeTablesLabel.setText(activeTables + " bàn");
 
         // 4. Tổng món ăn
+        List<Food> foods;
         try {
-            List<Food> foods = FoodStorageJSON.loadFoods();
+            foods = FoodStorageJSON.loadFoods();
+            if (foods == null) foods = new ArrayList<>();
             totalDishesLabel.setText(foods.size() + " món");
         } catch (IOException e) {
             totalDishesLabel.setText("Lỗi đọc file");
@@ -136,16 +154,25 @@ public class DashboardController {
         stage.show();
     }
     @FXML
-    private void switchToLoginController(ActionEvent event) throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Login.fxml"));
-        Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent,800,600);
-        Stage stage = (Stage) orderButton.getScene().getWindow();
-        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
-        stage.setScene(scene);
-        stage.setTitle("Login-ProGastro");
-        stage.show();
+    private void switchToLoginController(ActionEvent event) throws IOException {
+        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
+        confirm.setTitle("Xác nhận đăng xuất");
+        confirm.setHeaderText(null);
+        confirm.setContentText("Bạn có chắc muốn đăng xuất không?");
+        if (confirm.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
+            SessionManager.clear();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Login.fxml"));
+            Parent parent = fxmlLoader.load();
+            Scene scene = new Scene(parent, 800, 600);
+            Stage stage = (Stage) orderButton.getScene().getWindow();
+            scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
+            stage.setScene(scene);
+            stage.setTitle("Login - ProGastro");
+            stage.show();
+            System.out.println("✅ Đăng xuất thành công, quay lại trang đăng nhập.");
+        }
     }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

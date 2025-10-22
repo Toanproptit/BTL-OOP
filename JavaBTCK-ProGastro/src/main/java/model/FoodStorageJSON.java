@@ -26,14 +26,19 @@ public class FoodStorageJSON {
     public static List<Food> loadFoods() throws IOException {
         File file = new File(FILE_PATH);
         file.getParentFile().mkdirs();
+        if (!file.exists()) return new ArrayList<>();
+
         try (FileReader reader = new FileReader(FILE_PATH)) {
-//            foodList = new Gson().fromJson(reader, new TypeToken<List<Food>>() {}.getType());
-            return new Gson().fromJson(reader, new TypeToken<List<Food>>() {}.getType());
+            List<Food> list = new Gson().fromJson(reader, new TypeToken<List<Food>>() {}.getType());
+            if (list == null) return new ArrayList<>();
+            return list;
         } catch (IOException e) {
-            foodList = new ArrayList<>();
+            e.printStackTrace();
+            return new ArrayList<>();
         }
-        return List.of();
     }
+
+
     public static void saveFoods() throws IOException {
         File file = new File(FILE_PATH);
         file.getParentFile().mkdirs();
