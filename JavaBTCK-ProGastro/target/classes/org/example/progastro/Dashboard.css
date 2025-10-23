@@ -45,6 +45,10 @@
     -fx-text-fill: darkblue;
     -fx-cursor: hand;
 }
+#menuButton:hover{
+    -fx-text-fill: darkblue;
+    -fx-cursor: hand;
+}
 #logoutButton:hover{
     -fx-background-color:#FFB74D;
     -fx-text-fill: darkblue;
