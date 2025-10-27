@@ -27,6 +27,9 @@ public class DashboardController {
     private Button foodButton;
 
     @FXML
+    private Button menu;
+
+    @FXML
     private Label lable1;
 
     @FXML
@@ -114,6 +117,21 @@ public class DashboardController {
         switchToManageOrderController();
     }
 
+    @FXML
+    public void handleMenuButoon(ActionEvent event) throws IOException {
+        switchToMenuController();
+    }
+
+    private void switchToMenuController() throws IOException {
+        FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/ListFood.fxml"));
+        Stage stage = (Stage) foodButton.getScene().getWindow();
+        Parent parent = fxmlLoader.load();
+        Scene scene = new Scene(parent,800,600);
+//        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Managefood.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("ListFood-ProGastro");
+        stage.show();
+    }
     private void switchToManageFoodController() throws IOException{
         FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/Managefood.fxml"));
         Stage stage = (Stage) foodButton.getScene().getWindow();
