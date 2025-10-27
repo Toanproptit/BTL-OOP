@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.OrderFoodController">
+<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerOrderFoodController">
 
     <!-- Chọn món mới -->
     <HBox layoutX="59.0" layoutY="344.0" prefHeight="38.0" prefWidth="466.0" spacing="10">
@@ -28,12 +28,13 @@
     <VBox alignment="CENTER" layoutX="6.0" layoutY="-8.0" prefHeight="156.0" prefWidth="342.0" spacing="10" xmlns:fx="http://javafx.com/fxml">
         <GridPane hgap="10" prefHeight="86.0" prefWidth="290.0" vgap="10">
             <Label style="-fx-background-color: #FFFFFF;" text="Tên bàn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="txtTableName" prefHeight="38.0" prefWidth="157.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-          <Button fx:id="DatBan" mnemonicParsing="false" onAction="#handleAddTable" text="Đặt bàn" GridPane.columnIndex="2" />
+          <Button fx:id="DatBan" mnemonicParsing="false" onAction="#handleChooseTable" text="Đặt bàn" GridPane.columnIndex="3" />
+         <ComboBox fx:id="comboTable" prefWidth="150.0" GridPane.columnIndex="2" />
 
             <columnConstraints>
                 <ColumnConstraints />
                 <ColumnConstraints />
+            <ColumnConstraints />
             <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>

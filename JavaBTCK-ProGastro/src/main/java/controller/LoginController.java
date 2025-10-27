@@ -10,7 +10,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Account;
 import model.AccountJSON;
 import model.BackgroundImageManager;
 
@@ -127,7 +126,7 @@ public class LoginController {
         switchToOrderNow();
     }
     public void switchToOrderNow() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/OrderFood.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/CustomerOrderFood.fxml"));
         Parent parent =fxmlLoader.load();
         Stage stage = (Stage) registerButton.getScene().getWindow();
         Scene scene = new Scene(parent,800,600);

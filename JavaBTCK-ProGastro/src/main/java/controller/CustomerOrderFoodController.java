@@ -21,15 +21,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Alert;
 
 
-public class OrderFoodController {
+public class CustomerOrderFoodController {
     @FXML
     private Button addFood;
 
@@ -58,13 +55,13 @@ public class OrderFoodController {
     private ComboBox<Food> comboMenu;
 
     @FXML
+    private ComboBox<Table> comboTable;
+
+    @FXML
     private TableView<OrderItem> tableViewOrders;
 
     @FXML
     private TextField txtQuantity;
-
-    @FXML
-    private TextField txtTableName;
 
     @FXML
     private TextField quantityField;
@@ -78,6 +75,7 @@ public class OrderFoodController {
     @FXML
     private AnchorPane root;
 
+    private boolean tablechoosed = false;
     private Table table;
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
 
@@ -88,6 +86,14 @@ public class OrderFoodController {
         }
         // Gán dữ liệu vào ComboBox (menu)
         comboMenu.getItems().addAll(FoodStorageJSON.loadFoods());
+        // Gán dữ liệu vào ComboBox (table)
+        List<Table> tables = TableJSON.loadTable();
+        for (Table table : tables) {
+            if (table.getStatus().equals("Trống"))
+                comboTable.getItems().add(table);
+        }
+        comboTable.setPromptText("Chọn bàn");
+        comboTable.setDisable(false);
         // Gán các cột trong TableView
         colFoodName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -117,7 +123,6 @@ public class OrderFoodController {
 
     public void setTable(Table table) {
         this.table = table;
-        txtTableName.setText(table.getName());
         orderItems = FXCollections.observableArrayList(table.getOrderItem());
         tableViewOrders.setItems(orderItems);
         total.setText(String.valueOf(table.getTotalPrice()));
@@ -129,30 +134,33 @@ public class OrderFoodController {
         Food selectedFood = comboMenu.getSelectionModel().getSelectedItem();
         String quantityText = txtQuantity.getText();
 
-        if (selectedFood != null && !quantityText.isEmpty()) {
-            try {
-                int quantity = Integer.parseInt(quantityText);
+        if (tablechoosed){
+            if (selectedFood != null && !quantityText.isEmpty()) {
+                try {
+                    int quantity = Integer.parseInt(quantityText);
 
-                if (quantity > 0) {
+                    if (quantity > 0) {
 
-                    OrderItem newOrderItem = new OrderItem(selectedFood, quantity);
-                    orderItems.add(newOrderItem);
-                    table.setOrderFood(orderItems);
-                    table.calculateTotalPrice();
-                    total.setText(String.valueOf(table.getTotalPrice()));
-                    TableJSON.updateTable(table);
-                    tableViewOrders.setItems(orderItems);
-                    showAlert("Thành công", "Đã thêm món ăn vào đơn hàng!");
+                        OrderItem newOrderItem = new OrderItem(selectedFood, quantity);
+                        orderItems.add(newOrderItem);
+                        table.setOrderFood(orderItems);
+                        table.calculateTotalPrice();
+                        total.setText(String.valueOf(table.getTotalPrice()));
+                        TableJSON.updateTable(table);
+                        tableViewOrders.setItems(orderItems);
+                        showAlert("Thành công", "Đã thêm món ăn vào đơn hàng!");
 
-                } else {
-                    showAlert("Lỗi", "Số lượng phải lớn hơn 0.");
+                    } else {
+                        showAlert("Lỗi", "Số lượng phải lớn hơn 0.");
+                    }
+                } catch (NumberFormatException e) {
+                    showAlert("Lỗi", "Vui lòng nhập số hợp lệ cho số lượng.");
                 }
-            } catch (NumberFormatException e) {
-                showAlert("Lỗi", "Vui lòng nhập số hợp lệ cho số lượng.");
+            } else {
+                showAlert("Lỗi", "Vui lòng chọn món ăn và nhập số lượng.");
             }
-        } else {
-            showAlert("Lỗi", "Vui lòng chọn món ăn và nhập số lượng.");
         }
+        else showAlert("Lỗi","Vui lòng chọn bàn.");
     }
 
     @FXML
@@ -166,13 +174,6 @@ public class OrderFoodController {
         stage.setTitle("Login");
         stage.show();
     }
-
-    @FXML
-    void handleDelete(ActionEvent event) throws IOException {
-        TableJSON.earseTable(table);
-        showAlert("Thông báo","Xóa Thành Công");
-    }
-
 
     @FXML
     public void exportInvoiceToTXT(ActionEvent event) throws IOException {
@@ -265,20 +266,19 @@ public class OrderFoodController {
     }
 
     @FXML
-    public void handleAddTable(ActionEvent event) throws IOException {
-            int index = Integer.parseInt(txtTableName.getText());
-            String name = txtTableName.getText();
-            Table newTable = new Table(index, name, "Đang sử dụng");
-            setTable(newTable);
-            TableJSON.addTable(newTable);
-            showAlert("Thông báo", "Đã Thêm Bàn");
-    }
+    public void handleChooseTable(ActionEvent event) throws IOException {
+        Table selectedTable = comboTable.getSelectionModel().getSelectedItem();
 
-    @FXML
-    void handleSave(ActionEvent event) {
-        table.setName(txtTableName.getText());
-        TableJSON.updateTable1(table);
-        showAlert("Lưu thành công","success");
+        if (selectedTable != null) {
+            selectedTable.setStatus("Đang sử dụng");
+            TableJSON.updateTable(selectedTable);
+            setTable(selectedTable);
+            tablechoosed = true;
+            comboTable.setDisable(true);
+            showAlert("Thông báo", "Đã chọn bàn: " + selectedTable.getName());
+        } else {
+            showAlert("Lỗi", "Vui lòng chọn bàn trước khi đặt.");
+        }
     }
 
     private void showAlert(String title, String message) {
