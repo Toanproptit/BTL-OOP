@@ -36,5 +36,6 @@
             <Font size="8.0" />
          </font>
       </Button>
+      <Button fx:id="orderButton" layoutX="266.0" layoutY="426.0" mnemonicParsing="false" onAction="#handleOrderNow" prefHeight="51.0" prefWidth="174.0" text="Order Ngay!" />
    </children>
 </AnchorPane>

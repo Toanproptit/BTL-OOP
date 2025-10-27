@@ -32,6 +32,9 @@ public class LoginController {
     private Button login;
 
     @FXML
+    private Button orderButton;
+
+    @FXML
     private Button registerButton;
 
     @FXML
@@ -117,6 +120,20 @@ public class LoginController {
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Register.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("Register-ProGastro");
+        stage.show();
+    }
+
+    public void handleOrderNow(ActionEvent event) throws IOException{
+        switchToOrderNow();
+    }
+    public void switchToOrderNow() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/CustomerOrderFood.fxml"));
+        Parent parent =fxmlLoader.load();
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+        Scene scene = new Scene(parent,800,600);
+//        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Register.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Order Ngay!");
         stage.show();
     }
 }
