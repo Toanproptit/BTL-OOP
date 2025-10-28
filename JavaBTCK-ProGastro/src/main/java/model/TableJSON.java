@@ -13,7 +13,7 @@ import java.util.List;
 
 public class TableJSON {
 
-    private static final String FILE_PATH = "C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL_OOP\\BTL-OOP\\JavaBTCK-ProGastro\\table.json";
+    private static final String FILE_PATH = "table.json";
     private static List<Table> tableList;
 
     static {

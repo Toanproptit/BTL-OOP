@@ -13,7 +13,7 @@ import java.util.List;
 
 
 public class AccountJSON {
-    private static final String FILE_PATH = "C:\\Users\\LENOVO\\OneDrive\\Desktop\\BTL_OOP\\BTL-OOP\\JavaBTCK-ProGastro\\account.json";
+    private static final String FILE_PATH = "account.json";
     private static List<Account> accountList;
     static {
         try {
