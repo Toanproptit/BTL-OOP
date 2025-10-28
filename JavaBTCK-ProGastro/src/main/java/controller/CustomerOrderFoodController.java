@@ -34,6 +34,9 @@ public class CustomerOrderFoodController {
     private Button backButton;
 
     @FXML
+    private Button selFoodButton;
+
+    @FXML
     private Button btnDeleteItem;
 
     @FXML
@@ -50,9 +53,6 @@ public class CustomerOrderFoodController {
 
     @FXML
     private TableColumn<OrderItem, Integer> colQuantity;
-
-    @FXML
-    private ComboBox<Food> comboMenu;
 
     @FXML
     private ComboBox<Table> comboTable;
@@ -75,6 +75,7 @@ public class CustomerOrderFoodController {
     @FXML
     private AnchorPane root;
 
+    private Food selectedFood;
     private boolean tablechoosed = false;
     private Table table;
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
@@ -84,8 +85,7 @@ public class CustomerOrderFoodController {
         if (!imagePath.isEmpty()) {
             root.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: cover; -fx-background-position: center center;");
         }
-        // Gán dữ liệu vào ComboBox (menu)
-        comboMenu.getItems().addAll(FoodStorageJSON.loadFoods());
+
         // Gán dữ liệu vào ComboBox (table)
         List<Table> tables = TableJSON.loadTable();
         for (Table table : tables) {
@@ -131,17 +131,16 @@ public class CustomerOrderFoodController {
 
     @FXML
     public void handleAddItem(ActionEvent event) throws IOException {
-        Food selectedFood = comboMenu.getSelectionModel().getSelectedItem();
         String quantityText = txtQuantity.getText();
 
         if (tablechoosed){
-            if (selectedFood != null && !quantityText.isEmpty()) {
+            if (this.selectedFood != null && !quantityText.isEmpty()) {
                 try {
                     int quantity = Integer.parseInt(quantityText);
 
                     if (quantity > 0) {
 
-                        OrderItem newOrderItem = new OrderItem(selectedFood, quantity);
+                        OrderItem newOrderItem = new OrderItem(this.selectedFood, quantity);
                         orderItems.add(newOrderItem);
                         table.setOrderFood(orderItems);
                         table.calculateTotalPrice();
@@ -278,6 +277,30 @@ public class CustomerOrderFoodController {
             showAlert("Thông báo", "Đã chọn bàn: " + selectedTable.getName());
         } else {
             showAlert("Lỗi", "Vui lòng chọn bàn trước khi đặt.");
+        }
+    }
+
+    @FXML
+    private void handleChooseFood(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/progastro/ListFood.fxml"));
+        Parent root = loader.load();
+
+        // Lấy controller của cửa sổ chọn món
+        FoodController foodController = loader.getController();
+
+        // Truyền callback (hoặc this) để nhận lại dữ liệu
+        foodController.setCustomerOrderController(this);
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void setSelectedFood(Food food) {
+        this.selectedFood = food;
+        if (food != null) {
+            selFoodButton.setText(food.getName()); // chọn món trong combo box
+            showAlert("Đã chọn món", "Món bạn vừa chọn: " + food.getName());
         }
     }
 

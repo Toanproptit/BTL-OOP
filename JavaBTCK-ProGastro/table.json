@@ -2,15 +2,21 @@
   {
     "index": 1,
     "name": "1",
-    "status": "Trống",
-    "orderItems": [],
+    "status": "Đang sử dụng",
+    "orderItems": [
+      {
+        "name": "Mực chiên xù",
+        "price": 100000.0,
+        "quantity": 1
+      }
+    ],
     "id": 0,
-    "totalPrice": 0.0
+    "totalPrice": 100000.0
   },
   {
     "index": 2,
     "name": "2",
-    "status": "Trống",
+    "status": "Đang sử dụng",
     "orderItems": [],
     "id": 1,
     "totalPrice": 0.0
@@ -19,11 +25,6 @@
     "index": 3,
     "name": "3",
     "status": "Trống",
-    "orderItems": [],
-    "id": 2,
-    "totalPrice": 0.0
-    "name": "asdasd",
-    "status": "Đang sử dụng",
     "orderItems": [],
     "id": 0,
     "totalPrice": 0.0

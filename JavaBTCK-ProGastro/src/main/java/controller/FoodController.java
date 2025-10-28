@@ -40,6 +40,7 @@ public class FoodController {
     private int currentRow = 0;
     private int currentCol = 0;
     private final int MAX_COLUMNS = 3;
+    private CustomerOrderFoodController parentController;
 
 // ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -194,8 +195,23 @@ public class FoodController {
     /**
      * Xử lý khi người dùng click vào một card món ăn
      */
-    private void handleFoodCardClick(Food food) {
-        System.out.println("Đã click vào món ăn: " + food.getName());
-        // Chuyển sa
+    public void setCustomerOrderController(CustomerOrderFoodController controller) {
+        this.parentController = controller;
     }
+
+    private void handleFoodCardClick(Food food) {
+        System.out.println("Đã chọn món ăn: " + food.getName());
+
+        if (parentController != null) {
+            // Gọi lại hàm setSelectedFood bên controller cha
+            parentController.setSelectedFood(food);
+
+            // Đóng cửa sổ menu món ăn
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.close();
+        } else {
+            System.err.println("parentController bị null");
+        }
+    }
+
 }
