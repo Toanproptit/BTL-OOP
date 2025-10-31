@@ -24,7 +24,6 @@ public class TableJSON {
             throw new RuntimeException(e);
         }
     }
-
     public static void saveTable() throws IOException {
         File file = new File(FILE_PATH);
         try (FileWriter writer = new FileWriter(file)) {

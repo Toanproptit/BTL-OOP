@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
@@ -23,6 +25,10 @@ public class LoginController {
     public Button choosePhoto;
 
     @FXML
+    private ImageView backgroundImage;
+
+
+    @FXML
     private Label lable1;
 
     @FXML
@@ -30,6 +36,9 @@ public class LoginController {
 
     @FXML
     private Button login;
+
+    @FXML
+    private Button orderButton;
 
     @FXML
     private Button registerButton;
@@ -46,25 +55,49 @@ public class LoginController {
     public void initialize() {
         // Tải ảnh nền cho màn hình này (stageId = "editFoodStage") khi mở ứng dụng
         String imagePath = BackgroundImageManager.loadBackgroundImageForStage("loginStage");
+        Image newImage = new Image(imagePath);
         if (!imagePath.isEmpty()) {
-            root.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: cover; -fx-background-position: center center;");
+            backgroundImage.setImage(newImage);
         }
     }
+
+
 
     @FXML
     public void handleChangeBackgroundImage(MouseEvent event) {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
         File selectedFile = fileChooser.showOpenDialog(null);
-        if (selectedFile != null) {
-            String imagePath = selectedFile.toURI().toString();
 
-            root.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: cover; -fx-background-position: center center;");
+        if (selectedFile != null) {
             try {
-                BackgroundImageManager.saveBackgroundImage("loginStage",imagePath);
+                // 1. Lấy đường dẫn URI
+                String imagePath = selectedFile.toURI().toString();
+
+                // 2. TẠO đối tượng Image từ đường dẫn
+                Image newImage = new Image(imagePath);
+
+                if (newImage.isError()) {
+                    // Nếu có lỗi, bạn có thể nhận thông báo chi tiết hơn
+                    System.err.println("Lỗi tải ảnh: " + newImage.getException());
+                    showAlert("Lỗi", "Không thể tải hoặc hiển thị ảnh hhuhu");
+                    return; // Dừng lại nếu có lỗi
+                }
+
+                // 3. SET ảnh cho ImageView
+                backgroundImage.setImage(newImage);
+
+                // 4. Lưu đường dẫn (tùy chọn, giống như bạn đã làm)
+                BackgroundImageManager.saveBackgroundImage("loginStage", imagePath);
+
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert("Lỗi", "Không thể lưu ảnh nền");
+            } catch (Exception e) {
+                e.printStackTrace();
+                showAlert("Lỗi", "Không thể tải hoặc hiển thị ảnh");
             }
         }
     }
@@ -92,8 +125,8 @@ public class LoginController {
     public void switchToDashBoard() throws IOException{
         FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/Dashboard.fxml"));
         Parent dashboard = fxmlLoader.load();
-        Scene scene = new Scene(dashboard,900,600);
-        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Dashboard.css").toExternalForm());
+        Scene scene = new Scene(dashboard,1500,750);
+
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("Dashboard - ProGastro");
@@ -119,5 +152,20 @@ public class LoginController {
         stage.setTitle("Register-ProGastro");
         stage.show();
     }
+
+    public void handleOrderNow(ActionEvent event) throws IOException{
+        switchToOrderNow();
+    }
+    public void switchToOrderNow() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/CustomerOrderFood.fxml"));
+        Parent parent =fxmlLoader.load();
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+        Scene scene = new Scene(parent,800,600);
+//        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Register.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Order Ngay!");
+        stage.show();
+    }
+
 }
 

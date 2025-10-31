@@ -4,7 +4,7 @@
     "description": "dỡ",
     "price": 30000.0,
     "index": 0,
-    "imagePath": ""
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\540941674_1338419754549264_6375548353653693479_n.jpg"
   },
   {
     "name": "Mực chiên xù",
@@ -12,5 +12,26 @@
     "price": 100000.0,
     "index": 1,
     "imagePath": "C:\\JAVA\\JavaFX\\Java Totorial\\ProGastro\\images\\foodImages\\335176096_1318696568992089_7524133406200440232_n.jpg"
+  },
+  {
+    "name": "ád",
+    "description": "ád",
+    "price": 213.0,
+    "index": 2,
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\5V0A2513.jpg"
+  },
+  {
+    "name": "ádas",
+    "description": "ádasd",
+    "price": 12.0,
+    "index": 3,
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\hinh-anh-the-gioi-tu-tien_031724967.jpeg"
+  },
+  {
+    "name": "fdfs",
+    "description": "sdf",
+    "price": 123.0,
+    "index": 0,
+    "imagePath": ""
   }
 ]

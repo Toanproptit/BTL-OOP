@@ -1,6 +1,7 @@
 package model;
 
 public class Account {
+
     private String name;
     private String phoneNumber;
     private String account;
@@ -12,6 +13,7 @@ public class Account {
         this.account=account;
         this.password=password;
     }
+
     public String getPassword() {
         return password;
     }

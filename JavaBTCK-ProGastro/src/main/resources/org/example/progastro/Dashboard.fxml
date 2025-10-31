@@ -2,65 +2,56 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
-    <!-- Header -->
-    <HBox fx:id="header" alignment="CENTER_LEFT" layoutX="273.0" prefHeight="74.0" prefWidth="627.0" spacing="50.0" style="-fx-background-color: #A9CE68; -fx-padding: 10;">
-        <Text fx:id="appName" style="-fx-font-size: 20px; -fx-fill: white;" text="ProGastro Dashboard" wrappingWidth="131.1702880859375" />
-      <VBox prefHeight="53.0" prefWidth="153.0" style="-fx-background-color: #A9CE68;">
+<BorderPane fx:id="borderPane_root" prefHeight="750.0" prefWidth="1225.0" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DashboardController">
+   <left>
+   
+          <!-- Sidebar -->
+       <VBox fx:id="sidebar" alignment="TOP_LEFT" prefHeight="750.0" prefWidth="275.0" spacing="20" style="-fx-background-color: #FDFDFD; -fx-padding: 20;" BorderPane.alignment="CENTER">
+           <Text style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: black;" text="ProGastro Dashboard" textAlignment="CENTER" />
+
+           <Button fx:id="homeButton" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="46.0" prefWidth="268.0" styleClass="sidebar-button, sidebar-button-selected" text="Home" />
+           <Button fx:id="orderButton" onAction="#handleorderButton" prefHeight="46.0" prefWidth="274.0" styleClass="sidebar-button" text="OrderManager" />
+           <Button fx:id="foodButton" onAction="#handlefoodButton" prefHeight="46.0" prefWidth="286.0" styleClass="sidebar-button" text="FoodManager" />
+           <Button fx:id="menuButton" mnemonicParsing="false" onAction="#handleMenuButoon" prefHeight="46.0" prefWidth="290.0" styleClass="sidebar-button" text="Menu" />
+           <Button prefHeight="46.0" prefWidth="302.0" styleClass="sidebar-button" text="RevenueReport" />
+           <Button prefHeight="46.0" prefWidth="314.0" styleClass="sidebar-button" text="Setting" />
+           <Button fx:id="choosePhoto" onMouseClicked="#handleChangeBackgroundImage" prefHeight="46.0" prefWidth="258.0" styleClass="sidebar-button" text="Chọn ảnh nền" />
+           <Button fx:id="logoutButton" onAction="#switchToLoginController" prefHeight="46.0" prefWidth="249.0" styleClass="sidebar-button" text="Logout" />
+
+           <Text style="-fx-font-size: 14px; -fx-fill: #AAAAAA;" text="© 2025 ProGastro. All rights reserved." />
+       </VBox>
+   </left>
+   <center>
+      <AnchorPane prefHeight="675.0" prefWidth="1225.0">
          <children>
-               <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="133.0" style="-fx-font-size: 16px; -fx-fill: white;" text="Tên người dùng:" />
-            <Label fx:id="nameUser" />
+             <!-- Header -->
+             <HBox fx:id="header" alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="1225.0" spacing="50.0">
+               <VBox prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                       <Text fx:id="appName" text="Dashboard" wrappingWidth="131.1702880859375" />
+                     <Label fx:id="title" prefHeight="18.0" prefWidth="99.0" text="Label" />
+                  </children>
+               </VBox>
+                 <Region HBox.hgrow="ALWAYS" />
+               <TextField fx:id="searchTextField" promptText="search anything" />
+               <VBox prefHeight="53.0" prefWidth="153.0">
+                  <children>
+                        <Label fx:id="usernameLabel" prefHeight="26.0" prefWidth="133.0" style="-fx-font-size: 16px; -fx-fill: white;" text="Tên người dùng:" />
+                     <Label fx:id="nameUser" />
+                  </children>
+               </VBox>
+               <Region HBox.hgrow="ALWAYS" />
+             </HBox>
+            <AnchorPane fx:id="contentArea" layoutY="75.0" prefHeight="675.0" prefWidth="1225.0" />
          </children>
-      </VBox>
-         <Button fx:id="logoutButton" onAction="#switchToLoginController" prefHeight="40.0" prefWidth="142.0" style="-fx-text-fill: white;" text="Đăng xuất" />
-    </HBox>
-
-    <!-- Sidebar -->
-    <VBox fx:id="sidebar" alignment="TOP_LEFT" prefHeight="600.0" prefWidth="250" spacing="20" style="-fx-background-color: #B6C0AC; -fx-padding: 20;">
-        <Text style="-fx-font-size: 14px; -fx-fill: white;" text="© 2025 ProGastro. All rights reserved." />
-
-        <!-- Thêm các nút mới -->
-        <Button fx:id="foodButton" onAction="#handlefoodButton" style="-fx-text-fill: white;" text="Quản lí thức ăn" />
-        <Button fx:id="orderButton" onAction="#handleorderButton" style="-fx-text-fill: white;" text="Quản lí bàn" />
-        <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Báo cáo Doanh thu" />
-        <Button style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="Cài đặt" />
-      <Button fx:id="choosePhoto" onMouseClicked="#handleChangeBackgroundImage" prefHeight="40.0" prefWidth="130.0" style="-fx-text-fill: white;" text="Chọn ảnh nền" />
-    </VBox>
-
-    <!-- Main Content -->
-    <AnchorPane fx:id="root" layoutX="273.0" layoutY="74.0" prefHeight="525.0" prefWidth="627.0" style="-fx-background-color: #8DB600;">
-
-        <!-- Tiêu đề -->
-        <Label layoutX="278.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" text="Tổng Quan" />
-
-        <!-- Các chỉ số nhanh -->
-        <HBox layoutX="30.0" layoutY="60.0" spacing="20">
-            <VBox prefHeight="75.0" prefWidth="154.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 4, 0.0, 2, 2);">
-                <Label style="-fx-font-weight: bold;" text="Doanh thu hôm nay" />
-                <Label fx:id="revenueTodayLabel" style="-fx-font-size: 18px; -fx-text-fill: green;" text="0 VND" />
-            </VBox>
-
-            <VBox prefHeight="75.0" prefWidth="141.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 4, 0.0, 2, 2);">
-                <Label prefHeight="20.0" prefWidth="177.0" style="-fx-font-weight: bold;" text="Bàn đang sử dụng" />
-                <Label fx:id="activeTablesLabel" style="-fx-font-size: 18px;" text="0 bàn" />
-            </VBox>
-
-            <VBox style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 4, 0.0, 2, 2);">
-                <Label style="-fx-font-weight: bold;" text="Tổng hóa đơn" />
-                <Label fx:id="totalInvoicesLabel" style="-fx-font-size: 18px;" text="0 hóa đơn" />
-            </VBox>
-
-            <VBox prefHeight="75.0" prefWidth="124.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 4, 0.0, 2, 2);">
-                <Label style="-fx-font-weight: bold;" text="Tổng món ăn" />
-                <Label fx:id="totalDishesLabel" style="-fx-font-size: 18px;" text="0 món" />
-            </VBox>
-        </HBox>
-
-    </AnchorPane>
-
-</AnchorPane>
+      </AnchorPane>
+   </center>
+</BorderPane>
