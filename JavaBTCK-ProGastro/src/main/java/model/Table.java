@@ -74,5 +74,7 @@ public class Table {
         setTotalPrice(sum);
     }
 
-
+    public String toString(){
+        return (name);
+    }
 }

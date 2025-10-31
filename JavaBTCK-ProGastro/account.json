@@ -1,8 +1,14 @@
 [
   {
-    "name": "Nguyễn Trọng Toàn",
-    "phoneNumber": "0365583753",
+    "name": "ajdlad",
+    "phoneNumber": "03556465",
     "account": "admin",
     "password": "123"
+  },
+  {
+    "name": "admin",
+    "phoneNumber": "123",
+    "account": "admin",
+    "password": "123456"
   }
 ]

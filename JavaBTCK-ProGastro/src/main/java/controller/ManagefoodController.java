@@ -137,7 +137,6 @@ public class ManagefoodController {
                 }
             }
         }
-
         Food newFood = new Food(name, description, price);
         FoodStorageJSON.addFood(newFood);
         foods = FXCollections.observableArrayList(FoodStorageJSON.loadFoods());
