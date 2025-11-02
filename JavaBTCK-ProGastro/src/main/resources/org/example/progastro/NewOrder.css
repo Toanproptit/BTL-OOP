@@ -39,12 +39,14 @@
 /* 4. TEXTFIELD SEARCH */
 #searchTextField,
 .textfield-search {
+    -fx-pref-width: 161px;
+    -fx-pref-height: 34px;
     -fx-background-radius: 20;
     -fx-border-radius: 20;
     -fx-background-color: #ffffff;
     -fx-border-color: #dcdcdc;
     -fx-border-width: 1.2;
-    -fx-padding: 0 10 0 10; /* padding đủ để text không che icon */
+    -fx-padding: 0 10 0 35;
     -fx-font-size: 13px;
     -fx-prompt-text-fill: #bbbbbb;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0.0, 0, 1);
@@ -62,14 +64,7 @@
 #iconSearch,
 .imageview-icon {
     -fx-cursor: hand;
-    -fx-padding: 0 8 0 8; /* khoảng cách giữa icon và TextField */
-}
-
-#iconSearch:hover {
-    -fx-opacity: 0.75;
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-    -fx-transition: all 0.2s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0.0, 0, 1);
 }
 
 /* Icon bell và settings */
@@ -83,12 +78,16 @@
     -fx-padding: 2px;
 }
 
+/* Hover effect cho tất cả icon */
+#iconSearch:hover,
 #iconBell:hover,
 #iconSettings:hover,
+.imageview-icon:hover,
 .imageview-small:hover {
     -fx-opacity: 0.75;
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
+    -fx-transition: all 0.2s ease-in-out;
 }
 
 /* 6. REGION SPACER */

@@ -131,19 +131,53 @@ public class ManageorderController {
     @FXML
     public void handleAddTable(ActionEvent event) throws IOException {
         String status = statusComboBox.getValue();
-        if (status != null && !status.isEmpty()) {
-            int index = Integer.parseInt(textField1.getText());
-            String name = textField2.getText();
-            Table newTable = new Table(index, name, status);
-            TableJSON.addTable(newTable);
-            observableList = FXCollections.observableArrayList(TableJSON.loadTable());
-            tableview.setItems(observableList);
-
-            showAlert("Thông báo", "Đã Thêm Bàn");
-        } else {
+        if (status == null || status.isEmpty()) {
             showAlert("Lỗi", "Vui lòng chọn trạng thái bàn.");
+            return;
         }
+
+        if (textField1.getText().isEmpty() || textField2.getText().isEmpty()) {
+            showAlert("Lỗi", "Vui lòng nhập đầy đủ thông tin bàn.");
+            return;
+        }
+
+        int index = Integer.parseInt(textField1.getText());
+        String name = textField2.getText();
+
+
+        if (!name.matches("[\\p{L}\\s]+")) {
+            showAlert("Lỗi", "Tên bàn chỉ được chứa chữ cái (không số / ký tự đặc biệt).");
+            return;
+        }
+
+        // ===== CHỐNG TRÙNG =====
+        for (Table t : observableList) {
+            if (t.getIndex() == index) {
+                showAlert("Lỗi", "Số bàn " + index + " đã tồn tại!");
+                return;
+            }
+            if (t.getName().equalsIgnoreCase(name)) {
+                showAlert("Lỗi", "Tên bàn '" + name + "' đã tồn tại!");
+                return;
+            }
+        }
+
+        // ===== THÊM BÀN =====
+        Table newTable = new Table(index, name, status);
+        TableJSON.addTable(newTable);
+
+        observableList = FXCollections.observableArrayList(TableJSON.loadTable());
+        tableview.setItems(observableList);
+
+        showAlert("Thông báo", "Đã Thêm Bàn");
+
+        // Clear input sau khi thêm
+        textField1.clear();
+        textField2.clear();
+        statusComboBox.setValue(null);
     }
+
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

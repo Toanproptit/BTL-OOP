@@ -21,7 +21,8 @@
            <Button fx:id="orderButton" onAction="#handleorderButton" prefHeight="46.0" prefWidth="274.0" styleClass="sidebar-button" text="OrderManager" />
            <Button fx:id="foodButton" onAction="#handlefoodButton" prefHeight="46.0" prefWidth="286.0" styleClass="sidebar-button" text="FoodManager" />
            <Button fx:id="menuButton" mnemonicParsing="false" onAction="#handleMenuButoon" prefHeight="46.0" prefWidth="290.0" styleClass="sidebar-button" text="Menu" />
-           <Button prefHeight="46.0" prefWidth="302.0" styleClass="sidebar-button" text="RevenueReport" />
+           <Button fx:id="RevenueButton" mnemonicParsing="false" onAction="#handleRevenueButton" prefHeight="46.0" prefWidth="302.0" styleClass="sidebar-button" text="RevenueReport" />
+           <Button fx:id="neworderButton" mnemonicParsing="false" onAction="#handleNewOrderButton" prefHeight="46.0" prefWidth="314.0" styleClass="sidebar-button" text="neworders" />
            <Button prefHeight="46.0" prefWidth="314.0" styleClass="sidebar-button" text="Setting" />
            <Button fx:id="choosePhoto" onMouseClicked="#handleChangeBackgroundImage" prefHeight="46.0" prefWidth="258.0" styleClass="sidebar-button" text="Chọn ảnh nền" />
            <Button fx:id="logoutButton" onAction="#switchToLoginController" prefHeight="46.0" prefWidth="249.0" styleClass="sidebar-button" text="Logout" />

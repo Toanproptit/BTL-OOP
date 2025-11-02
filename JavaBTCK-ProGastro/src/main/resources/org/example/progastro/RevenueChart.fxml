@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.RevenueChartController"
+            prefHeight="750.0" prefWidth="1225.0"
+            style="-fx-background-color: #f8fafc;">
+
+    <children>
+
+        <!-- Tiêu đề -->
+        <Label text="BIỂU ĐỒ DOANH THU"
+               layoutX="20" layoutY="10"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <!-- Tổng doanh thu -->
+        <Label fx:id="totalRevenueLabel"
+               layoutX="20" layoutY="40"
+               text="Tổng doanh thu: 0 VND"
+               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #2d6a4f;" />
+
+        <!-- Nút quay lại -->
+        <Button fx:id="backButton"
+                layoutX="700" layoutY="15"
+                prefHeight="26" prefWidth="80"
+                text="Back"
+                onAction="#switchToRevenueController"
+                style="-fx-background-color: #4e73df; -fx-text-fill: white; -fx-font-size: 12px; -fx-font-weight: bold;" />
+
+        <!-- MODE BUTTONS -->
+        <HBox layoutX="20" layoutY="75" spacing="10">
+            <children>
+                <Button fx:id="btnDay" text="Ngày" onAction="#onModeDay"
+                        style="-fx-background-color:#10b981;-fx-text-fill:white;-fx-font-weight:bold;" />
+                <Button fx:id="btnMonth" text="Tháng" onAction="#onModeMonth"
+                        style="-fx-background-color:#0ea5e9;-fx-text-fill:white;-fx-font-weight:bold;" />
+                <Button fx:id="btnYear" text="Năm" onAction="#onModeYear"
+                        style="-fx-background-color:#6366f1;-fx-text-fill:white;-fx-font-weight:bold;" />
+            </children>
+        </HBox>
+
+        <!-- FILTER INPUTS -->
+        <AnchorPane layoutX="20" layoutY="115" prefWidth="760" prefHeight="90">
+
+            <!-- DAY inputs -->
+            <HBox fx:id="dayInputs" spacing="10" layoutX="0" layoutY="0">
+                <children>
+                    <Label text="Từ ngày:" style="-fx-font-size:13px;"/>
+                    <DatePicker fx:id="dateFromPicker"/>
+                    <Label text="Đến ngày:" style="-fx-font-size:13px;"/>
+                    <DatePicker fx:id="dateToPicker"/>
+                    <Button fx:id="filterButtonDay" text="LỌC" onAction="#onFilter"
+                            style="-fx-background-color:#10b981;-fx-text-fill:white;-fx-font-weight:bold;"/>
+                    <Label fx:id="errorLabelDay" textFill="red"/>
+                </children>
+            </HBox>
+
+            <!-- MONTH inputs -->
+            <HBox fx:id="monthInputs" spacing="10" layoutX="0" layoutY="0" visible="false" managed="false">
+                <children>
+                    <Label text="Năm:" style="-fx-font-size:13px;"/>
+                    <ComboBox fx:id="monthYearCombo" prefWidth="90"/>
+                    <Label text="Từ tháng:" style="-fx-font-size:13px;"/>
+                    <ComboBox fx:id="monthFromCombo" prefWidth="80"/>
+                    <Label text="Đến tháng:" style="-fx-font-size:13px;"/>
+                    <ComboBox fx:id="monthToCombo" prefWidth="80"/>
+                    <Button fx:id="filterButtonMonth" text="LỌC" onAction="#onFilter"
+                            style="-fx-background-color:#0ea5e9;-fx-text-fill:white;-fx-font-weight:bold;"/>
+                    <Label fx:id="errorLabelMonth" textFill="red"/>
+                </children>
+            </HBox>
+
+            <!-- YEAR inputs -->
+            <HBox fx:id="yearInputs" spacing="10" layoutX="0" layoutY="0" visible="false" managed="false">
+                <children>
+                    <Label text="Từ năm:" style="-fx-font-size:13px;"/>
+                    <ComboBox fx:id="yearFromCombo" prefWidth="100"/>
+                    <Label text="Đến năm:" style="-fx-font-size:13px;"/>
+                    <ComboBox fx:id="yearToCombo" prefWidth="100"/>
+                    <Button fx:id="filterButtonYear" text="LỌC" onAction="#onFilter"
+                            style="-fx-background-color:#6366f1;-fx-text-fill:white;-fx-font-weight:bold;"/>
+                    <Label fx:id="errorLabelYear" textFill="red"/>
+                </children>
+            </HBox>
+
+        </AnchorPane>
+
+        <!-- BIỂU ĐỒ -->
+        <LineChart fx:id="revenueChart"
+                   layoutX="20" layoutY="210"
+                   prefWidth="760" prefHeight="370">
+            <xAxis>
+                <CategoryAxis fx:id="xAxis" label="Thời gian"/>
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" label="Doanh thu (VND)"/>
+            </yAxis>
+        </LineChart>
+
+    </children>
+</AnchorPane>

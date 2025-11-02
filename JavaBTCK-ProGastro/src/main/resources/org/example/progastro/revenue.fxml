@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.RevenueController"
+            prefHeight="750.0" prefWidth="1225.0"
+            style="-fx-background-color: #f9fafb;">
+
+    <children>
+
+        <!-- Header -->
+        <Label text="BẢNG DOANH THU"
+               layoutX="20" layoutY="15"
+               style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+
+        <!-- Tổng doanh thu -->
+        <Label fx:id="totalRevenueLabel"
+               layoutX="20" layoutY="55"
+               text="Tổng doanh thu: 0 VND"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2d6a4f;" />
+
+        <!-- Nút quay lại -->
+        <Button fx:id="backButton"
+                layoutX="20" layoutY="550"
+                prefHeight="30" prefWidth="90"
+                text="Back"
+                style="-fx-background-color: #4e73df; -fx-text-fill: white; -fx-font-weight: bold;"
+                onAction="#switchToDashBoard" />
+        <Button fx:id="seechart"
+                layoutX="650" layoutY="550"
+                prefHeight="30" prefWidth="90"
+                text="See Chart"
+                style="-fx-background-color: #4e73df; -fx-text-fill: white; -fx-font-weight: bold;"
+                onAction="#switchToRevenueChart" />
+        <!-- Bảng doanh thu -->
+        <TableView fx:id="tableRevenue"
+                   layoutX="20" layoutY="100"
+                   prefWidth="500" prefHeight="300"
+                   style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 8; -fx-background-radius: 8;">
+            <columns>
+                <TableColumn fx:id="colDate" text="Ngày tạo" prefWidth="250" />
+                <TableColumn fx:id="colId" text="Mã hoá đơn" prefWidth="250" />
+                <TableColumn fx:id="colAmount" text="Tổng tiền (VND)" prefWidth="350" />
+            </columns>
+        </TableView>
+
+    </children>
+</AnchorPane>

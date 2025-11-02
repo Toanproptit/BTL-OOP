@@ -53,13 +53,16 @@ public class LoginController {
     private TextField usernameField;
 
     public void initialize() {
-        // Tải ảnh nền cho màn hình này (stageId = "editFoodStage") khi mở ứng dụng
         String imagePath = BackgroundImageManager.loadBackgroundImageForStage("loginStage");
-        Image newImage = new Image(imagePath);
-        if (!imagePath.isEmpty()) {
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            Image newImage = new Image(imagePath);
             backgroundImage.setImage(newImage);
+        } else {
+            System.out.println("Không tìm thấy ảnh nền cho loginStage");
         }
     }
+
 
 
 

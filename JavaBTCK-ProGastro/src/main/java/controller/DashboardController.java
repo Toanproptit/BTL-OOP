@@ -37,6 +37,10 @@ public class DashboardController {
 
     @FXML
     private Button menuButton;
+    @FXML
+    private Button RevenueButton;
+    @FXML
+    private Button neworderButton;
 
     @FXML
     private Label lable1;
@@ -112,7 +116,16 @@ public class DashboardController {
         showHome();
         setActiveButton(homeButton);
     }
-
+    @FXML
+    private void handleRevenueButton(ActionEvent event) throws IOException{
+        switchToRevenueController();
+        setActiveButton(RevenueButton);
+    }
+    @FXML
+    private void handleNewOrderButton(ActionEvent event) throws IOException {
+        switchToNewOrderController();
+        setActiveButton(neworderButton);
+    }
     private void showHome() throws IOException {
         Parent homeView = FXMLLoader.load(getClass().getResource("/org/example/progastro/Home.fxml"));
         contentArea.getChildren().setAll(homeView);
@@ -139,6 +152,26 @@ public class DashboardController {
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("Login-ProGastro");
+        stage.show();
+    }
+    private void switchToRevenueController() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Revenue.fxml"));
+        Parent parent = fxmlLoader.load();
+        Scene scene = new Scene(parent,1500,750);
+        Stage stage = (Stage) RevenueButton.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("Revenue-ProGastro");
+        stage.show();
+    }
+    private void switchToNewOrderController() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/newordercontroller.fxml"));
+        Parent parent = fxmlLoader.load();
+        Scene scene = new Scene(parent,1500,750);
+        Stage stage = (Stage) neworderButton.getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
+        stage.setScene(scene);
+        stage.setTitle("order-ProGastro");
         stage.show();
     }
     private void showAlert(String title, String message) {

@@ -9,7 +9,7 @@ public class Application extends javafx.application.Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource("Login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1500, 750);
+        Scene scene = new Scene(fxmlLoader.load(), 1300, 650);
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
         stage.setTitle("Login-progastro");
         stage.setScene(scene);

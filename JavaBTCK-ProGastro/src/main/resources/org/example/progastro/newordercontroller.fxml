@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane_root" prefHeight="400.0" prefWidth="600.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.NewOrderController">
+    <stylesheets>
+        <URL value="@NewOrder.css" />
+    </stylesheets>
+    <children>
+        <!-- Breadcrumb Container -->
+        <AnchorPane fx:id="hboxTop" layoutX="3.0" layoutY="34.0" prefHeight="539.0" prefWidth="807.0" styleClass="hbox-top">
+            <children>
+                <HBox layoutY="8.0" prefHeight="30.0" prefWidth="291.0">
+                    <children>
+                        <Label fx:id="labelDashboard" lineSpacing="5.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="95.0" styleClass="label-breadcrumb" text="DashBoard">
+                            <padding>
+                                <Insets right="5.0" top="5.0" />
+                            </padding>
+                        </Label>
+                        <Region prefHeight="30.0" prefWidth="4.0" />
+                        <Label fx:id="labelCustomerOrders" prefHeight="33.0" prefWidth="179.0" styleClass="label-breadcrumb" text="  / Customer Orders">
+                            <padding>
+                                <Insets right="5.0" top="5.0" />
+                            </padding>
+                        </Label>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+
+        <!-- Top HBox: Orders + Search + Icons -->
+        <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="807.0" spacing="10.0">
+            <children>
+                <!-- Orders Label -->
+                <Label fx:id="labelOrders" lineSpacing="5.0" prefHeight="35.0" prefWidth="111.0" styleClass="label-orders" text="Orders">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+
+                <Region prefHeight="34.0" prefWidth="20.0" />
+
+                <!-- Search HBox: icon bên trái + TextField -->
+                <HBox alignment="CENTER_LEFT" prefHeight="36.0" spacing="0">
+                    <children>
+                        <ImageView fx:id="iconSearch" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="imageview-icon">
+                            <image>
+                                <Image url="@../../../UML/search.png" />
+                            </image>
+                        </ImageView>
+
+                        <TextField fx:id="searchTextField" prefHeight="36.0" prefWidth="280.0" promptText="Search anything" styleClass="textfield-search" />
+                    </children>
+                </HBox>
+
+                <Region prefHeight="34.0" prefWidth="25.0" />
+
+                <ImageView fx:id="iconBell" fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="imageview-small">
+                    <image>
+                        <Image url="@../../../UML/bell.png" />
+                    </image>
+                </ImageView>
+
+                <Region prefHeight="34.0" prefWidth="15.0" />
+
+                <ImageView fx:id="iconSettings" fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" styleClass="imageview-small">
+                    <image>
+                        <Image url="@../../../UML/settings-5666.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
