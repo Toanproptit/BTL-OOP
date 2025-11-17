@@ -2,8 +2,6 @@ package controller;
 
 import javafx.collections.*;
 import javafx.fxml.*;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -11,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.BackgroundImageManager;
 import model.Food;
 import model.FoodStorageJSON;
@@ -47,12 +44,18 @@ public class ManageFoodController {
 
     // --- DATA ---
     private ObservableList<Food> foods = FXCollections.observableArrayList();
+
     private boolean isAddingNew = true;
     private Food editingFood = null;
 
+    // Biến tạm giữ ảnh đang chọn
+    private String selectedImagePath = null;
+
+
+    /** ================= INITIALIZE ================== */
     public void initialize() throws IOException {
 
-        // Load background if exists
+        // Load background
         String bg = BackgroundImageManager.loadBackgroundImageForStage("ManageFood");
         if (!bg.isEmpty()) {
             root.setStyle("-fx-background-image: url('" + bg + "'); -fx-background-size: cover;");
@@ -65,28 +68,31 @@ public class ManageFoodController {
 
         refreshTable();
 
-        // click 1 lần chọn món để edit
+        // chọn 1 lần để edit
         foodTable.setOnMouseClicked(this::handleTableClick);
 
-        // ban đầu là thêm mới
         switchToAddMode();
     }
 
-    /** ========================= TABLE CLICK ========================== */
+
+    /** ================= TABLE CLICK (EDIT MODE) ================= */
     private void handleTableClick(MouseEvent event) {
         if (event.getClickCount() == 1) {
+
             editingFood = foodTable.getSelectionModel().getSelectedItem();
             if (editingFood == null) return;
 
             isAddingNew = false;
 
-            // fill data
+            // fill form
             nameField.setText(editingFood.getName());
             descriptionField.setText(editingFood.getDescription());
             priceField.setText(String.valueOf(editingFood.getPrice()));
 
-            if (editingFood.getImagePath() != null && !editingFood.getImagePath().isBlank()) {
-                foodImageView.setImage(new Image("file:" + editingFood.getImagePath()));
+            selectedImagePath = editingFood.getImagePath();
+
+            if (selectedImagePath != null && !selectedImagePath.isBlank()) {
+                foodImageView.setImage(new Image("file:" + selectedImagePath));
             } else {
                 foodImageView.setImage(null);
             }
@@ -95,7 +101,8 @@ public class ManageFoodController {
         }
     }
 
-    /** ========================= ADD NEW MODE ========================== */
+
+    /** ================= SWITCH TO ADD MODE ================= */
     @FXML
     private void handleAddNewFood() {
         switchToAddMode();
@@ -104,6 +111,7 @@ public class ManageFoodController {
     private void switchToAddMode() {
         isAddingNew = true;
         editingFood = null;
+        selectedImagePath = null;
 
         nameField.clear();
         descriptionField.clear();
@@ -113,7 +121,8 @@ public class ManageFoodController {
         deleteButton.setDisable(true);
     }
 
-    /** ========================= SAVE FOOD ========================== */
+
+    /** ================= SAVE FOOD ================= */
     @FXML
     public void handleSave() throws IOException {
 
@@ -135,14 +144,16 @@ public class ManageFoodController {
 
         if (isAddingNew) {
             Food newFood = new Food(name, desc, price);
+            newFood.setImagePath(selectedImagePath);
 
             FoodStorageJSON.addFood(newFood);
             showAlert("Thành công", "Đã thêm món mới!");
 
-        } else if (editingFood != null) {
+        } else {
             editingFood.setName(name);
             editingFood.setDescription(desc);
             editingFood.setPrice(price);
+            editingFood.setImagePath(selectedImagePath);
 
             FoodStorageJSON.updateFood(editingFood);
             showAlert("Thành công", "Đã lưu chỉnh sửa!");
@@ -152,36 +163,44 @@ public class ManageFoodController {
         switchToAddMode();
     }
 
-    /** ========================= DELETE FOOD ========================== */
+
+    /** ================= DELETE FOOD ================= */
     @FXML
     public void handleDeleteFood() throws IOException {
         if (editingFood != null) {
+
             FoodStorageJSON.eraseFood(editingFood);
             showAlert("Đã xóa", "Món ăn đã được xóa.");
+
             refreshTable();
             switchToAddMode();
         }
     }
 
-    /** ========================= IMAGE BUTTONS ========================== */
+
+    /** ================= CHOOSE IMAGE ================= */
     @FXML
     private void handleChooseImage() {
+
         FileChooser fc = new FileChooser();
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        fc.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
 
         File file = fc.showOpenDialog(null);
         if (file == null) return;
 
-        foodImageView.setImage(new Image(file.toURI().toString()));
-
         try {
-            saveFoodImage(file);
+            selectedImagePath = saveFoodImage(file);
+            foodImageView.setImage(new Image("file:" + selectedImagePath));
+
         } catch (IOException e) {
             showAlert("Lỗi", "Không thể lưu ảnh!");
         }
     }
 
-    private void saveFoodImage(File file) throws IOException {
+    private String saveFoodImage(File file) throws IOException {
+
         String folder = "images/foodImages/";
         File dir = new File(folder);
         if (!dir.exists()) dir.mkdirs();
@@ -189,30 +208,34 @@ public class ManageFoodController {
         File dest = new File(folder + file.getName());
         Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-        if (editingFood != null) {
-            editingFood.setImagePath(dest.getAbsolutePath());
-            FoodStorageJSON.updateFood(editingFood);
-        }
+        return dest.getAbsolutePath();
     }
 
+
+    /** ================= DELETE IMAGE ONLY ================= */
     @FXML
     private void handleDeleteImage() throws IOException {
-        if (editingFood == null || editingFood.getImagePath() == null) {
-            showAlert("Thông báo", "Món ăn không có ảnh để xóa");
+
+        if (selectedImagePath == null) {
+            showAlert("Thông báo", "Món ăn không có ảnh để xóa.");
             return;
         }
 
-        Path p = Path.of(editingFood.getImagePath());
-        Files.deleteIfExists(p);
+        Files.deleteIfExists(Path.of(selectedImagePath));
 
-        editingFood.setImagePath(null);
-        FoodStorageJSON.updateFood(editingFood);
-
+        selectedImagePath = null;
         foodImageView.setImage(null);
+
+        if (editingFood != null) {
+            editingFood.setImagePath(null);
+            FoodStorageJSON.updateFood(editingFood);
+        }
+
         showAlert("Đã xóa ảnh", "Ảnh món ăn đã được xóa.");
     }
 
-    /** ========================= UTILS ========================== */
+
+    /** ================= UTILS ================= */
     private void refreshTable() throws IOException {
         foods = FXCollections.observableArrayList(FoodStorageJSON.loadFoods());
         foodTable.setItems(foods);

@@ -24,7 +24,13 @@
     "name": "sdfs",
     "description": "sdfs",
     "price": 12.0,
-    "index": 3,
-    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+    "index": 3
+  },
+  {
+    "name": "gà",
+    "description": "ádjasd",
+    "price": 12.0,
+    "index": 4,
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Toan\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\Progastro.png"
   }
 ]

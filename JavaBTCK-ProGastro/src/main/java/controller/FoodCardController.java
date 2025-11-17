@@ -35,29 +35,24 @@ public class FoodCardController {
     }
     private Image loadImage(String path) {
 
-        // 1. Nếu rỗng hoặc null → dùng ảnh mặc định
-        if (path == null || path.isBlank()) {
-            return new Image("/org/example/progastro/images/default.png");
-        }
-
         try {
-            // 2. Nếu là URL: http:// hoặc file:
-            if (path.startsWith("http") || path.startsWith("file:")) {
+            // 1. URL hoặc file:
+            if (path != null && (path.startsWith("http") || path.startsWith("file:"))) {
                 return new Image(path, false);
             }
 
-            // 3. Nếu là đường dẫn file local
-            File file = new File(path);
-            if (file.exists()) {
-                return new Image(file.toURI().toString(), false);
+            // 2. File local:
+            if (path != null) {
+                File file = new File(path);
+                if (file.exists()) {
+                    return new Image(file.toURI().toString(), false);
+                }
             }
 
-        } catch (Exception e) {
-            // ignore — dùng ảnh mặc định
-        }
+        } catch (Exception ignored) {}
 
-        // 4. Fallback
-        return new Image("/org/example/progastro/images/default.png");
+        // 3. Ảnh mặc định từ resources
+        return new Image(new File("images/foodImages/default.jpg").toURI().toString());
     }
 
 
