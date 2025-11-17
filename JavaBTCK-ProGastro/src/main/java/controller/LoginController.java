@@ -53,13 +53,48 @@ public class LoginController {
     private TextField usernameField;
 
     public void initialize() {
-        // Tải ảnh nền cho màn hình này (stageId = "editFoodStage") khi mở ứng dụng
+        // Tải ảnh nền cho màn hình này (stageId = "loginStage") khi mở ứng dụng
         String imagePath = BackgroundImageManager.loadBackgroundImageForStage("loginStage");
-        Image newImage = new Image(imagePath);
-        if (!imagePath.isEmpty()) {
-            backgroundImage.setImage(newImage);
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            try {
+                Image newImage = new Image(imagePath);
+                if (newImage != null && newImage.getWidth() > 0) {
+                    backgroundImage.setImage(newImage);
+
+                    // ✅ Cấu hình ImageView hiển thị đẹp
+                    backgroundImage.setPreserveRatio(true);
+                    backgroundImage.setSmooth(true);
+                    backgroundImage.setCache(true);
+
+                    // Co giãn ảnh vừa khung
+                    backgroundImage.fitWidthProperty().bind(root.widthProperty());
+                    backgroundImage.fitHeightProperty().bind(root.heightProperty());
+
+                    // ✅ Căn giữa ảnh trong khung
+                    backgroundImage.setX((root.getWidth() - backgroundImage.getFitWidth()) / 2);
+                    backgroundImage.setY((root.getHeight() - backgroundImage.getFitHeight()) / 2);
+
+                    // Lắng nghe khi kích thước thay đổi để giữ căn giữa
+                    root.widthProperty().addListener((obs, oldVal, newVal) -> {
+                        backgroundImage.setX((newVal.doubleValue() - backgroundImage.getFitWidth()) / 2);
+                    });
+                    root.heightProperty().addListener((obs, oldVal, newVal) -> {
+                        backgroundImage.setY((newVal.doubleValue() - backgroundImage.getFitHeight()) / 2);
+                    });
+
+                } else {
+                    System.out.println("Ảnh không hợp lệ hoặc không thể tải: " + imagePath);
+                }
+            } catch (Exception e) {
+                System.out.println("Lỗi khi tải ảnh nền: " + e.getMessage());
+            }
+        } else {
+            System.out.println("Không tìm thấy đường dẫn ảnh nền cho stage 'loginStage'");
         }
     }
+
+
 
 
 
@@ -146,7 +181,7 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Register.fxml"));
         Parent parent =fxmlLoader.load();
         Stage stage = (Stage) registerButton.getScene().getWindow();
-        Scene scene = new Scene(parent,800,600);
+        Scene scene = new Scene(parent,1500,750);
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Register.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("Register-ProGastro");

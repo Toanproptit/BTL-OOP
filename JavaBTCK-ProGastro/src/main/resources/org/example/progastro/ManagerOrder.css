@@ -1,0 +1,165 @@
+/* ================================================= */
+/* 1. STYLE CHO METRIC CARDS             */
+/* ================================================= */
+
+.card-tile {
+    /* Nền, Bo góc & Bóng đổ */
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 5);
+
+    /* Padding và Căn chỉnh */
+    -fx-padding: 15px;
+    -fx-alignment: TOP_LEFT;
+}
+
+/* Số liệu chính */
+.metric-number {
+    -fx-fill: #1F2937;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+/* Nhãn số liệu */
+.metric-label {
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+}
+
+/* Màu sắc của text/icon trong card (Áp dụng cho Label/Text) */
+.metric-orange {
+    -fx-fill: #F97316; /* Màu chữ cam */
+    -fx-text-fill: #F97316; /* Màu text cam cho Label */
+}
+.metric-green {
+    -fx-fill: #10B981;
+    -fx-text-fill: #10B981;
+}
+.metric-red {
+    -fx-fill: #EF4444;
+    -fx-text-fill: #EF4444;
+}
+
+
+/* ================================================= */
+/* 2. STYLE CHO TABLE VIEW             */
+/* ================================================= */
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+/* --- A. Tiêu đề Cột (Header) --- */
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #EBEBEB transparent; /* Đường kẻ dưới mỏng */
+    -fx-border-width: 1px;
+    -fx-padding: 5px 0 5px 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #6B7280;
+
+    /* Tăng khoảng cách ngang trong tiêu đề */
+    -fx-padding: 0 15px;
+}
+
+
+/* --- B. Ô Dữ liệu (Cell) --- */
+
+/* Áp dụng cho tất cả các ô */
+.table-view .table-cell {
+    /* Loại bỏ tất cả viền mặc định (Đường kẻ dọc) */
+    -fx-border-color: transparent;
+
+    /* Tăng đệm ngang để tạo khoảng trống giữa các cột */
+    -fx-padding: 10px 15px;
+}
+
+/* --- C. Hàng (Row) --- */
+
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    /* Tạo đường viền dưới mỏng */
+    -fx-border-color: transparent transparent #EBEBEB transparent;
+    -fx-border-width: 1px;
+    -fx-background-insets: 0;
+}
+
+/* Ẩn đường viền dưới của hàng cuối cùng hoặc hàng trống */
+.table-view .table-row-cell:empty {
+    -fx-border-width: 0;
+}
+
+.table-view .table-row-cell:selected {
+    /* Nền màu xanh nhạt hoặc màu xám nhạt để làm nổi bật */
+    -fx-background-color: #F3F4F6; /* Màu xám nhạt */
+
+    /* Đảm bảo màu nền được áp dụng trên cả insets */
+    -fx-background-insets: 0;
+}
+.table-view .table-row-cell:selected .text {
+    /* Đảm bảo các Text/Label trong hàng có thể giữ màu gốc hoặc chuyển sang màu đậm hơn */
+    -fx-fill: #1F2937;
+}
+
+/* Tùy chọn: Thêm hiệu ứng bo góc nhẹ cho hàng được chọn */
+.table-view .table-row-cell:selected {
+    -fx-background-radius: 5px;
+}
+
+/* ================================================= */
+/* 3. STYLE CHO THANH CUỘN (ScrollBar)               */
+/* ================================================= */
+
+/* --- Tổng thể ScrollBar --- */
+.scroll-bar {
+    -fx-background-color: transparent; /* Không màu nền */
+}
+
+/* --- Track (đường ray) --- */
+.scroll-bar .track {
+    -fx-background-color: #F9FAFB; /* Màu xám sáng */
+    -fx-background-radius: 5px;
+}
+
+/* --- Thumb (phần di chuyển) --- */
+.scroll-bar .thumb {
+    -fx-background-color: #D1D5DB; /* Màu xám nhạt */
+    -fx-background-radius: 5px;
+}
+
+/* Hiệu ứng hover trên thumb */
+.scroll-bar .thumb:hover {
+    -fx-background-color: #9CA3AF; /* Màu đậm hơn khi rê chuột */
+}
+
+/* --- Nút mũi tên ở 2 đầu --- */
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent; /* Ẩn nền */
+    -fx-padding: 0; /* Bỏ padding thừa */
+}
+
+/* Ẩn biểu tượng mũi tên cho gọn */
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}
+
+/* --- Thanh cuộn ngang (horizontal) --- */
+.scroll-bar:horizontal .thumb {
+    -fx-min-height: 6px;
+    -fx-max-height: 6px;
+}
+
+/* --- Thanh cuộn dọc (vertical) --- */
+.scroll-bar:vertical .thumb {
+    -fx-min-width: 6px;
+    -fx-max-width: 6px;
+}
+

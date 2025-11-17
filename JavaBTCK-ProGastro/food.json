@@ -1,3 +1,30 @@
 [
-
+  {
+    "name": "sdfs",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 0,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  },
+  {
+    "name": "sdfssdsfd",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 1,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  },
+  {
+    "name": "sdfs",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 2,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  },
+  {
+    "name": "sdfs",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 3,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  }
 ]

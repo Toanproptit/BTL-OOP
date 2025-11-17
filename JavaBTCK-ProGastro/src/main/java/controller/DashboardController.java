@@ -14,7 +14,6 @@ import model.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class DashboardController {
     @FXML
@@ -57,6 +56,7 @@ public class DashboardController {
     private Label revenueTodayLabel, activeTablesLabel, totalInvoicesLabel, totalDishesLabel;
 
     private Button currentSelectedButton;
+    private DashboardController dashboardController;
 
     public void initialize() throws IOException {
 //        updateSummaryStats();
@@ -123,13 +123,22 @@ public class DashboardController {
         contentArea.getChildren().setAll(menuView);
     }
     private void switchToManageFoodController() throws IOException{
-        Parent manageFoodView = FXMLLoader.load(getClass().getResource("/org/example/progastro/Managefood.fxml"));
+        Parent manageFoodView = FXMLLoader.load(getClass().getResource("/org/example/progastro/ManageFood.fxml"));
         contentArea.getChildren().setAll(manageFoodView);
     }
-    private void switchToManageOrderController() throws IOException{
-        Parent manageOrder = FXMLLoader.load(getClass().getResource("/org/example/progastro/Manageorder.fxml"));
-        contentArea.getChildren().setAll(manageOrder);
+    private void switchToManageOrderController() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/progastro/ManagerOrder.fxml"));
+        Parent manageOrderView = loader.load();
+
+        // Lấy controller của ManageOrder
+        ManagerOrderController manageOrderController = loader.getController();
+
+        // Truyền tham chiếu DashboardController để controller con gọi ngược được
+        manageOrderController.setDashboardController(this);
+
+        contentArea.getChildren().setAll(manageOrderView);
     }
+
     @FXML
     private void switchToLoginController(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Login.fxml"));
@@ -161,6 +170,15 @@ public class DashboardController {
         title.setText(newSelectedButton.getText());
         // 3. Cập nhật nút đang chọn
         currentSelectedButton = newSelectedButton;
+    }
+
+
+    public void setDashboardController(DashboardController dashboardController) {
+        this.dashboardController = dashboardController;
+    }
+
+    public void setContent(Parent node) {
+        contentArea.getChildren().setAll(node);
     }
 
 }

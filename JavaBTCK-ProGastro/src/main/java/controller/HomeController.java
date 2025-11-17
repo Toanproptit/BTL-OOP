@@ -57,12 +57,8 @@ public class HomeController {
         activeTablesLabel.setText(activeTables + " bàn");
 
         // 4. Tổng món ăn
-        try {
-            List<Food> foods = FoodStorageJSON.loadFoods();
-            totalDishesLabel.setText(foods.size() + " món");
-        } catch (IOException e) {
-            totalDishesLabel.setText("Lỗi đọc file");
-        }
+        List<Food> foods = FoodStorageJSON.loadFoods();
+        totalDishesLabel.setText(foods.size() + " món");
     }
 
 }
