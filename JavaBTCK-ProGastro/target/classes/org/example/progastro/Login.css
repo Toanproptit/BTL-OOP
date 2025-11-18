@@ -4,77 +4,87 @@
     -fx-padding: 20px;
 }
 
-/* Đặt kiểu chữ cho tiêu đề */
-
-
-/* Đặt kiểu chữ cho Label */
+/* Đặt kiểu chữ cho Label - ĐÃ THÊM VIỀN MÀU CAM */
 .label {
     -fx-font-size: 16px;
     -fx-font-weight: normal;
     -fx-text-fill: #333333;
-    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
-        -fx-background-radius: 10px;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
+    -fx-border-color: #FF7043; /* Viền màu cam */
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-padding: 2px 5px; /* Thêm padding cho viền label */
 }
 
-/* Định nghĩa cho TextField */
+/* Định nghĩa cho TextField - ĐÃ SỬA LỖI VIỀN BO TRÒN */
 .text-field {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #4caf50;
-    -fx-border-radius: 5px;
+    /* Sử dụng kỹ thuật nhiều lớp nền để tạo viền bo tròn không bị lỗi */
+    -fx-background-color:
+        #FF7043, /* Lớp 1 (Màu viền) */
+        #ffffff; /* Lớp 2 (Nền trắng) */
+    -fx-background-insets: 0, 1; /* Lớp 2 lùi vào 1px tạo viền */
+    -fx-background-radius: 5px, 4px; /* Bo tròn các lớp */
+
     -fx-padding: 10px;
     -fx-font-size: 14px;
     -fx-pref-width: 300px;
     -fx-pref-height: 40px;
+    /* Đã loại bỏ: -fx-border-color và -fx-border-radius cũ */
 }
 
-/* Định nghĩa cho PasswordField */
+/* Định nghĩa cho PasswordField - ĐÃ SỬA LỖI VIỀN BO TRÒN */
 .password-field {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #4caf50;
-    -fx-border-radius: 5px;
+    /* Sử dụng kỹ thuật nhiều lớp nền để tạo viền bo tròn không bị lỗi */
+    -fx-background-color:
+        #FF7043, /* Lớp 1 (Màu viền) */
+        #ffffff; /* Lớp 2 (Nền trắng) */
+    -fx-background-insets: 0, 1; /* Lớp 2 lùi vào 1px tạo viền */
+    -fx-background-radius: 5px, 4px; /* Bo tròn các lớp */
+
     -fx-padding: 10px;
     -fx-font-size: 14px;
     -fx-pref-width: 300px;
     -fx-pref-height: 40px;
+    /* Đã loại bỏ: -fx-border-color và -fx-border-radius cũ */
 }
 
-/* Định nghĩa cho Button */
+/* Định nghĩa cho Button - ĐÃ CHUYỂN SANG MÀU CAM VÀ BÓNG NHẸ */
 .button {
-    -fx-background-color: #4caf50;    /* Nền xanh lá */
-        -fx-text-fill: white;             /* Chữ trắng */
-        -fx-font-size: 20px;              /* Kích thước chữ */
-        -fx-border-radius: 8px;           /* Bo tròn các góc */
-        -fx-padding: 10px 20px;           /* Khoảng đệm cho nút */
-        -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);  /* Hiệu ứng bóng */
-    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
-    -fx-background-radius: 16px;
+    -fx-background-color: #FF7043;    /* Nền cam */
+    -fx-text-fill: #FFFFFF;           /* Chữ trắng */
+    -fx-font-size: 15px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1); /* Bóng nhẹ */
+    -fx-background-insets: 0;
+    -fx-background-radius: 8px; /* Đã chỉnh lại radius cho đồng bộ với border-radius */
 }
 
-/* Thêm hiệu ứng hover cho Button */
+/* Thêm hiệu ứng hover cho Button - CAM ĐẬM HƠN */
 .button:hover {
-    -fx-background-color: #45a049;  /* Đổi màu khi hover */
+    -fx-background-color: #F4511E;  /* Màu cam đậm hơn khi hover */
 }
 
+/* Đã đổi màu chữ hover từ darkblue sang TRẮNG */
 #login:hover {
-    -fx-text-fill: darkblue;
+    -fx-text-fill: #FFFFFF;
     -fx-cursor: hand;
 }
 
-/* Thêm hiệu ứng hover cho button đăng kí */
+/* Đã đổi màu chữ hover từ darkblue sang TRẮNG */
 #registerButton:hover {
-    -fx-text-fill: darkblue;
+    -fx-text-fill: #FFFFFF;
     -fx-cursor: hand;
 }
 
 /* Đặt kích thước chữ cho Button có fx:id="choosePhoto" */
-#choosePhoto {
-    -fx-font-size: 15px; /* Thay đổi kích thước chữ */
-}
+
+/* Đã đổi màu chữ hover từ darkblue sang TRẮNG */
 #choosePhoto: hover{
-    -fx-text-fill: darkblue;
+    -fx-text-fill: #FFFFFF;
     -fx-cursor: hand;
 }
-
 
 
 /* Đặt kiểu cho GridPane */
@@ -86,11 +96,10 @@
 
 /* Tạo hiệu ứng cho trường nhập liệu khi focus */
 .text-field:focused, .password-field:focused {
-    -fx-border-color: #76d7c4;  /* Màu xanh lam nhẹ khi focus */
+    /* Đã chỉnh màu focus thành màu cam/xanh để dễ nhìn */
+    -fx-background-color:
+        #FF7043, /* Viền focus màu cam */
+        #ffffff;
+    -fx-background-insets: 0, 1;
 }
 
-/* Tạo hiệu ứng cho Label khi hover */
-.label:hover {
-    -fx-text-fill: #4caf50;
-    -fx-cursor: hand;
-}

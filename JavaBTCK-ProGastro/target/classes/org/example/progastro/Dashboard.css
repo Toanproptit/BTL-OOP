@@ -1,62 +1,118 @@
 
 
 /* Định dạng cho Label */
-.label {
-    -fx-text-fill: #333333;           /* Màu chữ xám */
-    -fx-font-size: 14px;              /* Kích thước chữ */
-    -fx-font-weight: bold;            /* Chữ đậm */
+
+
+#borderPane_root{
+    -fx-background-color:#F9F4F0;
 }
 
-/* Định dạng cho TextField */
-.text-field {
-    -fx-background-color: #ffffff;    /* Nền trắng */
-    -fx-border-radius: 8px;           /* Bo tròn các góc */
-    -fx-padding: 10px;                /* Thêm khoảng đệm trong */
-    -fx-font-size: 14px;              /* Kích thước chữ */
-    -fx-border-color: #ff5722;        /* Màu viền cam */
-    -fx-border-width: 2px;            /* Độ dày viền */
+#appName {
+    -fx-text-fill: black;
 }
 
-/* Định dạng cho Button */
-.button {
-    -fx-background-color: #4caf50;    /* Nền xanh lá */
-    -fx-text-fill: white;             /* Chữ trắng */
-    -fx-font-size: 13px;              /* Kích thước chữ */
-    -fx-border-radius: 14px;           /* Bo tròn các góc */
-    -fx-padding: 10px 20px;           /* Khoảng đệm cho nút */
-    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);  /* Hiệu ứng bóng */
-    -fx-background-insets: 0;      /* Giảm khoảng cách giữa nền và viền */
-    -fx-background-radius: 16px;
+
+#header {
+    -fx-background-color: transparent; /* Nền trong suốt hoặc màu nhạt */
+    -fx-padding: 0 20px; /* Padding hai bên để nội dung không sát mép */
+    -fx-alignment: CENTER_LEFT; /* Đảm bảo các thành phần được căn giữa dọc và xếp từ trái qua */
+    -fx-spacing: 30px; /* Điều chỉnh khoảng cách chung giữa các khối */
+    -fx-pref-height: 75px; /* Chiều cao cố định */
 }
 
-#logoutButton{
-    -fx-background-color: #FFA726;
+
+#header > VBox:nth-child(1) {
+    -fx-alignment: CENTER_LEFT;
+    -fx-spacing: 2px;
 }
+
+/* Tiêu đề ứng dụng lớn (Text fx:id="appName") */
+#appName {
+    -fx-fill: #333333; /* Màu chữ chính */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+/* Tiêu đề trang nhỏ hơn (Label fx:id="title") */
+#title {
+    -fx-text-fill: #666666; /* Màu chữ phụ */
+    -fx-font-size: 14px;
+    -fx-font-weight: normal;
+}
+
+#searchTextField {
+    /* Đảm bảo chiếm một phần không gian lớn hơn */
+    -fx-pref-width: 400px;
+    -fx-pref-height: 40px;
+    -fx-prompt-text-fill: #AAAAAA; /* Màu placeholder */
+    -fx-background-color: white;
+    -fx-border-color: #E0E0E0;
+    -fx-border-radius: 20px; /* Bo góc tròn */
+    -fx-background-radius: 20px;
+    -fx-padding: 0 15px; /* Padding bên trong */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0.0, 0, 1);
+}
+
+/* ===================================== */
+/* 4. KHU VỰC NGƯỜI DÙNG (VBox 2)        */
+/* ===================================== */
+/* Áp dụng cho VBox chứa usernameLabel và nameUser */
+#header > VBox:nth-child(3) {
+    -fx-alignment: CENTER_RIGHT;
+    -fx-padding: 5px 10px;
+    /* Xóa style nội tuyến cũ (style="-fx-background-color: #A9CE68;") và thêm styleClass nếu cần */
+}
+
+/* Label "Tên người dùng" */
+#usernameLabel {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Label hiển thị tên người dùng */
+#nameUser {
+    -fx-text-fill: #000000;
+    -fx-font-size: 16px;
+    -fx-font-weight: normal;
+}
+
 
 .button:hover {
-    -fx-background-color: #45a049;
-    -fx-effect: innershadow(gaussian, #000000, 10, 0.5, 0, 2, 2, 2);
-}
-#foodButton:hover{
-    -fx-text-fill: darkblue;
+    -fx-background-color: #FFE8D6;    /* màu đậm hơn */
+    -fx-scale-x: 1.03;                 /* phóng to nhẹ */
+    -fx-scale-y: 1.03;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 8, 0.2, 0, 2);
     -fx-cursor: hand;
 }
-#orderButton:hover{
-    -fx-text-fill: darkblue;
-    -fx-cursor: hand;
+
+
+
+/* Định dạng chung cho tất cả các nút Sidebar */
+.sidebar-button {
+    -fx-background-color: transparent; /* Nền trong suốt khi không chọn */
+    -fx-text-fill: #333333; /* Màu chữ mặc định */
+    -fx-font-size: 16px;
+    -fx-alignment: center-left; /* Căn chữ sang trái */
+    -fx-padding: 10px 10px 10px 10px; /* Padding để tạo không gian */
+    -fx-background-radius: 5px; /* Bo góc nhẹ */
 }
-#menuButton:hover{
-    -fx-text-fill: darkblue;
-    -fx-cursor: hand;
+
+/* Định dạng khi di chuột qua */
+.sidebar-button:hover {
+    -fx-background-color: #FFE8D6;
 }
-#logoutButton:hover{
-    -fx-background-color:#FFB74D;
-    -fx-text-fill: darkblue;
-    -fx-cursor: hand;
-}
-#choosePhoto:hover{
-    -fx-text-fill: darkblue;
-    -fx-cursor: hand;
+
+/* 🌟 CLASS QUAN TRỌNG: Mục đang được chọn */
+.sidebar-button-selected {
+    /* Màu nền cam nhạt */
+    -fx-background-color: #FFE8D6;
+    /* Thanh dọc màu cam đậm 4px bên trái */
+    -fx-border-color: #FF8C42;
+    -fx-border-width: 0 0 0 4px;
+    -fx-text-fill: #FF8C42; /* Đổi màu chữ sang màu cam đậm */
+    -fx-font-weight: bold; /* Chữ đậm hơn */
+    -fx-background-radius: 5px; /* Bo góc nhẹ */
 }
 
 

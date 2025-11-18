@@ -1,191 +1,251 @@
 package controller;
 
-
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.collections.*;
+import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import model.BackgroundImageManager;
 import model.Food;
 import model.FoodStorageJSON;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.input.MouseEvent;
+
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
+public class ManageFoodController {
 
+    @FXML private AnchorPane root;
 
+    // --- FORM FIELDS ---
+    @FXML private TextField nameField;
+    @FXML private TextField descriptionField;
+    @FXML private TextField priceField;
 
-public class ManagefoodController {
-    @FXML
-    public Button choosePhoto;
+    @FXML private ImageView foodImageView;
 
-    @FXML
-    private Button addfood;
+    @FXML private Button addNewButton;
+    @FXML private Button saveButton;
+    @FXML private Button deleteButton;
+    @FXML private Button chooseImageButton;
+    @FXML private Button deleteImageButton;
 
-    @FXML
-    private Button backButton;
+    // --- TABLE ---
+    @FXML private TableView<Food> foodTable;
+    @FXML private TableColumn<Food, String> nameColumn;
+    @FXML private TableColumn<Food, String> descriptionColumn;
+    @FXML private TableColumn<Food, Double> priceColumn;
 
-    @FXML
-    private TextField data1AddFood;
-
-    @FXML
-    private TextField data2AddFood;
-
-    @FXML
-    private TextField data3AddFood;
-
-    @FXML
-    private TextField dataAddFood1;
-
-    @FXML
-    private TextField dataErasefood1;
-
-    @FXML
-    private TextField dataFixFood1;
-
-    @FXML
-    private TableColumn<Food,String> descriptionColumn;
-
-    @FXML
-    private Button erasefood;
-
-    @FXML
-    private Button fixfood;
-
-    @FXML
-    private TableColumn<Food, String> nameColumn;
-
-    @FXML
-    private TableView<Food> foodTable;
-
-    @FXML
-    private TableColumn<Food, Double> priceColumn;
-
-    @FXML
-    private AnchorPane root;
-
+    // --- DATA ---
     private ObservableList<Food> foods = FXCollections.observableArrayList();
 
-    public void initialize()throws IOException{
-        String imagePath = BackgroundImageManager.loadBackgroundImageForStage("ManageFood");
-        if (!imagePath.isEmpty()) {
-            root.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: cover; -fx-background-position: center center;");
+    private boolean isAddingNew = true;
+    private Food editingFood = null;
+
+    // Biến tạm giữ ảnh đang chọn
+    private String selectedImagePath = null;
+
+
+    /** ================= INITIALIZE ================== */
+    public void initialize() throws IOException {
+
+        // Load background
+        String bg = BackgroundImageManager.loadBackgroundImageForStage("ManageFood");
+        if (!bg.isEmpty()) {
+            root.setStyle("-fx-background-image: url('" + bg + "'); -fx-background-size: cover;");
         }
-        foods = FXCollections.observableArrayList(FoodStorageJSON.loadFoods());
+
+        // Table setup
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        foodTable.setItems(foods);
-        foodTable.setOnMouseClicked(this::handleTableViewClick);
+
+        refreshTable();
+
+        // chọn 1 lần để edit
+        foodTable.setOnMouseClicked(this::handleTableClick);
+
+        switchToAddMode();
     }
 
-    @FXML
-    public void handleChangeBackgroundImage(MouseEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
-        File selectedFile = fileChooser.showOpenDialog(null);
 
-        if (selectedFile != null) {
-            String imagePath = selectedFile.toURI().toString();
+    /** ================= TABLE CLICK (EDIT MODE) ================= */
+    private void handleTableClick(MouseEvent event) {
+        if (event.getClickCount() == 1) {
 
-            root.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: cover; -fx-background-position: center center;");
-            try {
-                BackgroundImageManager.saveBackgroundImage("ManageFood",imagePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-                showAlert("Lỗi", "Không thể lưu ảnh nền");
+            editingFood = foodTable.getSelectionModel().getSelectedItem();
+            if (editingFood == null) return;
+
+            isAddingNew = false;
+
+            // fill form
+            nameField.setText(editingFood.getName());
+            descriptionField.setText(editingFood.getDescription());
+            priceField.setText(String.valueOf(editingFood.getPrice()));
+
+            selectedImagePath = editingFood.getImagePath();
+
+            if (selectedImagePath != null && !selectedImagePath.isBlank()) {
+                foodImageView.setImage(new Image("file:" + selectedImagePath));
+            } else {
+                foodImageView.setImage(null);
             }
+
+            deleteButton.setDisable(false);
         }
     }
 
+
+    /** ================= SWITCH TO ADD MODE ================= */
     @FXML
-    public void handleSwitchToDashBoard(ActionEvent event)throws IOException{
-        switchToDashBoard();
+    private void handleAddNewFood() {
+        switchToAddMode();
     }
+
+    private void switchToAddMode() {
+        isAddingNew = true;
+        editingFood = null;
+        selectedImagePath = null;
+
+        nameField.clear();
+        descriptionField.clear();
+        priceField.clear();
+        foodImageView.setImage(null);
+
+        deleteButton.setDisable(true);
+    }
+
+
+    /** ================= SAVE FOOD ================= */
     @FXML
-    public void handleAddFood() throws IOException {
-        String name = data1AddFood.getText();
-        String description = data2AddFood.getText();
+    public void handleSave() throws IOException {
+
+        String name = nameField.getText();
+        String desc = descriptionField.getText();
         double price;
 
+        if (name.isBlank() || desc.isBlank()) {
+            showAlert("Lỗi", "Tên và mô tả không được để trống.");
+            return;
+        }
+
         try {
-            price = Double.parseDouble(data3AddFood.getText());
+            price = Double.parseDouble(priceField.getText());
         } catch (NumberFormatException e) {
-            showAlert("Lỗi", "Giá phải là số");
+            showAlert("Lỗi", "Giá phải là số!");
             return;
         }
 
-        if (name.isEmpty() || description.isEmpty()) {
-            showAlert("Lỗi", "Vui lòng điền đầy đủ thông tin món ăn");
+        if (isAddingNew) {
+            Food newFood = new Food(name, desc, price);
+            newFood.setImagePath(selectedImagePath);
+
+            FoodStorageJSON.addFood(newFood);
+            showAlert("Thành công", "Đã thêm món mới!");
+
+        } else {
+            editingFood.setName(name);
+            editingFood.setDescription(desc);
+            editingFood.setPrice(price);
+            editingFood.setImagePath(selectedImagePath);
+
+            FoodStorageJSON.updateFood(editingFood);
+            showAlert("Thành công", "Đã lưu chỉnh sửa!");
+        }
+
+        refreshTable();
+        switchToAddMode();
+    }
+
+
+    /** ================= DELETE FOOD ================= */
+    @FXML
+    public void handleDeleteFood() throws IOException {
+        if (editingFood != null) {
+
+            FoodStorageJSON.eraseFood(editingFood);
+            showAlert("Đã xóa", "Món ăn đã được xóa.");
+
+            refreshTable();
+            switchToAddMode();
+        }
+    }
+
+
+    /** ================= CHOOSE IMAGE ================= */
+    @FXML
+    private void handleChooseImage() {
+
+        FileChooser fc = new FileChooser();
+        fc.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif")
+        );
+
+        File file = fc.showOpenDialog(null);
+        if (file == null) return;
+
+        try {
+            selectedImagePath = saveFoodImage(file);
+            foodImageView.setImage(new Image("file:" + selectedImagePath));
+
+        } catch (IOException e) {
+            showAlert("Lỗi", "Không thể lưu ảnh!");
+        }
+    }
+
+    private String saveFoodImage(File file) throws IOException {
+
+        String folder = "images/foodImages/";
+        File dir = new File(folder);
+        if (!dir.exists()) dir.mkdirs();
+
+        File dest = new File(folder + file.getName());
+        Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        return dest.getAbsolutePath();
+    }
+
+
+    /** ================= DELETE IMAGE ONLY ================= */
+    @FXML
+    private void handleDeleteImage() throws IOException {
+
+        if (selectedImagePath == null) {
+            showAlert("Thông báo", "Món ăn không có ảnh để xóa.");
             return;
         }
 
-        if (foodTable.getItems() != null && !foodTable.getItems().isEmpty()) {
-            for (Food food : foodTable.getItems()) {
-                if(name.equals(food.getName())){
-                    showAlert("Lỗi","Đã tồn tại món ăn");
-                    return;
-                }
-            }
+        Files.deleteIfExists(Path.of(selectedImagePath));
+
+        selectedImagePath = null;
+        foodImageView.setImage(null);
+
+        if (editingFood != null) {
+            editingFood.setImagePath(null);
+            FoodStorageJSON.updateFood(editingFood);
         }
-        Food newFood = new Food(name, description, price);
-        FoodStorageJSON.addFood(newFood);
+
+        showAlert("Đã xóa ảnh", "Ảnh món ăn đã được xóa.");
+    }
+
+
+    /** ================= UTILS ================= */
+    private void refreshTable() throws IOException {
         foods = FXCollections.observableArrayList(FoodStorageJSON.loadFoods());
         foodTable.setItems(foods);
-        showAlert("Thành Công", "Đã thêm món ăn thành công");
     }
 
-    private void switchToDashBoard() throws IOException {
-        FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/Dashboard.fxml"));
-        Parent dashboard = fxmlLoader.load();
-        Scene scene = new Scene(dashboard,900,600);
-        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Dashboard.css").toExternalForm());
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("Dashboard - ProGastro");
-        stage.show();
-    }
-    private void showAlert(String title, String message) {
+    private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
         alert.setHeaderText(null);
-        alert.setContentText(message);
+        alert.setTitle(title);
+        alert.setContentText(msg);
         alert.showAndWait();
-    }
-
-    private void handleTableViewClick(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            Food selectedFood = foodTable.getSelectionModel().getSelectedItem();
-            int rowIndex = foodTable.getSelectionModel().getSelectedIndex();
-            selectedFood.setIndex(rowIndex);
-            openEditFood(selectedFood);
-        }
-    }
-    private void openEditFood(Food selectedFood) {
-        try {
-            FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/EditFood.fxml"));
-            Parent parent = fxmlLoader.load();
-            EditFoodController controller =fxmlLoader.getController();
-            controller.setFood(selectedFood);
-            Scene scene = new Scene(parent,800 ,600);
-            Stage stage = (Stage) foodTable.getScene().getWindow();
-            stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("/org/example/progastro/EditFood.css").toExternalForm());
-            stage.setTitle("Chỉnh sửa món ăn");
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-            showAlert("Lỗi", "Không thể mở màn hình chỉnh sửa món ăn!");
-        }
     }
 }

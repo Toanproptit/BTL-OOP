@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Table {
-    private int index;
+    private String index;
     private String name;
     private String status;
+    private String date;
     private List<OrderItem> orderItems;
     private int id;
     private double totalPrice;
-    public Table(int index, String name, String status) {
+    public Table(String index, String name, String status) {
         this.index = index;
         this.name = name;
         this.status = status;
@@ -26,7 +27,7 @@ public class Table {
         this.id = id;
     }
 
-    public int getIndex() {
+    public String getIndex() {
         return index;
     }
 
@@ -38,7 +39,7 @@ public class Table {
         return status;
     }
 
-    public void setIndex(int index) {
+    public void setIndex(String index) {
         this.index = index;
     }
 

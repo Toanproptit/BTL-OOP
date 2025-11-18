@@ -1,0 +1,30 @@
+/* Trong file CSS của bạn (ví dụ: Home.css) */
+
+/* 1. Căn giữa Tiêu đề "Tổng Quan" */
+#header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 20px 0 20px 0; /* Padding trên dưới để tạo khoảng cách */
+    /* VBox cha đã lo việc căn giữa Label theo chiều ngang */
+}
+
+/* 2. Định dạng HBox Container */
+#hbox {
+    /* Loại bỏ -fx-spacing để Region hoạt động */
+    -fx-alignment: center;
+    -fx-padding: 10 0 10 0;
+}
+
+/* 3. Định dạng cho từng Card (đảm bảo kích thước đồng nhất) */
+.data-card {
+    -fx-background-color: white;
+    -fx-padding: 10px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.1), 4, 0.0, 2, 2);
+
+    /* Đảm bảo chiều rộng đồng nhất cho 4 Card */
+    -fx-pref-width: 180px;
+    -fx-min-width: 180px;
+    -fx-alignment: center; /* Căn giữa nội dung bên trong Card */
+}
+

@@ -91,7 +91,7 @@ public class FoodController {
     private void switchToDashBoard() throws IOException {
         FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/Dashboard.fxml"));
         Parent dashboard = fxmlLoader.load();
-        Scene scene = new Scene(dashboard,900,600);
+        Scene scene = new Scene(dashboard,1500,750  );
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Dashboard.css").toExternalForm());
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.setScene(scene);
