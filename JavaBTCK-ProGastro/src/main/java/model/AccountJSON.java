@@ -13,7 +13,8 @@ import java.util.List;
 
 
 public class AccountJSON {
-    private static final String FILE_PATH = "account.json";
+    private static final String FILE_PATH =
+            System.getProperty("user.dir") + "/JavaBTCK-ProGastro/account.json";
     private static List<Account> accountList;
     static {
         try {
@@ -25,13 +26,22 @@ public class AccountJSON {
 
     public static List<Account> loadAccounts() throws IOException {
         File file = new File(FILE_PATH);
-        try (FileReader reader = new FileReader(FILE_PATH)) {
-            return new Gson().fromJson(reader, new TypeToken<List<Account>>() {}.getType());
-        } catch (IOException e) {
-            accountList = new ArrayList<>();
+
+        // Nếu file chưa tồn tại → tạo danh sách mới
+        if (!file.exists()) {
+            return new ArrayList<>();   // ⭐ luôn trả về danh sách mutable
         }
-        return List.of();
+
+        try (FileReader reader = new FileReader(file)) {
+            List<Account> list = new Gson()
+                    .fromJson(reader, new TypeToken<List<Account>>(){}.getType());
+
+            return (list != null) ? new ArrayList<>(list) : new ArrayList<>();
+        } catch (IOException e) {
+            return new ArrayList<>();   // ⭐ không bao giờ trả về List.of()
+        }
     }
+
     public static void saveAccounts() throws IOException {
         File file = new File(FILE_PATH);
         try (FileWriter writer = new FileWriter(file)) {
