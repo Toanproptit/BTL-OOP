@@ -25,7 +25,7 @@
         <TextField fx:id="priceField" promptText="Giá món ăn" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-          
+
               <!-- Nút Lưu thay đổi -->
               <Button fx:id="sign" onAction="#handleSign" prefHeight="46.0" prefWidth="133.0" text="Lưu thay đổi" />
             <Button fx:id="eraseButton" mnemonicParsing="false" onAction="#eraseFood" text="Xóa món ăn">

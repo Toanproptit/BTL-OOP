@@ -10,7 +10,8 @@ import java.util.List;
 
 public class InvoiceStorageJSON {
 
-    private static final String FILE_PATH = "invoices.json";
+    private static final String FILE_PATH =
+            System.getProperty("user.dir") + "/JavaBTCK-ProGastro/invoices.json";
 
     public static List<Invoice> loadInvoices() {
         File file = new File(FILE_PATH);

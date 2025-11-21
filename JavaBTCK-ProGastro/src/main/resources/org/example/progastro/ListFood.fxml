@@ -1,105 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
 
-<AnchorPane prefHeight="675.0" prefWidth="1225.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FoodMenuController">
+<AnchorPane prefHeight="675.0" prefWidth="1225.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.FoodMenuController">
 
-    <HBox AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
+    <HBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
 
-        <!-- ========== SIDEBAR FILTER ========== -->
-        <VBox prefWidth="260" spacing="20" style="-fx-background-color: #F9F8F6; -fx-padding: 20;">
+        <!-- =============== SIDEBAR FILTER =============== -->
+        <VBox prefWidth="260" spacing="20"
+              style="-fx-background-color: #F9F8F6; -fx-padding: 20;">
+
             <Label style="-fx-font-size: 20; -fx-font-weight: bold;" text="Filter" />
 
             <!-- Category -->
             <VBox spacing="10">
                 <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Category" />
-                <CheckBox text="All" />
-                <CheckBox text="Chicken" />
-                <CheckBox text="Beef" />
-                <CheckBox text="Noodles" />
-                <CheckBox text="Seafood" />
-                <CheckBox text="Pizza" />
-                <CheckBox text="Salad" />
-                <CheckBox text="Bakery" />
-                <CheckBox text="Beverages" />
+
+                <CheckBox fx:id="cbAll"        text="Tất cả" />
+                <CheckBox fx:id="cbChicken"    text="Món Gà" />
+                <CheckBox fx:id="cbBeef"       text="Món Bò" />
+                <CheckBox fx:id="cbNoodles"    text="Mì / Bún / Phở" />
+                <CheckBox fx:id="cbSeafood"    text="Hải Sản" />
+                <CheckBox fx:id="cbPizza"      text="Pizza" />
+                <CheckBox fx:id="cbSalad"      text="Salad" />
+                <CheckBox fx:id="cbBakery"     text="Bánh - Bakery" />
+                <CheckBox fx:id="cbBeverages"  text="Đồ Uống" />
+                <CheckBox fx:id="cbOther"      text="Khác" />
             </VBox>
 
             <!-- Price Range -->
             <VBox spacing="10">
-                <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Price Range" />
-                <CheckBox text="5 - $10" />
-                <CheckBox text="10 - $20" />
-                <CheckBox text="20 - $30" />
-                <CheckBox text="Above $30" />
+                <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Khoảng giá" />
+
+                <CheckBox fx:id="price5_10"    text="5.000 - 10.000đ" />
+                <CheckBox fx:id="price10_20"   text="10.000 - 20.000đ" />
+                <CheckBox fx:id="price20_30"   text="20.000 - 30.000đ" />
+                <CheckBox fx:id="priceAbove30" text="Trên 30.000đ" />
             </VBox>
 
-            <!-- Rating -->
-            <VBox prefHeight="86.0" prefWidth="212.0" spacing="10">
-                <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Rating" />
-                <CheckBox text="★★★★★ 5" />
-                <CheckBox text="★★★★ 4" />
-                <CheckBox text="★★★ 3" />
-            </VBox>
-
-            <Button style="-fx-background-color: #FF7A1A; -fx-text-fill: white; -fx-font-weight: bold;                            -fx-background-radius: 10; -fx-padding: 10 20;" text="Apply Filters" />
+            <!-- Reset filters -->
+            <Button fx:id="resetButton"
+                    text="Reset"
+                    onAction="#handleResetFilters"
+                    style="-fx-background-color: #CCCCCC; -fx-text-fill: black; -fx-font-weight: bold;
+                           -fx-background-radius: 10; -fx-padding: 10 20;" />
         </VBox>
 
-        <!-- Main Panel -->
+        <!-- =============== MAIN PANEL =============== -->
         <VBox spacing="20" style="-fx-padding: 20;" HBox.hgrow="ALWAYS">
 
-            <!-- ======== TOP BAR ======== -->
-            <HBox alignment="CENTER_LEFT" spacing="20">
-                <TextField fx:id="searchField" promptText="Search for menu" style="-fx-background-radius: 10; -fx-padding: 10; -fx-font-size: 14;" HBox.hgrow="ALWAYS" />
+            <!-- Top bar: Search + Sort -->
+            <HBox alignment="CENTER_LEFT" spacing="20" HBox.hgrow="ALWAYS">
 
-                <Button style="-fx-background-color: #FF7A1A; -fx-text-fill: white;                                -fx-background-radius: 10; -fx-padding: 10 20;" text="Search" />
+                <TextField fx:id="searchField"
+                           promptText="Tìm kiếm món ăn"
+                           style="-fx-background-radius: 10; -fx-padding: 10; -fx-font-size: 14;"
+                           HBox.hgrow="ALWAYS" />
 
-                <!-- Sort dropdown -->
-                <HBox spacing="5">
-                    <Label text="Sort by:" />
+                <Button fx:id="searchBtn"
+                        text="Tìm"
+                        onAction="#handleSearchClick"
+                        style="-fx-background-color: #FF7A1A; -fx-text-fill: white;
+                               -fx-background-radius: 10; -fx-padding: 10 20;" />
+
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Label text="Sắp xếp:" />
                     <ChoiceBox fx:id="sortChoice">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Popular" />
-                                <String fx:value="Price: Low to High" />
-                                <String fx:value="Price: High to Low" />
-                                <String fx:value="Rating" />
+                                <String fx:value="Mặc định" />
+                                <String fx:value="Giá: Thấp → Cao" />
+                                <String fx:value="Giá: Cao → Thấp" />
+                                <String fx:value="Tên A → Z" />
                             </FXCollections>
                         </items>
                     </ChoiceBox>
                 </HBox>
-
-                <!-- Avatar -->
-                <HBox alignment="CENTER_RIGHT" spacing="10">
-                    <Label style="-fx-font-weight: bold;" text="Orlando Laurentius" />
-                    <Label style="-fx-text-fill: #888;" text="Admin" />
-                    <Circle radius="18" style="-fx-fill: orange;" />
-                </HBox>
             </HBox>
 
-            <!-- ======== SCROLLABLE FOOD GRID ======== -->
+            <!-- Grid món ăn -->
             <ScrollPane fitToWidth="true" style="-fx-background-color: transparent;">
-                <FlowPane fx:id="foodFlow" hgap="20" prefWrapLength="900" vgap="20">
-
+                <FlowPane fx:id="foodFlow"
+                          hgap="20" vgap="20"
+                          prefWrapLength="900">
                     <padding>
-                        <Insets bottom="20" left="20" right="20" top="20" />
+                        <Insets top="20" bottom="20" left="20" right="20" />
                     </padding>
-
                 </FlowPane>
-
             </ScrollPane>
         </VBox>
+
     </HBox>
 </AnchorPane>
