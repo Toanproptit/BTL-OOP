@@ -14,8 +14,7 @@ import java.util.List;
 
 public class OrderJSON {
 
-    private static final String FILE_PATH =
-            System.getProperty("user.dir") + "/JavaBTCK-ProGastro/orders.json";
+    private static final String FILE_PATH = "orders.json";
     private static List<Order> orderList;
 
     // 🔹 Khi chương trình chạy, tự động load dữ liệu nếu có file JSON

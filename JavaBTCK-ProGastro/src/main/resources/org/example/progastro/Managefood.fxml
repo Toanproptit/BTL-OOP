@@ -4,8 +4,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 
-<?import javafx.collections.FXCollections?>
-<?import java.lang.String?>
 <AnchorPane fx:id="root" prefWidth="900" prefHeight="600"
             xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -27,25 +25,6 @@
         <!-- DESCRIPTION -->
         <Label text="Mô tả:"/>
         <TextField fx:id="descriptionField" promptText="Nhập mô tả món ăn" prefWidth="250"/>
-
-        <Label text="Loại món:" />
-        <ComboBox fx:id="categoryCombo" prefWidth="200">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Món Bò" />
-                    <String fx:value="Món Gà" />
-                    <String fx:value="Hải Sản" />
-                    <String fx:value="Pizza" />
-                    <String fx:value="Mì / Bún / Phở" />
-                    <String fx:value="Salad" />
-                    <String fx:value="Bánh - Bakery" />
-                    <String fx:value="Đồ Uống" />
-                    <String fx:value="Khác" />
-
-                </FXCollections>
-            </items>
-        </ComboBox>
-
 
         <!-- PRICE -->
         <Label text="Giá:"/>

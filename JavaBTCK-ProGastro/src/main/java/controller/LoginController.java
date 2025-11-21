@@ -148,8 +148,6 @@ public class LoginController {
         }
     }
     public boolean validateLogin(String username, String password) {
-        System.out.println("Loading accounts from: " + new File("account.json").getAbsolutePath());
-        System.out.println(AccountJSON.getAccountList());
 
         for(int i=0;i< AccountJSON.getAccountList().size();++i){
             if (username.equals(AccountJSON.getAccountList().get(i).getAccount()) &&
