@@ -12,27 +12,27 @@
 <AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" stylesheets="@EditFood.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditFoodController">
     <VBox alignment="CENTER" layoutX="73.0" layoutY="133.0" prefHeight="300" prefWidth="400" spacing="10" xmlns:fx="http://javafx.com/fxml">
 
-        <!-- Tiêu đề -->
+
         <Label prefHeight="51.0" prefWidth="250.0" style="-fx-background-color: #FFD700; -fx-font-weight: bold;" text="Chỉnh sửa thông tin món ăn" />
 
-        <!-- Trường nhập tên món ăn -->
+
         <TextField fx:id="nameField" prefHeight="44.0" prefWidth="241.0" promptText="Tên món ăn" />
 
-        <!-- Trường nhập mô tả món ăn -->
+
         <TextField fx:id="descriptionField" promptText="Mô tả món ăn" />
 
-        <!-- Trường nhập giá món ăn -->
+
         <TextField fx:id="priceField" promptText="Giá món ăn" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
-          
-              <!-- Nút Lưu thay đổi -->
+
               <Button fx:id="sign" onAction="#handleSign" prefHeight="46.0" prefWidth="133.0" text="Lưu thay đổi" />
             <Button fx:id="eraseButton" mnemonicParsing="false" onAction="#eraseFood" text="Xóa món ăn">
                <HBox.margin>
                   <Insets left="140.0" />
                </HBox.margin>
             </Button>
+
          </children>
       </HBox>
 

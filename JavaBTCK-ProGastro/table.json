@@ -1,16 +1,3 @@
 [
-  {
-    "index": "2",
-    "name": "asdasd",
-    "status": "Đang sử dụng",
-    "orderItems": [
-      {
-        "name": "sdfs",
-        "price": 12.0,
-        "quantity": 12
-      }
-    ],
-    "id": 0,
-    "totalPrice": 144.0
-  }
+
 ]

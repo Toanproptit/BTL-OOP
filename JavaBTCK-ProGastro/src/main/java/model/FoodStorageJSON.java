@@ -7,13 +7,15 @@ import com.google.gson.reflect.TypeToken;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FoodStorageJSON {
 
-    private static final String FILE_PATH = "food.json";
+    private static final String FILE_PATH =
+            System.getProperty("user.dir") + "/JavaBTCK-ProGastro/food.json";
+
     private static List<Food> foodList;
 
     static {
@@ -36,13 +38,6 @@ public class FoodStorageJSON {
                     new TypeToken<List<Food>>() {}.getType()
             );
 
-            // gán lại index đúng cho từng food
-            if (list != null) {
-                for (int i = 0; i < list.size(); i++) {
-                    list.get(i).setIndex(i);
-                }
-            }
-
             return (list != null) ? list : new ArrayList<>();
 
         } catch (Exception e) {
@@ -52,12 +47,7 @@ public class FoodStorageJSON {
     }
 
     /** ======================= SAVE ======================= */
-    public static void saveFoods() {
-        // tự động cập nhật index trước khi lưu
-        for (int i = 0; i < foodList.size(); i++) {
-            foodList.get(i).setIndex(i);
-        }
-
+    private static void saveFoods() {
         try (FileWriter writer = new FileWriter(FILE_PATH)) {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             gson.toJson(foodList, writer);
@@ -68,30 +58,32 @@ public class FoodStorageJSON {
 
     /** ======================= CRUD ======================= */
 
+    /** Add new food */
     public static void addFood(Food food) {
-        // index = cuối danh sách
-        food.setIndex(foodList.size());
         foodList.add(food);
         saveFoods();
     }
 
-    public static void updateFood(Food food) {
-        int i = food.getIndex();
-        if (i >= 0 && i < foodList.size()) {
-            foodList.set(i, food);
-            saveFoods();
+    /** Update food by ID */
+    public static void updateFood(Food updatedFood) {
+
+        for (int i = 0; i < foodList.size(); i++) {
+            if (foodList.get(i).getId().equals(updatedFood.getId())) {
+                foodList.set(i, updatedFood);
+                saveFoods();
+                return;
+            }
         }
     }
 
+    /** Delete food by ID */
     public static void eraseFood(Food food) {
-        int i = food.getIndex();
-        if (i >= 0 && i < foodList.size()) {
-            foodList.remove(i);
-            saveFoods();
-        }
+
+        foodList.removeIf(f -> f.getId().equals(food.getId()));
+        saveFoods();
     }
 
-    /** ======================= GETTER ======================= */
+    /** Get all foods */
     public static List<Food> getFoodList() {
         return foodList;
     }
