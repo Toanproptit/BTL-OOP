@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1500.0" stylesheets="@Login.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <GridPane hgap="10" layoutX="160.0" layoutY="228.0" vgap="10">
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="43.19998779296875" minHeight="43.19998779296875" prefHeight="43.19998779296875" />
+            <RowConstraints maxHeight="41.60001220703124" minHeight="41.60001220703124" prefHeight="41.60001220703124" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="usernameField" promptText="Nhập tài khoản" GridPane.columnIndex="2" />
+            <PasswordField fx:id="passwordField" promptText="Nhập mật khẩu" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="lable2" style="-fx-background-color: #FFFFFF;" text="Mật khẩu:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="lable1" style="-fx-background-color: #FFFFFF;" text="Tài Khoản:" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Button fx:id="login" layoutX="159.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="51.0" prefWidth="146.0" text="Đăng nhập" />
+      <Button fx:id="registerButton" layoutX="401.0" layoutY="391.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="51.0" prefWidth="146.0" text="Đăng kí">
+         <font>
+            <Font size="8.0" />
+         </font></Button>
+      <Button fx:id="choosePhoto" layoutX="401.0" layoutY="487.0" mnemonicParsing="false" onMouseClicked="#handleChangeBackgroundImage" prefHeight="51.0" prefWidth="146.0" text="Chọn ảnh nền">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Button>
+      <Button fx:id="orderButton" layoutX="159.0" layoutY="487.0" mnemonicParsing="false" onAction="#handleOrderNow" prefHeight="51.0" prefWidth="146.0" text="Order Ngay!" />
+      <ImageView fx:id="backgroundImage" fitHeight="750.0" fitWidth="763.0" layoutX="737.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+
+<VBox prefHeight="675.0" prefWidth="1000.0" spacing="20" stylesheets="@ManagerOrder.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManagerOrderController">
+   <padding>
+      <Insets bottom="20" left="20" right="20" top="20" />
+   </padding>
+
+   <HBox spacing="20" VBox.vgrow="NEVER">
+
+      <GridPane hgap="10" prefHeight="74.0" prefWidth="108.0" vgap="10" HBox.hgrow="NEVER">
+
+         <VBox styleClass="card-tile" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Text fx:id="tatalOrders" styleClass="metric-number" text="200" />
+            <Text styleClass="metric-label" text="Total Orders" />
+         </VBox>
+
+         <VBox layoutX="10.0" layoutY="10.0" styleClass="card-tile" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <children>
+               <HBox alignment="CENTER_LEFT" spacing="5" />
+               <Text fx:id="onProcess" styleClass="metric-number" text="45" />
+               <Text styleClass="metric-label" text="On Process" />
+            </children>
+         </VBox>
+
+         <VBox layoutX="10.0" layoutY="10.0" styleClass="card-tile" GridPane.rowIndex="1">
+            <children>
+               <Text fx:id="completed" styleClass="metric-number" text="140" />
+               <Text styleClass="metric-label" text="Completed" />
+            </children>
+         </VBox>
+
+         <VBox layoutX="10.0" layoutY="10.0" styleClass="card-tile" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <children>
+               <Text fx:id="canceled" styleClass="metric-number" text="15" />
+               <Text styleClass="metric-label" text="Canceled" />
+            </children>
+         </VBox>
+
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
+      </GridPane>
+
+      <StackPane styleClass="chart-pane" HBox.hgrow="ALWAYS">
+         <Label text="Orders Overview Chart (LineChart Placeholder)" />
+      </StackPane>
+
+      <VBox spacing="10" styleClass="order-types-pane" HBox.hgrow="NEVER">
+         <Text styleClass="section-title" text="Order Types" />
+         <StackPane>
+            <Label text="Pie Chart Placeholder" />
+         </StackPane>
+         <VBox spacing="5">
+            <HBox alignment="CENTER_LEFT" spacing="5">
+               <Circle radius="5" styleClass="color-dot-dinein" />
+               <Label text="Dine In" />
+               <Label styleClass="metric-number-small" text="75" />
+            </HBox>
+         </VBox>
+      </VBox>
+   </HBox>
+
+   <Separator />
+
+   <VBox spacing="10" VBox.vgrow="ALWAYS">
+      <HBox alignment="CENTER_LEFT" spacing="10">
+         <HBox styleClass="filter-buttons">
+            <Button styleClass="filter-button-active" text="All" />
+            <Button styleClass="filter-button" text="On Process" />
+            <Button styleClass="filter-button" text="Completed" />
+            <Button styleClass="filter-button" text="Canceled" />
+         </HBox>
+         <Region HBox.hgrow="ALWAYS" />
+         <TextField promptText="Search order ID, customer, etc" />
+         <Button fx:id="addTable" mnemonicParsing="false" onAction="#handleAddOrder" text="Add" />
+         <ComboBox promptText="This Week" />
+      </HBox>
+
+      <TableView fx:id="ordersTable" onMouseClicked="#handleOrderDoubleClick" VBox.vgrow="ALWAYS">
+         <columns>
+            <TableColumn fx:id="orderIdCol" prefWidth="152.0000057220459" text="Order ID" />
+            <TableColumn fx:id="dateCol" prefWidth="332.00001525878906" text="Date" />
+            <TableColumn fx:id="customerCol" prefWidth="312.8000183105469" text="Customer" />
+
+            <TableColumn fx:id="amountCol" prefWidth="216.0" text="Amount" />
+
+            <TableColumn fx:id="statusCol" prefWidth="165.5999755859375" text="Status" />
+
+         </columns>
+      </TableView>
+
+      <HBox alignment="CENTER_RIGHT" spacing="10" />
+   </VBox>
+</VBox>

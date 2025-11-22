@@ -1,0 +1,283 @@
+/* ================================================= */
+/* 1. STYLE CHO METRIC CARDS                        */
+/* ================================================= */
+
+.card-tile {
+    -fx-background-color: #FFFFFF;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 5);
+    -fx-padding: 15px;
+    -fx-alignment: TOP_LEFT;
+}
+
+.metric-number {
+    -fx-fill: #1F2937;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.metric-label {
+    -fx-fill: #6B7280;
+    -fx-font-size: 14px;
+}
+
+.metric-orange {
+    -fx-fill: #F97316;
+    -fx-text-fill: #F97316;
+}
+.metric-green {
+    -fx-fill: #10B981;
+    -fx-text-fill: #10B981;
+}
+.metric-red {
+    -fx-fill: #EF4444;
+    -fx-text-fill: #EF4444;
+}
+
+
+/* ================================================= */
+/* 2. STYLE CHO TABLE VIEW                           */
+/* ================================================= */
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+/* Header */
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #EBEBEB transparent;
+    -fx-border-width: 1px;
+    -fx-padding: 5px 0 5px 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-text-fill: #6B7280;
+    -fx-padding: 0 15px;
+}
+
+/* Cell */
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 10px 15px;
+}
+
+/* Row */
+.table-view .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #EBEBEB transparent;
+    -fx-border-width: 1px;
+}
+
+.table-view .table-row-cell:empty {
+    -fx-border-width: 0;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 5px;
+    -fx-background-insets: 0;
+}
+
+.table-view .table-row-cell:selected .text {
+    -fx-fill: #1F2937;
+}
+
+/* Hover row */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+
+/* ================================================= */
+/* 3. STYLE CHO SCROLLBAR                           */
+/* ================================================= */
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .track {
+    -fx-background-color: #F9FAFB;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #D1D5DB;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: #9CA3AF;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: "";
+    -fx-padding: 0;
+}
+
+.scroll-bar:horizontal .thumb {
+    -fx-min-height: 6px;
+    -fx-max-height: 6px;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-min-width: 6px;
+    -fx-max-width: 6px;
+}
+
+
+/* ================================================= */
+/* 4. STYLE BUTTON                                   */
+/* ================================================= */
+
+.button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #374151;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 18px;
+    -fx-background-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-border-color: #E5E7EB;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5,0,0,2);
+}
+
+.button:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+.button:pressed {
+    -fx-background-color: #E5E7EB;
+}
+
+/* Primary Button */
+.button-primary {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: white;
+    -fx-border-width: 0;
+}
+
+.button-primary:hover {
+    -fx-background-color: #1D4ED8;
+}
+
+
+/* ================================================= */
+/* 5. STYLE FILTER BUTTONS                          */
+/* ================================================= */
+
+.filter-button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #6B7280;
+    -fx-border-color: #E5E7EB;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.filter-button:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+.filter-button-active {
+    -fx-background-color: #2563EB;
+    -fx-text-fill: white;
+    -fx-border-color: transparent;
+}
+
+
+/* ================================================= */
+/* 6. TEXTFIELD                                     */
+/* ================================================= */
+
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8px;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused {
+    -fx-border-color: #3B82F6;
+}
+
+
+/* ================================================= */
+/* 7. COMBOBOX                                      */
+/* ================================================= */
+
+.combo-box {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 4px 10px;
+    -fx-font-size: 13px;
+}
+
+.combo-box:hover {
+    -fx-border-color: #9CA3AF;
+}
+
+.combo-box:focused {
+    -fx-border-color: #3B82F6;
+}
+
+.combo-box .list-cell {
+    -fx-padding: 8px 10px;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #F3F4F6;
+}
+
+
+/* ================================================= */
+/* 8. CARD / PANEL (Chart Pane, Info Box…)          */
+/* ================================================= */
+
+.chart-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.07), 12,0,0,5);
+}
+
+
+/* ================================================= */
+/* 9. CHART STYLE                                   */
+/* ================================================= */
+
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-text-fill: #374151;
+    -fx-font-size: 16px;
+}
+
+.chart-series-line {
+    -fx-stroke-width: 2px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+}

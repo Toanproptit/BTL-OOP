@@ -1,3 +1,54 @@
 [
+<<<<<<< Updated upstream
 
+=======
+  {
+    "name": "sdfs",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 0,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  },
+  {
+    "name": "sdfssdsfd",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 1,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  },
+  {
+    "name": "sdfs",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 2,
+    "imagePath": "C:\\Users\\Fptshop123\\Pictures\\Screenshots\\Anh.png"
+  },
+  {
+    "name": "sdfs",
+    "description": "sdfs",
+    "price": 12.0,
+    "index": 3
+  },
+  {
+    "name": "gà",
+    "description": "ádjasd",
+    "price": 12.0,
+    "index": 4,
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Toan\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\Progastro.png"
+  },
+  {
+    "name": "thịt chó",
+    "description": "cực ngon",
+    "price": 20.0,
+    "index": 5,
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Toan\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\Progastro.png"
+  },
+  {
+    "name": "bún bò huế",
+    "description": "ngon",
+    "price": 20.0,
+    "index": 6,
+    "imagePath": "D:\\JAVA\\btljava\\BTL-OOP2\\BTL-OOP\\JavaBTCK-ProGastro\\images\\foodImages\\Screenshot 2024-03-18 221604.png"
+  }
+>>>>>>> Stashed changes
 ]

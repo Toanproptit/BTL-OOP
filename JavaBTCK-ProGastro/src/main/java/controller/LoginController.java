@@ -128,7 +128,7 @@ public class LoginController {
     public void switchToDashBoard() throws IOException{
         FXMLLoader fxmlLoader =new FXMLLoader(getClass().getResource("/org/example/progastro/Dashboard.fxml"));
         Parent dashboard = fxmlLoader.load();
-        Scene scene = new Scene(dashboard,1500,750);
+        Scene scene = new Scene(dashboard, 1000, 600);
 
         Stage stage = (Stage) usernameField.getScene().getWindow();
         stage.setScene(scene);
@@ -149,9 +149,14 @@ public class LoginController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Register.fxml"));
         Parent parent =fxmlLoader.load();
         Stage stage = (Stage) registerButton.getScene().getWindow();
+<<<<<<< Updated upstream
         Scene scene = new Scene(parent,800,600);
+=======
+        Scene scene = new Scene(parent);
+>>>>>>> Stashed changes
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Register.css").toExternalForm());
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.setTitle("Register-ProGastro");
         stage.show();
     }

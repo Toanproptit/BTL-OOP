@@ -43,6 +43,9 @@ public class DashboardController {
     private Button neworderButton;
 
     @FXML
+    private Button revenueButton;
+
+    @FXML
     private Label lable1;
 
     @FXML
@@ -116,6 +119,7 @@ public class DashboardController {
         showHome();
         setActiveButton(homeButton);
     }
+<<<<<<< Updated upstream
     @FXML
     private void handleRevenueButton(ActionEvent event) throws IOException{
         switchToRevenueController();
@@ -125,6 +129,13 @@ public class DashboardController {
     private void handleNewOrderButton(ActionEvent event) throws IOException {
         switchToNewOrderController();
         setActiveButton(neworderButton);
+=======
+
+    @FXML
+    public void handleReVenueButton(ActionEvent event) throws IOException {
+        switchToRevenueReport();
+        setActiveButton(revenueButton);
+>>>>>>> Stashed changes
     }
     private void showHome() throws IOException {
         Parent homeView = FXMLLoader.load(getClass().getResource("/org/example/progastro/Home.fxml"));
@@ -135,8 +146,18 @@ public class DashboardController {
         Parent menuView = FXMLLoader.load(getClass().getResource("/org/example/progastro/ListFood.fxml"));
         contentArea.getChildren().setAll(menuView);
     }
+    private void switchToRevenueReport() throws IOException{
+        Parent revenueView = FXMLLoader.load(getClass().getResource("/org/example/progastro/RevenueReport.fxml"));
+        revenueView.getStylesheets().add(getClass().getResource("/org/example/progastro/RevenueReport.css").toExternalForm());
+        contentArea.getChildren().setAll(revenueView);
+    }
     private void switchToManageFoodController() throws IOException{
+<<<<<<< Updated upstream
         Parent manageFoodView = FXMLLoader.load(getClass().getResource("/org/example/progastro/Managefood.fxml"));
+=======
+        Parent manageFoodView = FXMLLoader.load(getClass().getResource("/org/example/progastro/ManageFood.fxml"));
+        manageFoodView.getStylesheets().add(getClass().getResource("/org/example/progastro/ManageFood.css").toExternalForm());
+>>>>>>> Stashed changes
         contentArea.getChildren().setAll(manageFoodView);
     }
     private void switchToManageOrderController() throws IOException{
@@ -147,7 +168,7 @@ public class DashboardController {
     private void switchToLoginController(ActionEvent event) throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/Login.fxml"));
         Parent parent = fxmlLoader.load();
-        Scene scene = new Scene(parent,1500,750);
+        Scene scene = new Scene(parent,1300,650);
         Stage stage = (Stage) orderButton.getScene().getWindow();
         scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Login.css").toExternalForm());
         stage.setScene(scene);

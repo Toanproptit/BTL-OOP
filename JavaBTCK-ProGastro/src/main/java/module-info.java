@@ -6,6 +6,7 @@ module org.example.progastro {
     requires com.google.gson;
     requires java.desktop;
     requires org.json;
+    requires javafx.base;
     exports model;
     opens model to com.google.gson;
     opens org.example.progastro to javafx.fxml;
