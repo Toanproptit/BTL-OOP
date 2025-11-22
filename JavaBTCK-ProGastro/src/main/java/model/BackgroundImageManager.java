@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class BackgroundImageManager {
 
-    private static final String CONFIG_FILE_PATH = "config.json";
+    private static final String CONFIG_FILE_PATH = "C:\\Users\\LENOVO\\OneDrive\\Desktop\\OOP_BTL\\BTL-OOP\\JavaBTCK-ProGastro\\config.json";
 
     public static void saveBackgroundImage(String stageId, String imagePath) throws IOException{
         JSONObject config = new JSONObject();

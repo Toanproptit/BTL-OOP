@@ -18,9 +18,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.util.UUID;
 
-public class ManageFoodController {
+public class ManagefoodController {
 
     @FXML private AnchorPane root;
 
@@ -28,7 +27,6 @@ public class ManageFoodController {
     @FXML private TextField nameField;
     @FXML private TextField descriptionField;
     @FXML private TextField priceField;
-    @FXML private ComboBox<String> categoryCombo;   // ⭐ NEW CATEGORY
 
     @FXML private ImageView foodImageView;
 
@@ -43,7 +41,6 @@ public class ManageFoodController {
     @FXML private TableColumn<Food, String> nameColumn;
     @FXML private TableColumn<Food, String> descriptionColumn;
     @FXML private TableColumn<Food, Double> priceColumn;
-    @FXML private TableColumn<Food, String> categoryColumn; // ⭐ NEW COLUMN
 
     // --- DATA ---
     private ObservableList<Food> foods = FXCollections.observableArrayList();
@@ -51,6 +48,7 @@ public class ManageFoodController {
     private boolean isAddingNew = true;
     private Food editingFood = null;
 
+    // Biến tạm giữ ảnh đang chọn
     private String selectedImagePath = null;
 
 
@@ -63,28 +61,14 @@ public class ManageFoodController {
             root.setStyle("-fx-background-image: url('" + bg + "'); -fx-background-size: cover;");
         }
 
-        // ===== category dropdown =====
-        categoryCombo.getItems().addAll(
-                "Món Bò",
-                "Món Gà",
-                "Hải Sản",
-                "Pizza",
-                "Mì / Bún / Phở",
-                "Salad",
-                "Bánh - Bakery",
-                "Đồ Uống",
-                "Khác"
-        );
-
-
-        // ====== Table setup ======
+        // Table setup
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
 
         refreshTable();
 
+        // chọn 1 lần để edit
         foodTable.setOnMouseClicked(this::handleTableClick);
 
         switchToAddMode();
@@ -100,14 +84,13 @@ public class ManageFoodController {
 
             isAddingNew = false;
 
+            // fill form
             nameField.setText(editingFood.getName());
             descriptionField.setText(editingFood.getDescription());
             priceField.setText(String.valueOf(editingFood.getPrice()));
 
-            // ⭐ Load category
-            categoryCombo.setValue(editingFood.getCategory());
-
             selectedImagePath = editingFood.getImagePath();
+
             if (selectedImagePath != null && !selectedImagePath.isBlank()) {
                 foodImageView.setImage(new Image("file:" + selectedImagePath));
             } else {
@@ -133,7 +116,6 @@ public class ManageFoodController {
         nameField.clear();
         descriptionField.clear();
         priceField.clear();
-        categoryCombo.setValue(null);
         foodImageView.setImage(null);
 
         deleteButton.setDisable(true);
@@ -146,11 +128,10 @@ public class ManageFoodController {
 
         String name = nameField.getText();
         String desc = descriptionField.getText();
-        String category = categoryCombo.getValue(); // ⭐ NEW
         double price;
 
-        if (name.isBlank() || desc.isBlank() || category == null) {
-            showAlert("Lỗi", "Tên, mô tả và loại món ăn không được để trống.");
+        if (name.isBlank() || desc.isBlank()) {
+            showAlert("Lỗi", "Tên và mô tả không được để trống.");
             return;
         }
 
@@ -162,25 +143,19 @@ public class ManageFoodController {
         }
 
         if (isAddingNew) {
-
-            // ⭐ Tạo ID duy nhất
-            String id = "F-" + UUID.randomUUID().toString().substring(0, 6);
-
-            Food newFood = new Food(id, name, desc, price, category, selectedImagePath);
+            Food newFood = new Food(name, desc, price);
+            newFood.setImagePath(selectedImagePath);
 
             FoodStorageJSON.addFood(newFood);
             showAlert("Thành công", "Đã thêm món mới!");
 
         } else {
-
             editingFood.setName(name);
             editingFood.setDescription(desc);
             editingFood.setPrice(price);
-            editingFood.setCategory(category);
             editingFood.setImagePath(selectedImagePath);
 
             FoodStorageJSON.updateFood(editingFood);
-
             showAlert("Thành công", "Đã lưu chỉnh sửa!");
         }
 
@@ -226,10 +201,11 @@ public class ManageFoodController {
 
     private String saveFoodImage(File file) throws IOException {
 
-        File dir = new File("JavaBTCK-ProGastro/images/food/");
+        String folder = "images/foodImages/";
+        File dir = new File(folder);
         if (!dir.exists()) dir.mkdirs();
 
-        File dest = new File(dir, file.getName());
+        File dest = new File(folder + file.getName());
         Files.copy(file.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
         return dest.getAbsolutePath();

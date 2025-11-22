@@ -194,8 +194,8 @@ public class LoginController {
     public void switchToOrderNow() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/org/example/progastro/CustomerOrderFood.fxml"));
         Parent parent =fxmlLoader.load();
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-        Scene scene = new Scene(parent,800,600);
+        Stage stage = (Stage) orderButton.getScene().getWindow();
+        Scene scene = new Scene(parent,1500,750);
 //        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Register.css").toExternalForm());
         stage.setScene(scene);
         stage.setTitle("Order Ngay!");

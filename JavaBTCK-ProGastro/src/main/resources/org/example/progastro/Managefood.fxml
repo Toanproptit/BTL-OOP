@@ -1,82 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="root" prefHeight="675.0" prefWidth="1225.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ManageFoodController">
+<AnchorPane fx:id="root" prefWidth="900" prefHeight="600"
+            xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ManageFoodController">
 
     <!-- === LEFT FORM PANEL === -->
-    <VBox layoutX="89.0" layoutY="14.0" spacing="15">
+    <VBox spacing="15" layoutX="20" layoutY="20">
 
-        <Label style="-fx-font-size: 22px; -fx-font-weight: bold;" text="Quản lý món ăn" />
+        <Label text="Quản lý món ăn" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
 
-        <Button fx:id="addNewButton" onAction="#handleAddNewFood" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" text="➕ Thêm món mới" />
+        <Button fx:id="addNewButton" text="➕ Thêm món mới"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white;"
+                onAction="#handleAddNewFood"/>
 
         <!-- NAME -->
-        <Label text="Tên món:" />
-        <TextField fx:id="nameField" prefWidth="250" promptText="Nhập tên món ăn" />
+        <Label text="Tên món:"/>
+        <TextField fx:id="nameField" promptText="Nhập tên món ăn" prefWidth="250"/>
 
         <!-- DESCRIPTION -->
-        <Label text="Mô tả:" />
-        <TextField fx:id="descriptionField" prefWidth="250" promptText="Nhập mô tả món ăn" />
-
-        <Label text="Loại món:" />
-        <ComboBox fx:id="categoryCombo" prefWidth="200">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Món Bò" />
-                    <String fx:value="Món Gà" />
-                    <String fx:value="Hải Sản" />
-                    <String fx:value="Pizza" />
-                    <String fx:value="Mì / Bún / Phở" />
-                    <String fx:value="Salad" />
-                    <String fx:value="Bánh - Bakery" />
-                    <String fx:value="Đồ Uống" />
-                    <String fx:value="Khác" />
-
-                </FXCollections>
-            </items>
-        </ComboBox>
-
+        <Label text="Mô tả:"/>
+        <TextField fx:id="descriptionField" promptText="Nhập mô tả món ăn" prefWidth="250"/>
 
         <!-- PRICE -->
-        <Label text="Giá:" />
-        <TextField fx:id="priceField" prefWidth="150" promptText="Nhập giá" />
+        <Label text="Giá:"/>
+        <TextField fx:id="priceField" promptText="Nhập giá" prefWidth="150"/>
 
         <!-- IMAGE -->
-        <Label text="Ảnh món:" />
-        <ImageView fx:id="foodImageView" fitHeight="120" fitWidth="160" preserveRatio="true" style="-fx-border-color: gray; -fx-background-color: white;" />
+        <Label text="Ảnh món:"/>
+        <ImageView fx:id="foodImageView" fitHeight="120" fitWidth="160" preserveRatio="true"
+                   style="-fx-border-color: gray; -fx-background-color: white;"/>
 
         <HBox spacing="10">
-            <Button fx:id="chooseImageButton" onAction="#handleChooseImage" text="Chọn ảnh" />
-            <Button fx:id="deleteImageButton" onAction="#handleDeleteImage" text="Xóa ảnh" />
+            <Button fx:id="chooseImageButton" text="Chọn ảnh" onAction="#handleChooseImage"/>
+            <Button fx:id="deleteImageButton" text="Xóa ảnh" onAction="#handleDeleteImage"/>
         </HBox>
 
         <!-- SAVE + DELETE -->
         <HBox spacing="10">
-            <Button fx:id="saveButton" onAction="#handleSave" prefWidth="120" text="💾 Lưu" />
-            <Button fx:id="deleteButton" onAction="#handleDeleteFood" prefWidth="120" text="🗑 Xóa" />
+            <Button fx:id="saveButton" text="💾 Lưu" prefWidth="120" onAction="#handleSave"/>
+            <Button fx:id="deleteButton" text="🗑 Xóa" prefWidth="120" onAction="#handleDeleteFood"/>
         </HBox>
 
     </VBox>
 
     <!-- === RIGHT TABLE PANEL === -->
-    <TableView fx:id="foodTable" layoutX="508.0" layoutY="30.0" prefHeight="550" prefWidth="631.0">
+    <TableView fx:id="foodTable" layoutX="350" layoutY="20" prefWidth="530" prefHeight="550">
         <columns>
-            <TableColumn fx:id="nameColumn" prefWidth="160" text="Tên món" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="200" text="Mô tả" />
-            <TableColumn fx:id="priceColumn" prefWidth="120" text="Giá" />
-            <TableColumn fx:id="categoryColumn" prefWidth="150" text="Loại món" />
+            <TableColumn fx:id="nameColumn" text="Tên món" prefWidth="160"/>
+            <TableColumn fx:id="descriptionColumn" text="Mô tả" prefWidth="200"/>
+            <TableColumn fx:id="priceColumn" text="Giá" prefWidth="120"/>
         </columns>
     </TableView>
 

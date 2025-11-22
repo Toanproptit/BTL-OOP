@@ -1,0 +1,14 @@
+.button {
+    -fx-background-color: #FF7043;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1); /* Bóng nhẹ */
+    -fx-background-insets: 0;
+    -fx-background-radius: 8px;
+}
+
+.button:hover {
+    -fx-background-color: #F4511E;
+}

@@ -1,30 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
 
-<VBox spacing="8" prefWidth="220"
-      style="-fx-background-color: white; -fx-background-radius: 15;
-             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
-             -fx-padding: 12;"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.FoodCardController">
+<VBox onMouseClicked="#handleClick" prefWidth="220" spacing="8" style="-fx-background-color: white; -fx-background-radius: 15;              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0);              -fx-padding: 10;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FoodCardController">
 
-    <ImageView fx:id="foodImage"
-               fitWidth="200"
-               fitHeight="130"
-               style="-fx-background-radius: 15;" />
+    <!-- Image -->
+    <ImageView fx:id="foodImage" fitHeight="130" fitWidth="200" style="-fx-background-radius: 15;" />
 
-    <Label fx:id="foodName"
-           style="-fx-font-size: 16; -fx-font-weight: bold;" />
+    <!-- Name -->
+    <Label fx:id="foodName" style="-fx-font-size: 16; -fx-font-weight: bold;" />
 
-    <Label fx:id="foodDescription"
-           wrapText="true"
-           style="-fx-text-fill: gray; -fx-font-size: 13;" />
+    <!-- Description -->
+    <Label fx:id="foodDescription" style="-fx-text-fill: gray; -fx-font-size: 13;" wrapText="true" />
 
-    <Label fx:id="foodPrice"
-           style="-fx-text-fill: #F97316; -fx-font-weight: bold; -fx-font-size: 16;" />
+    <!-- Price -->
+    <Label fx:id="foodPrice" style="-fx-text-fill: #F97316; -fx-font-weight: bold; -fx-font-size: 16;" />
 
 </VBox>
