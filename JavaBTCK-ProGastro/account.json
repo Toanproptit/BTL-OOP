@@ -1,11 +1,5 @@
 [
   {
-    "name": "ajdlad",
-    "phoneNumber": "03556465",
-    "account": "admin",
-    "password": "123"
-  },
-  {
     "name": "admin",
     "phoneNumber": "123",
     "account": "admin",

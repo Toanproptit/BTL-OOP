@@ -38,6 +38,9 @@ public class DashboardController {
     private Button menuButton;
 
     @FXML
+    private Button revenueButton;
+
+    @FXML
     private Label lable1;
 
     @FXML
@@ -107,6 +110,13 @@ public class DashboardController {
         setActiveButton(menuButton);
     }
 
+
+    @FXML
+    private void handleRevenueButton(ActionEvent event) throws IOException{
+        switchToRevenueReport();
+        setActiveButton(revenueButton);
+    }
+
     @FXML
     public void handleHomeButton(ActionEvent event) throws IOException {
         showHome();
@@ -125,6 +135,11 @@ public class DashboardController {
     private void switchToManageFoodController() throws IOException{
         Parent manageFoodView = FXMLLoader.load(getClass().getResource("/org/example/progastro/ManageFood.fxml"));
         contentArea.getChildren().setAll(manageFoodView);
+    }
+    private void switchToRevenueReport() throws IOException{
+        Parent revenueView = FXMLLoader.load(getClass().getResource("/org/example/progastro/RevenueReport.fxml"));
+        revenueView.getStylesheets().add(getClass().getResource("/org/example/progastro/RevenueReport.css").toExternalForm());
+        contentArea.getChildren().setAll(revenueView);
     }
     private void switchToManageOrderController() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/progastro/ManagerOrder.fxml"));
@@ -180,5 +195,6 @@ public class DashboardController {
     public void setContent(Parent node) {
         contentArea.getChildren().setAll(node);
     }
+
 
 }
