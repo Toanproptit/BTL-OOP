@@ -1,3 +1,20 @@
 [
-
+  {
+    "orderId": "1",
+    "customer": "Toan",
+    "date": "2025-11-16",
+    "status": "On Process",
+    "note": "Cố gắng nhanh một xíu",
+    "amount": 0.0,
+    "items": []
+  },
+  {
+    "orderId": "2",
+    "customer": "Toan2",
+    "date": "2025-11-06",
+    "status": "Completed",
+    "note": "",
+    "amount": 0.0,
+    "items": []
+  }
 ]
