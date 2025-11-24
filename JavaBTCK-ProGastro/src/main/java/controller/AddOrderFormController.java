@@ -46,7 +46,7 @@ public class AddOrderFormController {
         // Gọi hàm trong form chính để cập nhật bảng
         if (mainController != null) {
             mainController.refreshOrderTable();
-            mainController.showSuccessMessage("✅ Thêm đơn hàng thành công!");
+            mainController.showSuccessMessage(" Thêm đơn hàng thành công!");
         }
 
         // Đóng form

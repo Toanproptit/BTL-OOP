@@ -1,0 +1,126 @@
+/* ============================
+   GLOBAL FORM STYLE
+   ============================ */
+
+.root {
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+/* ----------------------------
+   TextFields
+   ---------------------------- */
+
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #FFA07A;
+    -fx-border-width: 1.2;
+    -fx-padding: 6 10;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused {
+    -fx-border-color: #FF7043;
+    -fx-background-color: #FFF4EF;
+    -fx-effect: dropshadow(gaussian, rgba(255,112,67,0.25), 8, 0, 0, 0);
+}
+
+/* ----------------------------
+   DatePicker
+   ---------------------------- */
+
+.date-picker {
+    -fx-background-radius: 10;
+}
+
+.date-picker > .text-field {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #FFA07A;
+    -fx-background-color: white;
+}
+
+.date-picker:focused > .text-field {
+    -fx-border-color: #FF7043;
+    -fx-background-color: #FFF4EF;
+}
+
+/* Panel popup */
+.date-picker .arrow-button {
+    -fx-background-color: #FF7043;
+    -fx-background-radius: 0 10 10 0;
+}
+.date-picker .arrow-button:hover {
+    -fx-background-color: #FF855E;
+}
+
+/* ----------------------------
+   ComboBox
+   ---------------------------- */
+
+.combo-box {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #FFA07A;
+    -fx-font-size: 14px;
+}
+
+.combo-box > .list-cell {
+    -fx-padding: 6 10;
+}
+
+.combo-box:focused {
+    -fx-border-color: #FF7043;
+    -fx-background-color: #FFF4EF;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #FF7043;
+    -fx-background-radius: 0 10 10 0;
+}
+.combo-box .arrow-button:hover {
+    -fx-background-color: #FF855E;
+}
+
+/* Menu popup */
+.combo-box-popup .list-view {
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+    -fx-border-color: #FFA07A;
+    -fx-border-radius: 10;
+}
+
+/* Hover item */
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: #FFE0D4;
+}
+
+/* Selected item */
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: #FF7043;
+    -fx-text-fill: white;
+}
+
+/* ----------------------------
+   Button
+   ---------------------------- */
+
+.button {
+    -fx-background-color: #FF7043;
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10;
+    -fx-padding: 8 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(255,112,67,0.25), 8, 0, 0, 2);
+}
+
+.button:hover {
+    -fx-background-color: #FF855E;
+}
+
+.button:pressed {
+    -fx-background-color: #E85D30;
+}

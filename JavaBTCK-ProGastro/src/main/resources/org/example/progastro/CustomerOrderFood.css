@@ -1,0 +1,100 @@
+.button {
+    -fx-background-color: #FF7043;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-border-radius: 8px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 1); /* Bóng nhẹ */
+    -fx-background-insets: 0;
+    -fx-background-radius: 8px;
+}
+
+/* Ẩn nền scrollbar */
+.transparent-scroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* Làm mờ thanh kéo */
+.transparent-scroll .thumb {
+    -fx-background-color: #888888;
+    -fx-opacity: 0.3;       /* chỉnh độ mờ */
+    -fx-background-radius: 5;
+}
+
+/* Ẩn các mũi tên điều hướng */
+.transparent-scroll .increment-arrow,
+.transparent-scroll .decrement-arrow {
+    -fx-opacity: 0;
+}
+
+.button:hover {
+    -fx-background-color: #F4511E;
+}
+
+/* ================================
+   TABLEVIEW STYLE (MODERN)
+   ================================ */
+
+/* Nền bảng */
+.table-view {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-border-radius: 15;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1.2;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);
+}
+
+/* Loại bỏ đường viền cũ */
+.table-view:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* Header */
+.table-view .column-header-background {
+    -fx-background-color: #FF7043;        /* Màu cam ProGastro */
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 5px;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Dòng xen kẽ */
+.table-row-cell:odd {
+    -fx-background-color: #FFF6F3;
+}
+.table-row-cell:even {
+    -fx-background-color: white;
+}
+
+/* Hover dòng */
+.table-row-cell:hover {
+    -fx-background-color: #FFE0D4;
+}
+
+/* Khi chọn dòng */
+.table-row-cell:selected {
+    -fx-background-color: #FF7043;
+    -fx-text-fill: white;
+}
+
+/* Padding của ô */
+.table-cell {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+}
+
+/* Bỏ viền focus cell */
+.table-cell:focused {
+    -fx-border-color: transparent;
+}

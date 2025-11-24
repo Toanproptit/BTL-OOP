@@ -1,69 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerOrderFoodController">
+<BorderPane fx:id="borderPane_root" prefHeight="750.0" prefWidth="1225.0" stylesheets="@CustomerOrderFood.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CustomerOrderFoodController">
 
-    <!-- Chọn món mới -->
-    <HBox layoutX="59.0" layoutY="344.0" prefHeight="38.0" prefWidth="466.0" spacing="10">
-        <Label prefHeight="36.0" prefWidth="114.0" style="-fx-background-color: #FFFFFF;" text="Chọn món:" />
-        <ComboBox fx:id="comboMenu" prefHeight="26.0" prefWidth="114.0" />
-        <Label prefHeight="36.0" prefWidth="107.0" style="-fx-background-color: #FFFFFF;" text="Số lượng:" />
-        <TextField fx:id="txtQuantity" prefHeight="38.0" prefWidth="83.0" />
-        <Button fx:id="addFood" onAction="#handleAddItem" prefHeight="48.0" prefWidth="124.0" text="Thêm món" />
-    </HBox>
+    <left>
+        <!-- Sidebar -->
+        <VBox fx:id="sidebar" alignment="TOP_LEFT" prefHeight="750.0" prefWidth="275.0" spacing="20" style="-fx-background-color: #FDFDFD; -fx-padding: 20;" BorderPane.alignment="CENTER">
 
+            <Text style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-fill: black;" text="ProGastro" textAlignment="CENTER">
+                <VBox.margin>
+                    <Insets bottom="20.0" />
+                </VBox.margin></Text>
 
-    <VBox alignment="CENTER" layoutX="6.0" layoutY="-8.0" prefHeight="156.0" prefWidth="342.0" spacing="10" xmlns:fx="http://javafx.com/fxml">
-        <GridPane hgap="10" prefHeight="86.0" prefWidth="290.0" vgap="10">
-            <Label style="-fx-background-color: #FFFFFF;" text="Tên bàn:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-          <Button fx:id="DatBan" mnemonicParsing="false" onAction="#handleChooseTable" text="Đặt bàn" GridPane.columnIndex="3" />
-         <ComboBox fx:id="comboTable" prefWidth="150.0" GridPane.columnIndex="2" />
+            <Label text="Customer's ID:" />
+            <TextField fx:id="orderIdField" promptText="Nhập ID" style="-fx-background-radius: 10; -fx-font-size: 14; -fx-padding: 5; -fx-faint-focus-color: transparent; -fx-focus-color: #FF7043;" />
 
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            <ColumnConstraints />
-            <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
+            <Label text="Customer's Name:" />
+            <TextField fx:id="customerNameField" promptText="Nhập họ và tên" style="-fx-background-radius: 10; -fx-padding: 5; -fx-font-size: 14; -fx-faint-focus-color: transparent; -fx-focus-color: #FF7043;" />
 
-        <HBox spacing="10" />
+            <Label text="Note:" />
+            <TextField fx:id="cusNoteField" promptText="Thêm ghi chú" style="-fx-background-radius: 10; -fx-padding: 5; -fx-font-size: 14; -fx-faint-focus-color: transparent; -fx-focus-color: #FF7043;" />
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="235.0">
+                <children>
+                    <Label prefHeight="24.0" prefWidth="42.0" text="Total:" />
+                    <Label fx:id="lblTotalAmount" prefHeight="24.0" prefWidth="174.0" text="\$0.0" />
+                </children>
+            </HBox>
+            <BorderPane prefHeight="258.0" prefWidth="235.0">
+                <bottom>
 
-    </VBox>
+                    <!-- BACK BUTTON -->
+                    <Button fx:id="backButton" onAction="#switchToLogin" prefHeight="22.0" prefWidth="235.0" text="Back to Login" BorderPane.alignment="CENTER" />
+                </bottom>
+                <top>
+                    <Button fx:id="placeorderButton" mnemonicParsing="false" onAction="#handleAddOrder" prefHeight="26.0" prefWidth="235.0" text="Place Order" BorderPane.alignment="CENTER" />
+                </top>
+            </BorderPane>
 
-    <HBox fx:id="hbox1" layoutX="59.0" layoutY="405.0" prefHeight="34.0" prefWidth="466.0" spacing="50.0">
-        <Button fx:id="btnEdit" onAction="#handleEditItem" prefHeight="34.0" prefWidth="129.0" text="Sửa số lượng" />
-        <Button fx:id="btnDeleteItem" onAction="#handleDeleteItem" prefHeight="34.0" prefWidth="108.0" text="Xóa món" />
-        <Button fx:id="invoice" mnemonicParsing="false" onAction="#exportInvoiceToTXT" prefHeight="34.0" prefWidth="130.0" text="Xuất hóa đơn" />
-    </HBox>
-    <Button fx:id="backButton" layoutX="29.0" layoutY="538.0" mnemonicParsing="false" onAction="#switchToLogin" text="Quay lại" />
-    <TextField fx:id="quantityField" layoutX="59.0" layoutY="454.0" prefHeight="38.0" prefWidth="118.0" promptText="Nhập số lượng" />
-    <Label layoutX="597.0" layoutY="341.0" prefHeight="43.0" prefWidth="117.0" style="-fx-background-color: #FFFFFF;" text="Tổng Tiền" />
-    <TextField fx:id="total" layoutX="597.0" layoutY="403.0" prefHeight="38.0" prefWidth="90.0" promptText="Tổng tiền" />
-    <TableView fx:id="tableViewOrders" layoutX="59.0" layoutY="106.0" prefHeight="210.0" prefWidth="658.0" style="-fx-background-color: #A8E6CF;">
-        <columns>
-            <TableColumn fx:id="colFoodName" prefWidth="179.2000732421875" style="-fx-background-color: #C8E6C9;" text="Tên món" />
-            <TableColumn fx:id="colQuantity" prefWidth="152.800048828125" style="-fx-background-color: #C8E6C9;" text="Số lượng" />
-            <TableColumn fx:id="colPrice" prefWidth="280.7999267578125" style="-fx-background-color: #C8E6C9;" text="Giá" />
-        </columns>
-    </TableView>
-    <!-- Danh sách món ăn đã đặt -->
-    <Label layoutX="338.0" layoutY="70.0" text="Danh sách món ăn" />
+            <Text style="-fx-font-size: 14px; -fx-fill: #AAAAAA;" text="© 2025 ProGastro. All rights reserved." />
+        </VBox>
+    </left>
 
-</AnchorPane>
+    <center>
+        <AnchorPane prefHeight="675.0" prefWidth="1225.0">
+            <children>
+
+                <!-- Header -->
+                <HBox fx:id="header" alignment="CENTER_LEFT" prefHeight="75.0" spacing="50.0">
+
+                    <VBox>
+                        <children>
+                            <Label fx:id="nameUser" />
+                        </children>
+                    </VBox>
+                </HBox>
+
+                <!-- Content where menu items will be loaded -->
+                <AnchorPane fx:id="contentArea" layoutY="75.0" prefHeight="675.0" prefWidth="1225.0">
+                    <children>
+                        <VBox layoutX="8.0" layoutY="411.0" prefHeight="258.0" prefWidth="958.0">
+                            <children>
+                                <TableView fx:id="tableViewOrders" prefHeight="258.0" prefWidth="955.0" style="-fx-focus-color: transparent; -fx-faint-focus-color: transparent;">
+                                    <columns>
+                                        <TableColumn fx:id="colFoodName" prefWidth="362.40007305145264" text="Tên món" />
+                                        <TableColumn fx:id="colPrice" prefWidth="279.99993896484375" text="Đơn giá" />
+                                        <TableColumn fx:id="colQuantity" minWidth="0.0" prefWidth="314.4" text="Số lượng" />
+                                    </columns>
+                                </TableView>
+                            </children></VBox>
+                        <ScrollPane layoutX="9.0" layoutY="3.0" prefHeight="400.0" prefWidth="1215.0" style="-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-background-color: transparent;" stylesheets="CustomerOrderFood.css">
+                            <content>
+                                <FlowPane fx:id="foodFlow" hgap="20.0" prefHeight="146.0" prefWidth="1192.0" vgap="20.0" />
+                            </content>
+                        </ScrollPane>
+                        <VBox layoutX="1043.0" layoutY="444.0" prefHeight="191.0" prefWidth="132.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="132.0" prefWidth="132.0" spacing="10.0">
+                                    <children>
+                                        <TextField fx:id="quantityField" prefHeight="34.0" prefWidth="132.0" promptText="Nhập số lượng" style="-fx-background-radius: 10; -fx-padding: 5;" />
+                                        <Button mnemonicParsing="false" onAction="#handleEditQuantity" prefHeight="42.0" prefWidth="121.0" style="-fx-font-size: 14;" text="Đổi số lượng" />
+                                    </children>
+                                </VBox>
+                                <VBox alignment="CENTER" prefHeight="52.0" prefWidth="132.0">
+                                    <children>
+                                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleDeleteItem" text="Xóa món" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children></AnchorPane>
+                <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="16.0" prefHeight="58.0" prefWidth="1197.0" spacing="20">
+                    <children>
+                        <HBox prefHeight="58.0" prefWidth="1180.0" spacing="80.0">
+                            <children>
+                                <TextField fx:id="searchField" onAction="#handleSearch" prefHeight="39.0" prefWidth="730.0" promptText="Search for Menu" style="-fx-background-radius: 10; -fx-background-radius: 10; -fx-font-size: 14;" />
+                                <Button mnemonicParsing="false" prefHeight="42.0" prefWidth="93.0" text="Search" />
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Sort by:" />
+                                        <ChoiceBox fx:id="sortChoice">
+                                            <items>
+                                                <FXCollections fx:factory="observableArrayList">
+                                                    <String fx:value="Popular" />
+                                                    <String fx:value="Price: Low to High" />
+                                                    <String fx:value="Price: High to Low" />
+                                                    <String fx:value="Rating" />
+                                                </FXCollections>
+                                            </items>
+                                        </ChoiceBox>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+
+            </children>
+        </AnchorPane>
+    </center>
+
+</BorderPane>

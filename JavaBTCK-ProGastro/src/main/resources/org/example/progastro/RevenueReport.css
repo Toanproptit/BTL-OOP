@@ -281,3 +281,80 @@
 .chart-legend {
     -fx-background-color: transparent;
 }
+
+/* ================================================= */
+/* 2.1  TABLEVIEW - MODERN CLEAN STYLE               */
+/* ================================================= */
+
+/* Table overall */
+.table-view {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 0;
+}
+
+/* Remove blue highlight when focused */
+.table-view:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+
+/* ---------------------- */
+/* TABLE HEADER           */
+/* ---------------------- */
+.table-view .column-header-background {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #E5E7EB transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 6px 0;
+}
+
+.table-view .column-header,
+.table-view .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #4B5563;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 12px;
+}
+
+/* ---------------------- */
+/* CELLS – TEXT BLACK     */
+/* ---------------------- */
+.table-view .table-cell {
+    -fx-padding: 10px 12px;
+    -fx-font-size: 13px;
+    -fx-text-fill: #111827;   /* CHỮ ĐEN */
+    -fx-border-color: transparent;
+}
+
+/* ---------------------- */
+/* ROWS                   */
+/* ---------------------- */
+
+.table-view .table-row-cell {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #E5E7EB transparent;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* Remove divider for empty rows */
+.table-view .table-row-cell:empty {
+    -fx-border-width: 0;
+}
+
+/* Hover effect */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #F9FAFB;
+}
+
+/* Selected row */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #F3F4F6;
+}
+
+.table-view .table-row-cell:selected .table-cell {
+    -fx-text-fill: #1F2937;  /* chữ vẫn đen khi selected */
+}

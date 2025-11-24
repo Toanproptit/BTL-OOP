@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import model.Food;
 
 import java.io.File;
@@ -15,8 +16,13 @@ public class FoodCardController {
     @FXML private Label foodDescription;
     @FXML private Label foodPrice;
 
+
+    private CustomerOrderFoodController parentController;
+    private Food food;
+
     public void setFoodData(Food food) {
 
+        this.food = food;
         foodName.setText(food.getName());
         foodDescription.setText(food.getDescription());
 
@@ -28,5 +34,16 @@ public class FoodCardController {
                 foodImage.setImage(new Image(f.toURI().toString()));
             }
         } catch (Exception ignored) {}
+    }
+
+    public void setParentController(CustomerOrderFoodController controller) {
+        this.parentController = controller;
+    }
+
+    @FXML
+    private void handleClick(MouseEvent event) {
+        if (parentController != null) {
+            parentController.addFoodToOrder(food); // gọi controller cha
+        }
     }
 }

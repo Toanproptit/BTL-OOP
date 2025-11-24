@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": "F-c84277",
+    "name": "erter",
+    "description": "erter",
+    "price": 123.0,
+    "category": "Hải Sản",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\434217017_1248318293221469_5722714575879684190_n.jpg"
+  },
+  {
+    "id": "F-1be767",
+    "name": "comga",
+    "description": "ngon",
+    "price": 12355.0,
+    "category": "Món Gà",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\Progastro.png"
+  },
+  {
+    "id": "F-67906b",
+    "name": "sdf",
+    "description": "sdf",
+    "price": 12.0,
+    "category": "Pizza",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\Screenshot 2024-07-15 214211.png"
+  },
+  {
+    "id": "F-2f7700",
+    "name": "ComCho",
+    "description": "Khong Ngon",
+    "price": 1234.0,
+    "category": "Hải Sản",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\hinh-anh-cam-on.jpg"
+  },
+  {
+    "id": "F-c786ca",
+    "name": "Cơm Thái",
+    "description": "Không ngon",
+    "price": 1200000.0,
+    "category": "Món Bò",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\boler.jpg"
+  }
+]

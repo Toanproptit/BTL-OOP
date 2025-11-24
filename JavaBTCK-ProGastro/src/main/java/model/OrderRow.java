@@ -1,4 +1,5 @@
 package model;
+
 public class OrderRow {
     private String id;
     private String category;

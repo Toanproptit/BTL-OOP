@@ -1,8 +1,6 @@
 package controller;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,7 +22,6 @@ import model.OrderRow;
 import java.io.IOException;
 import java.util.*;
 
-import static java.lang.Math.round;
 
 public class RevenueReportController {
 
@@ -184,33 +181,5 @@ public class RevenueReportController {
 
         // 4. Đổ dữ liệu ra TableView
         revenueTable.getItems().setAll(tableData);
-    }
-
-    @FXML
-    public void handlebackButton(ActionEvent event) throws IOException {
-        switchToDashBoard();
-        setActiveButton(backButton);
-    }
-
-    private void setActiveButton(Button button) {
-        if (activeButton != null) {
-            activeButton.getStyleClass().remove("active-button");
-        }
-        button.getStyleClass().add("active-button");
-        activeButton = button;
-    }
-
-    private void switchToDashBoard() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/progastro/Dashboard.fxml"));
-        Parent dashboard = loader.load();
-
-        Scene scene = new Scene(dashboard);
-        scene.getStylesheets().add(getClass().getResource("/org/example/progastro/Dashboard.css").toExternalForm());
-
-        Stage stage = (Stage) backButton.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setTitle("Dashboard - ProGastro");
-        stage.show();
     }
 }
