@@ -83,7 +83,7 @@ public class RevenueReportController {
 
         // ----- Total Revenue -----
         double totalRevenue = orders.stream()
-                .mapToDouble(Order::getAmount)
+                .mapToDouble(Order::getCost)
                 .sum();
         totalRevenueLabel.setText(String.format("$ %, .0f", totalRevenue));
 
@@ -95,7 +95,7 @@ public class RevenueReportController {
         Map<Integer, Double> monthlyRevenue = new HashMap<>();
         for (Order o : orders) {
             int month = o.getDate().getMonthValue();
-            monthlyRevenue.put(month, monthlyRevenue.getOrDefault(month, 0.0) + o.getAmount());
+            monthlyRevenue.put(month, monthlyRevenue.getOrDefault(month, 0.0) + o.getCost());
         }
         double avgPerMonth = monthlyRevenue.values().stream()
                 .mapToDouble(Double::doubleValue)
@@ -137,7 +137,7 @@ public class RevenueReportController {
         // cộng doanh thu từng tháng
         for (Order o : orders) {
             int month = o.getDate().getMonthValue();
-            monthlyRevenue.put(month, monthlyRevenue.get(month) + o.getAmount());
+            monthlyRevenue.put(month, monthlyRevenue.get(month) + o.getCost());
         }
 
         // tạo series cho biểu đồ
@@ -161,7 +161,7 @@ public class RevenueReportController {
             // 1. Lấy thông tin cơ bản từ Order
             String id = order.getOrderId();
             String date = order.getDate().toString();
-            double revenue = order.getAmount();      // đã đọc từ JSON
+            double revenue = order.getCost();      // đã đọc từ JSON
             double profit = revenue * 0.4;
 
             // 2. Lấy CATEGORY từ OrderItem (name của món ăn)

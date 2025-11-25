@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.control.Alert;
@@ -72,14 +73,17 @@ public class CustomerOrderFoodController {
     private ChoiceBox<String> sortChoice;
 
     @FXML
-    private Label lblTotalAmount;
+    private Label lblTotalCost;
 
     private ObservableList<OrderItem> orderItems = FXCollections.observableArrayList();
+
+    private List<Order> orderList = new ArrayList<>();
 
     @FXML
     public void initialize() {
         setupSortOptions();
         loadFoodList();
+        loadOrder();
         tableViewOrders.setPlaceholder(new Label("Chưa có món nào trong đơn hàng"));
         colFoodName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
@@ -97,6 +101,11 @@ public class CustomerOrderFoodController {
         sortChoice.setValue("Default");
 
         sortChoice.setOnAction(e -> loadFoodList());
+    }
+
+
+    private void loadOrder(){
+        orderList = OrderJSON.getOrderList();
     }
 
     private void loadFoodList() {
@@ -171,17 +180,18 @@ public class CustomerOrderFoodController {
             total += item.getPrice() * item.getQuantity();
         }
 
-        if (lblTotalAmount != null) {
-            lblTotalAmount.setText(String.format("$%.1f", total));
+        if (lblTotalCost != null) {
+            lblTotalCost.setText(String.format("$%.1f", total));
         }
     }
 
     @FXML
     public void handleAddOrder(ActionEvent event) {
+
         String orderId = orderIdField.getText();
         String customer = customerNameField.getText();
         String note = cusNoteField.getText();
-        double amount = Double.parseDouble(lblTotalAmount.getText().replace("$", "").trim());
+        double cost = Double.parseDouble(lblTotalCost.getText().replace("$", "").trim());
         LocalDate date = LocalDate.now();
         String status = "On Process";
 
@@ -199,10 +209,20 @@ public class CustomerOrderFoodController {
             return;
         }
 
+
+
         Order order = new Order(orderId, customer, date, status);
 
+        for(Order order1 : orderList){
+            if(order.getOrderId() .equals(order1.getOrderId()) ){
+                Alert alert = new Alert(Alert.AlertType.ERROR,"Đã tồn tại Order , vui lòng nhập Id khác");
+                alert.setHeaderText(null);
+                alert.showAndWait();
+                return;
+            }
+        }
         order.setItems(orderItems);
-        order.setAmount(amount);
+        order.setCost(cost);
 
         if (note != null){
             order.setNote(note);

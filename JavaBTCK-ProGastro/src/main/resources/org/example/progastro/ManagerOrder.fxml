@@ -105,7 +105,7 @@
             <TableColumn fx:id="dateCol" prefWidth="332.00001525878906" text="Date" />
             <TableColumn fx:id="customerCol" prefWidth="312.8000183105469" text="Customer" />
 
-            <TableColumn fx:id="amountCol" prefWidth="216.0" text="Amount" />
+            <TableColumn fx:id="costCol" prefWidth="216.0" text="Cost" />
 
             <TableColumn fx:id="statusCol" prefWidth="165.5999755859375" text="Status" />
 

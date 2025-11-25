@@ -42,7 +42,7 @@ public class ManagerOrderController {
     @FXML private TableColumn<Order, String> orderIdCol; // Đã đổi tên và kiểu dữ liệu
     @FXML private TableColumn<Order, LocalDate> dateCol; // Cột mới cho Date
     @FXML private TableColumn<Order, String> customerCol; // Đổi kiểu dữ liệu
-    @FXML private TableColumn<Order, Double> amountCol; // Cột mới cho Amount (Double)
+    @FXML private TableColumn<Order, Double> costCol; // Cột mới cho Amount (Double)
     @FXML private TableColumn<Order, String> statusCol; // Đã đổi tên
     @FXML private TableView<Order> ordersTable; // Đã đổi tên và kiểu dữ liệu
 
@@ -68,7 +68,7 @@ public class ManagerOrderController {
             customerCol.setCellValueFactory(new PropertyValueFactory<>("customer"));
             statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
             dateCol.setCellValueFactory(new PropertyValueFactory<>("date")); // Lấy từ LocalDate
-            amountCol.setCellValueFactory(new PropertyValueFactory<>("amount")); // Lấy từ double
+            costCol.setCellValueFactory(new PropertyValueFactory<>("cost")); // Lấy từ double
 
             // 3. Thiết lập TableView
             ordersTable.setItems(orderList);

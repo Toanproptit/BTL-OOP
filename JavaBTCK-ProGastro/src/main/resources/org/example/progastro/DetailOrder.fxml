@@ -38,8 +38,8 @@
                     <Label text="Customer:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                     <Label fx:id="customerLabel" text="Frank Miller" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-                    <Label text="Amount:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                    <Label fx:id="amountLabel" text="43.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label text="Cost:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <Label fx:id="costLabel" text="43.00" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
                     <Label text="Status:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                     <Label fx:id="statusLabel" style="-fx-text-fill: #10B981; -fx-font-weight: bold;" text="Completed" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -72,7 +72,7 @@
         </VBox>
 
         <!-- Right Column -->
-        <VBox spacing="20">
+        <VBox onDragDetected="#handleInvoice" spacing="20">
 
             <!-- Order Timeline -->
             <VBox prefWidth="500" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 12;                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10,0,0,5);">
@@ -86,10 +86,11 @@
             </VBox>
 
             <!-- Delivery Map Placeholder -->
-            <VBox prefWidth="500" spacing="10" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 12;                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10,0,0,5);">
+            <VBox prefWidth="500" spacing="30.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 12;                          -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 10,0,0,5);">
                 <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #374151;" text="Delivery Route" />
                 <Label style="-fx-text-fill: #9CA3AF; -fx-alignment: center; -fx-font-style: italic;" text="[Map Placeholder]" />
             </VBox>
+         <Button fx:id="invoiceId" alignment="CENTER" onAction="#handleInvoice" style="-fx-background-color: #F97316; -fx-text-fill: white; -fx-background-radius: 8;" text="Save Invoice" />
         </VBox>
     </HBox>
 </AnchorPane>

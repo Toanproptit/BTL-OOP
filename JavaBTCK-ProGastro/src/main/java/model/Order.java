@@ -11,7 +11,7 @@ public class Order {
     private LocalDate date;
     private String status;
     private String note;
-    private double amount; // Tính toán từ các OrderItem
+    private double cost; // Tính toán từ các OrderItem
     // Danh sách các món ăn trong đơn hàng
     private List<OrderItem> items;
 
@@ -21,7 +21,7 @@ public class Order {
         this.customer = customer;
         this.date = date;
         this.status = status;
-        this.amount = 0.0; // Khởi tạo Amount bằng 0
+        this.cost = 0.0; // Khởi tạo Amount bằng 0
         this.note = "";
         this.items = new ArrayList<>(); // Khởi tạo danh sách Items rỗng
     }
@@ -76,14 +76,12 @@ public class Order {
         this.status = status;
     }
 
-    public double getAmount() {
-        // Tốt hơn nên gọi calculateAmount() trước khi lấy giá trị
-        return amount;
+    public double getCost() {
+        return cost;
     }
 
-    // Setter chỉ được sử dụng khi đọc từ JSON
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setCost(double cost) {
+        this.cost = cost;
     }
 
     public List<OrderItem> getItems() {

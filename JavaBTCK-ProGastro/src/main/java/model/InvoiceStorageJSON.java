@@ -51,8 +51,4 @@ public class InvoiceStorageJSON {
         }
     }
 
-    public static boolean isInvoiceAlreadyExists(String tableName) {
-        return loadInvoices().stream()
-                .anyMatch(invoice -> invoice.getTableName().equalsIgnoreCase(tableName));
-    }
 }

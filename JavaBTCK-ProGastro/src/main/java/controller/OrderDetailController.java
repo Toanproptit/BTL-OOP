@@ -7,8 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import model.Order;
-import model.OrderJSON;
+import model.*;
 
 import java.io.IOException;
 
@@ -22,7 +21,7 @@ public class OrderDetailController {
     @FXML
     private Label customerLabel;
     @FXML
-    private Label amountLabel;
+    private Label costLabel;
     @FXML
     private Label statusLabel;
     @FXML
@@ -59,7 +58,7 @@ public class OrderDetailController {
             orderIdLabel.setText(selectedOrder.getOrderId());
             dateLabel.setText(selectedOrder.getDate().toString());
             customerLabel.setText(selectedOrder.getCustomer());
-            amountLabel.setText(String.format("%.2f", selectedOrder.getAmount()));
+            costLabel.setText(String.format("%.2f", selectedOrder.getCost()));
             statusLabel.setText(selectedOrder.getStatus());
             notesArea.setText(selectedOrder.getNotes() != null ? selectedOrder.getNotes() : "");
         }
@@ -75,4 +74,23 @@ public class OrderDetailController {
         alert.setContentText("Updated note successfully!");
         alert.showAndWait();
     }
+
+    @FXML
+    public void handleInvoice(ActionEvent event) {
+        double cost = 0;
+        for(OrderItem orderItem : currentOrder.getItems()){
+            cost+= orderItem.getPrice() * orderItem.getQuantity();
+        }
+        Invoice invoice = new Invoice(currentOrder.getOrderId(),currentOrder.getCustomer(),currentOrder.getDate().toString(),currentOrder.getStatus(),currentOrder.getNote(),currentOrder.getItems(),cost);
+
+        System.out.println(invoice.generateInvoiceText());
+
+        InvoiceStorageJSON.addInvoice(invoice);
+        invoice.saveToTXT();
+        invoice.saveToExcel();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,"Đã xuất excel và txt  và thành công");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+    }
+
 }
