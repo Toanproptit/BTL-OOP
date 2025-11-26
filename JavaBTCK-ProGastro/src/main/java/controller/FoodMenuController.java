@@ -180,16 +180,16 @@ public class FoodMenuController {
             boolean match = false;
 
             if (price5_10.isSelected())
-                match |= (p >= 5000 && p <= 10000);
+                match |= (p >= 50000 && p <= 100000);
 
             if (price10_20.isSelected())
-                match |= (p > 10000 && p <= 20000);
+                match |= (p > 100000 && p <= 200000);
 
             if (price20_30.isSelected())
-                match |= (p > 20000 && p <= 30000);
+                match |= (p > 200000 && p <= 300000);
 
             if (priceAbove30.isSelected())
-                match |= (p > 30000);
+                match |= (p > 300000);
 
             return match;
         }).collect(Collectors.toList());

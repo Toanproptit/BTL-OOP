@@ -181,7 +181,7 @@ public class CustomerOrderFoodController {
         }
 
         if (lblTotalCost != null) {
-            lblTotalCost.setText(String.format("$%.1f", total));
+            lblTotalCost.setText(String.format("%.1fVND", total));
         }
     }
 
@@ -191,7 +191,7 @@ public class CustomerOrderFoodController {
         String orderId = orderIdField.getText();
         String customer = customerNameField.getText();
         String note = cusNoteField.getText();
-        double cost = Double.parseDouble(lblTotalCost.getText().replace("$", "").trim());
+        double cost = Double.parseDouble(lblTotalCost.getText().replace("VND", "").trim());
         LocalDate date = LocalDate.now();
         String status = "On Process";
 

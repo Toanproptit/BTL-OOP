@@ -39,7 +39,7 @@
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="235.0">
                 <children>
                     <Label prefHeight="24.0" prefWidth="42.0" text="Total:" />
-                    <Label fx:id="lblTotalCost" prefHeight="24.0" prefWidth="174.0" text="\$0.0" />
+                    <Label fx:id="lblTotalCost" prefHeight="24.0" prefWidth="174.0" text="0.0VND" />
                 </children>
             </HBox>
             <BorderPane prefHeight="258.0" prefWidth="235.0">

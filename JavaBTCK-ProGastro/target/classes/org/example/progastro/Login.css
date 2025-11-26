@@ -78,6 +78,22 @@
     -fx-cursor: hand;
 }
 
+
+#orderButton:hover{
+    -fx-text-fill: #FFFFFF;
+    -fx-cursor: hand;
+}
+
+#orderButton:hover{
+    -fx-text-fill: #FFFFFF;
+    -fx-cursor: hand;
+}
+#choosePhoto:hover{
+    -fx-text-fill: #FFFFFF;
+    -fx-cursor: hand;
+}
+
+
 /* Đặt kích thước chữ cho Button có fx:id="choosePhoto" */
 
 /* Đã đổi màu chữ hover từ darkblue sang TRẮNG */
