@@ -13,8 +13,7 @@ import java.util.Optional;
 
 public class FoodStorageJSON {
 
-    private static final String FILE_PATH =
-            System.getProperty("user.dir") + "/JavaBTCK-ProGastro/food.json";
+    private static final String FILE_PATH = "food.json";
 
     private static List<Food> foodList;
 

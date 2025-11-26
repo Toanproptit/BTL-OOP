@@ -50,7 +50,7 @@ public class HomeController {
         totalInvoicesLabel.setText(invoices.size() + " hóa đơn");
 
         // 3. Bàn đang sử dụng
-        List<Table> tables = TableJSON.loadTable();
+        List<Order> tables = OrderJSON.loadOrders();
         long activeTables = tables.stream()
                 .filter(t -> "Đang sử dụng".equalsIgnoreCase(t.getStatus()))
                 .count();

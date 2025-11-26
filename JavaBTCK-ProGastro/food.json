@@ -1,3 +1,402 @@
 [
-
+  {
+    "id": "F001",
+    "name": "Gà rán phần",
+    "description": "2 miếng gà rán giòn kèm khoai chiên và sốt chua ngọt.",
+    "price": 65000.0,
+    "category": "Món Gà",
+    "imagePath": "images/foods/ga_ran_phan.png"
+  },
+  {
+    "id": "F002",
+    "name": "Cánh gà chiên nước mắm",
+    "description": "Cánh gà chiên giòn áo sốt nước mắm tỏi.",
+    "price": 78000.0,
+    "category": "Món Gà",
+    "imagePath": "images/foods/canh_ga_chien_nuoc_mam.jpg"
+  },
+  {
+    "id": "F003",
+    "name": "Gà xé phay rau răm",
+    "description": "Thịt gà luộc xé trộn rau răm, hành tây, nước mắm chua ngọt.",
+    "price": 72000.0,
+    "category": "Món Gà",
+    "imagePath": "images/foods/ga_xe_phay.jpg"
+  },
+  {
+    "id": "F004",
+    "name": "Cơm gà xối mỡ",
+    "description": "Đùi gà chiên giòn ăn kèm cơm, dưa leo và nước sốt đặc biệt.",
+    "price": 85000.0,
+    "category": "Món Gà",
+    "imagePath": "images/foods/com_ga_xoi_mo.jpg"
+  },
+  {
+    "id": "F005",
+    "name": "Gà nướng mật ong",
+    "description": "Đùi gà nướng tẩm mật ong, ăn kèm salad.",
+    "price": 95000.0,
+    "category": "Món Gà",
+    "imagePath": "images/foods/ga_nuong_mat_ong.png"
+  },
+  {
+    "id": "F006",
+    "name": "Lẩu gà lá é",
+    "description": "Lẩu gà lá é cho 2–3 người, nước dùng chua cay nhẹ.",
+    "price": 320000.0,
+    "category": "Món Gà",
+    "imagePath": "images/foods/lau_ga_la_e.jpg"
+  },
+  {
+    "id": "F007",
+    "name": "Combo cánh gà \u0026 khoai chiên",
+    "description": "6 cánh gà chiên giòn và khoai tây chiên lớn.",
+    "price": 115000.0,
+    "category": "Món Gà",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\canhga.jpg"
+  },
+  {
+    "id": "F008",
+    "name": "Bò lúc lắc khoai tây",
+    "description": "Thịt bò xào tiêu xanh, ớt chuông kèm khoai tây chiên.",
+    "price": 125000.0,
+    "category": "Món Bò",
+    "imagePath": "images/foods/bo_luc_lac.jpg"
+  },
+  {
+    "id": "F009",
+    "name": "Bò bít tết trứng",
+    "description": "Bít tết bò, trứng ốp la, pate và bánh mì.",
+    "price": 145000.0,
+    "category": "Món Bò",
+    "imagePath": "images/foods/bo_bit_tet.jpg"
+  },
+  {
+    "id": "F010",
+    "name": "Bò xào lúc lắc cơm",
+    "description": "Cơm trắng ăn kèm bò lúc lắc và salad.",
+    "price": 110000.0,
+    "category": "Món Bò",
+    "imagePath": "images/foods/com_bo_luc_lac.jpg"
+  },
+  {
+    "id": "F011",
+    "name": "Bò kho bánh mì",
+    "description": "Bò kho mềm thơm, ăn kèm bánh mì nóng.",
+    "price": 98000.0,
+    "category": "Món Bò",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\bo-kho.jpg"
+  },
+  {
+    "id": "F012",
+    "name": "Lẩu bò nhúng dấm",
+    "description": "Lẩu bò chua nhẹ, kèm bún và rau sống cho 3 người.",
+    "price": 380000.0,
+    "category": "Món Bò",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\cach-nau-lau-bo-nhung-dam-1024x576.jpeg"
+  },
+  {
+    "id": "F013",
+    "name": "Bò cuốn lá lốt",
+    "description": "Thịt bò băm cuốn lá lốt nướng than, ăn kèm bún.",
+    "price": 105000.0,
+    "category": "Món Bò",
+    "imagePath": "images/foods/bo_cuon_la_lot.jpg"
+  },
+  {
+    "id": "F014",
+    "name": "Phở bò tái chín",
+    "description": "Tô phở bò tái chín, nước dùng trong, thơm.",
+    "price": 65000.0,
+    "category": "Mì / Bún / Phở",
+    "imagePath": "images/foods/pho_bo_tai_chin.jpg"
+  },
+  {
+    "id": "F015",
+    "name": "Bún chả Hà Nội",
+    "description": "Bún chả thịt nướng, nem rán, rau sống và nước chấm.",
+    "price": 70000.0,
+    "category": "Mì / Bún / Phở",
+    "imagePath": "images/foods/bun_cha_ha_noi.jpg"
+  },
+  {
+    "id": "F016",
+    "name": "Bún bò Huế",
+    "description": "Bún bò Huế giò heo, chả cua, vị cay đậm đà.",
+    "price": 75000.0,
+    "category": "Mì / Bún / Phở",
+    "imagePath": "images/foods/bun_bo_hue.jpg"
+  },
+  {
+    "id": "F017",
+    "name": "Mì Quảng gà",
+    "description": "Mì Quảng gà nước lèo ít, ăn kèm bánh tráng mè.",
+    "price": 69000.0,
+    "category": "Mì / Bún / Phở",
+    "imagePath": "images/foods/mi_quang_ga.jpg"
+  },
+  {
+    "id": "F018",
+    "name": "Bún riêu cua",
+    "description": "Bún riêu cua đồng, chả cua, đậu phụ chiên.",
+    "price": 62000.0,
+    "category": "Mì / Bún / Phở",
+    "imagePath": "images/foods/bun_rieu_cua.jpg"
+  },
+  {
+    "id": "F019",
+    "name": "Mì trộn xá xíu",
+    "description": "Mì trộn khô với thịt xá xíu, hoành thánh và rau cải.",
+    "price": 68000.0,
+    "category": "Mì / Bún / Phở",
+    "imagePath": "images/foods/mi_tron_xa_xiu.webp"
+  },
+  {
+    "id": "F020",
+    "name": "Tôm sú nướng muối ớt",
+    "description": "Tôm sú nướng than, ướp muối ớt cay nhẹ.",
+    "price": 185000.0,
+    "category": "Hải Sản",
+    "imagePath": "images/foods/tom_su_nuong_muoi_ot.jpg"
+  },
+  {
+    "id": "F021",
+    "name": "Mực nướng sa tế",
+    "description": "Mực ống nướng sa tế, ăn kèm rau thơm.",
+    "price": 165000.0,
+    "category": "Hải Sản",
+    "imagePath": "images/foods/muc_nuong_sa_te.png"
+  },
+  {
+    "id": "F022",
+    "name": "Cá hồi áp chảo",
+    "description": "Phi lê cá hồi áp chảo, sốt bơ chanh và rau củ.",
+    "price": 210000.0,
+    "category": "Hải Sản",
+    "imagePath": "images/foods/ca_hoi_ap_chao.jpg"
+  },
+  {
+    "id": "F023",
+    "name": "Lẩu hải sản thập cẩm",
+    "description": "Lẩu hải sản tôm, mực, nghêu cho 3–4 người.",
+    "price": 420000.0,
+    "category": "Hải Sản",
+    "imagePath": "images/foods/lau_hai_san.webp"
+  },
+  {
+    "id": "F024",
+    "name": "Nghêu hấp sả",
+    "description": "Nghêu hấp sả ớt, chấm nước mắm gừng.",
+    "price": 98000.0,
+    "category": "Hải Sản",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\ngheu-hap-sa.jpg"
+  },
+  {
+    "id": "F025",
+    "name": "Cơm chiên hải sản",
+    "description": "Cơm chiên trứng với tôm, mực, đậu Hà Lan.",
+    "price": 90000.0,
+    "category": "Hải Sản",
+    "imagePath": "images/foods/com_chien_hai_san.png"
+  },
+  {
+    "id": "F026",
+    "name": "Pizza Margherita",
+    "description": "Pizza phô mai, cà chua và lá basil cỡ vừa.",
+    "price": 165000.0,
+    "category": "Pizza",
+    "imagePath": "images/foods/pizza_margherita.jpg"
+  },
+  {
+    "id": "F027",
+    "name": "Pizza hải sản phô mai",
+    "description": "Pizza tôm, mực, thanh cua, phô mai mozzarella.",
+    "price": 195000.0,
+    "category": "Pizza",
+    "imagePath": "images/foods/pizza_hai_san.jpg"
+  },
+  {
+    "id": "F028",
+    "name": "Pizza gà BBQ",
+    "description": "Pizza sốt BBQ với gà xé, bắp và hành tây.",
+    "price": 180000.0,
+    "category": "Pizza",
+    "imagePath": "images/foods/pizza_ga_bbq.jpg"
+  },
+  {
+    "id": "F029",
+    "name": "Pizza bò bằm phô mai",
+    "description": "Pizza bò bằm sốt cà chua, phô mai kéo sợi.",
+    "price": 185000.0,
+    "category": "Pizza",
+    "imagePath": "images/foods/pizza_bo_bam.jpg"
+  },
+  {
+    "id": "F030",
+    "name": "Pizza thập cẩm gia đình",
+    "description": "Pizza size lớn cho 3–4 người, topping thập cẩm.",
+    "price": 320000.0,
+    "category": "Pizza",
+    "imagePath": "images/foods/pizza_thap_cam.png"
+  },
+  {
+    "id": "F031",
+    "name": "Combo 2 pizza bất kỳ",
+    "description": "Chọn 2 pizza size vừa trong menu.",
+    "price": 450000.0,
+    "category": "Pizza",
+    "imagePath": "images/foods/combo_2_pizza.jpg"
+  },
+  {
+    "id": "F032",
+    "name": "Salad cá ngừ",
+    "description": "Xà lách trộn cá ngừ, ngô, sốt mayonnaise.",
+    "price": 78000.0,
+    "category": "Salad",
+    "imagePath": "images/foods/salad_ca_ngu.jpg"
+  },
+  {
+    "id": "F033",
+    "name": "Salad ức gà nướng",
+    "description": "Salad rau xanh với ức gà nướng mật ong.",
+    "price": 89000.0,
+    "category": "Salad",
+    "imagePath": "images/foods/salad_uc_ga_nuong.jpg"
+  },
+  {
+    "id": "F034",
+    "name": "Salad trái cây sữa chua",
+    "description": "Trái cây theo mùa trộn sữa chua và mật ong.",
+    "price": 65000.0,
+    "category": "Salad",
+    "imagePath": "images/foods/salad_trai_cay.jpg"
+  },
+  {
+    "id": "F035",
+    "name": "Salad Caesar tôm",
+    "description": "Salad Caesar với tôm nướng, phô mai Parmesan.",
+    "price": 99000.0,
+    "category": "Salad",
+    "imagePath": "images/foods/salad_caesar_tom.jpg"
+  },
+  {
+    "id": "F036",
+    "name": "Salad đậu hũ kiểu Á",
+    "description": "Đậu hũ chiên giòn, rau trộn sốt mè rang.",
+    "price": 72000.0,
+    "category": "Salad",
+    "imagePath": "images/foods/salad_dau_hu.jpg"
+  },
+  {
+    "id": "F037",
+    "name": "Bánh mì bơ tỏi",
+    "description": "Bánh mì nướng giòn phết bơ tỏi thơm.",
+    "price": 55000.0,
+    "category": "Bánh - Bakery",
+    "imagePath": "images/foods/banh_mi_bo_toi.jpg"
+  },
+  {
+    "id": "F038",
+    "name": "Croissant bơ",
+    "description": "Bánh sừng bò bơ Pháp, lớp vỏ nhiều lớp giòn.",
+    "price": 52000.0,
+    "category": "Bánh - Bakery",
+    "imagePath": "images/foods/croissant_bo.png"
+  },
+  {
+    "id": "F039",
+    "name": "Bánh tiramisu miếng",
+    "description": "Bánh tiramisu mềm, mùi cà phê và cacao.",
+    "price": 68000.0,
+    "category": "Bánh - Bakery",
+    "imagePath": "images/foods/banh_tiramisu.png"
+  },
+  {
+    "id": "F040",
+    "name": "Bánh cheesecake dâu",
+    "description": "Cheesecake vị phô mai béo, sốt dâu tây.",
+    "price": 72000.0,
+    "category": "Bánh - Bakery",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\trang-tri-banh-cheesecake-dau-tay-6.jpeg"
+  },
+  {
+    "id": "F041",
+    "name": "Bánh lava chocolate",
+    "description": "Bánh chocolate nhân chảy, ăn kèm kem vani.",
+    "price": 85000.0,
+    "category": "Bánh - Bakery",
+    "imagePath": "images/foods/banh_lava_chocolate.jpg"
+  },
+  {
+    "id": "F042",
+    "name": "Trà đào cam sả",
+    "description": "Trà đào tươi, cam và sả thơm mát.",
+    "price": 55000.0,
+    "category": "Đồ Uống",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\tra-dao-cam-sa-2.jpg"
+  },
+  {
+    "id": "F043",
+    "name": "Trà sữa trân châu đường đen",
+    "description": "Trà sữa béo nhẹ, trân châu đường đen dẻo.",
+    "price": 58000.0,
+    "category": "Đồ Uống",
+    "imagePath": "images/foods/tra_sua_duong_den.webp"
+  },
+  {
+    "id": "F044",
+    "name": "Cà phê sữa đá",
+    "description": "Cà phê phin Việt Nam pha sữa đặc, đá mát lạnh.",
+    "price": 42000.0,
+    "category": "Đồ Uống",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\OIP (1).jpg"
+  },
+  {
+    "id": "F045",
+    "name": "Latte nóng",
+    "description": "Cà phê espresso với sữa nóng tạo foam.",
+    "price": 60000.0,
+    "category": "Đồ Uống",
+    "imagePath": "C:\\Users\\Fptshop123\\Desktop\\BTL-OOP\\Test_Lam\\BTL-OOP\\JavaBTCK-ProGastro\\JavaBTCK-ProGastro\\images\\food\\OIP (1).jpg"
+  },
+  {
+    "id": "F046",
+    "name": "Nước ép cam nguyên chất",
+    "description": "Nước cam vắt 100%, không đường.",
+    "price": 52000.0,
+    "category": "Đồ Uống",
+    "imagePath": "images/foods/nuoc_ep_cam.jpg"
+  },
+  {
+    "id": "F047",
+    "name": "Khoai tây chiên lớn",
+    "description": "Khoai tây chiên giòn, phần lớn dùng kèm sốt.",
+    "price": 65000.0,
+    "category": "Khác",
+    "imagePath": "images/foods/khoai_tay_chien_lon.jpg"
+  },
+  {
+    "id": "F048",
+    "name": "Xúc xích nướng que",
+    "description": "Xúc xích Đức nướng, chấm mù tạt.",
+    "price": 58000.0,
+    "category": "Khác",
+    "imagePath": "images/foods/xuc_xich_nuong.jpg"
+  },
+  {
+    "id": "F049",
+    "name": "Combo snack tổng hợp",
+    "description": "Khoai chiên, xúc xích, gà viên và sốt chấm.",
+    "price": 135000.0,
+    "category": "Khác",
+    "imagePath": "images/foods/combo_snack.jpg"
+  },
+  {
+    "id": "F050",
+    "name": "Combo gia đình đặc biệt",
+    "description": "1 pizza lớn, 1 lẩu nhỏ, 2 đồ uống và 1 bánh tráng miệng.",
+    "price": 520000.0,
+    "category": "Khác",
+    "imagePath": "images/foods/combo_gia_dinh.png"
+  }
 ]

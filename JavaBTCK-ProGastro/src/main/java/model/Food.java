@@ -11,12 +11,8 @@ public class Food {
     private String category;      // Loại (Beef, Chicken, Seafood,…)
     private String imagePath;     // Đường dẫn ảnh
 
-    // ===================== CONSTRUCTORS =====================
 
-    // Constructor mặc định (bắt buộc cho Gson)
-    public Food() {}
 
-    // Constructor tạo mới món ăn (khi thêm trong ManageFood)
     public Food(String id, String name, String description, double price, String category, String imagePath) {
         this.id = id;
         this.name = name;
@@ -25,8 +21,6 @@ public class Food {
         this.category = category;
         this.imagePath = imagePath;
     }
-
-    // ===================== GETTERS / SETTERS =====================
 
     public String getId() {
         return id;
