@@ -7,5 +7,25 @@
     "note": "",
     "cost": 0.0,
     "items": []
+  },
+  {
+    "orderId": "2",
+    "customer": "Toan",
+    "date": "2025-11-27",
+    "status": "On Process",
+    "note": "Chu y",
+    "cost": 143000.0,
+    "items": [
+      {
+        "name": "Gà rán phần",
+        "price": 65000.0,
+        "quantity": 1
+      },
+      {
+        "name": "Cánh gà chiên nước mắm",
+        "price": 78000.0,
+        "quantity": 1
+      }
+    ]
   }
 ]

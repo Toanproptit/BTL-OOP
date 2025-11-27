@@ -47,7 +47,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT">
                            <children>
-                              <Label fx:id="totalRevenueLabel" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="đ 0" />
+                              <Label fx:id="totalRevenueLabel" style="-fx-font-size: 34px; -fx-font-weight: bold;" text="0 VND" />
                               <Pane HBox.hgrow="ALWAYS" />
                               <Label style="-fx-text-fill: #A77D6A;" text="Last 12 Months" />
                            </children>

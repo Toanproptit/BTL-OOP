@@ -85,7 +85,7 @@ public class RevenueReportController {
         double totalRevenue = orders.stream()
                 .mapToDouble(Order::getCost)
                 .sum();
-        totalRevenueLabel.setText(String.format("$ %, .0f", totalRevenue));
+        totalRevenueLabel.setText(String.format("%,.0f VND", totalRevenue));
 
         // ----- Total Orders -----
         int totalOrders = orders.size();
@@ -101,7 +101,7 @@ public class RevenueReportController {
                 .mapToDouble(Double::doubleValue)
                 .average()
                 .orElse(0);
-        avgRevenueLabel.setText(String.format("$ %, .0f", avgPerMonth));
+        avgRevenueLabel.setText(String.format("%,.0f VND", avgPerMonth));
 
         // ----- Top Category (top-selling food) + % orders -----
         Map<String, Integer> foodCount = new HashMap<>();
